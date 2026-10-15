@@ -19,4 +19,5 @@
 @media(min-width:1550px){.story-panel{width:430px}.story-panel~.map-controls{right:493px}.bottom-left{width:365px}}
 @media(max-height:850px){.story-panel{top:92px;bottom:72px}.story-panel-head{padding:12px 17px 8px}.story-panel-scroll{padding:10px 17px 16px}.story-progress{margin:14px 0 17px}.story-paragraph{padding:10px 11px}.story-panel~.map-controls{bottom:81px}}
 @media(max-width:1050px){.story-panel{right:25px;width:355px}.story-panel~.map-controls{right:393px}.bottom-left{left:25px;width:315px}}
-@media(max-width:760px){.story-panel{right:20px;top:145px;bottom:70px;width:min(345px,calc(100vw - 40px))}.story-panel~.map-controls{display:none}.bottom-left{left:20px;bottom:72px;width:min(310px,calc(100vw - 40px))}.story-panel~.bottom-left{display:none}.ask-card{padding:11px}}
+@media(max-width:760px){.story-panel{right:20px;top:145px;bottom:70px;width:min(345px,calc(100vw - 40px))}.story-panel~.map-controls{display:none}.bottom-left{left:20px;bottom:72px;width:min(310px,calc(100vw - 40px))}.story-panel~.bottom-left{z-index:13}.ask-card{padding:11px}}
+@media(max-width:700px){.story-panel{bottom:270px}.story-panel~.bottom-left .layer-strip{max-height:45px}.chat-empty{margin:14px 0}}

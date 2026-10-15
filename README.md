@@ -6,7 +6,7 @@ QuickMap is a Windows desktop world map that opens with a global shortcut. It wo
 
 1. 在 [Windows package 构建记录](https://github.com/Zhangsfish/QuickMap/actions/workflows/windows-package.yml)中打开最近一次成功运行，下载 `QuickMap-win32-x64`，解压后运行 `QuickMap.exe`。它是便携版，无需安装 Node.js。
 2. 按 **Ctrl+Alt+M** 唤出地图，按 **Esc** 收起。搜索框可查国家和主要城市；遇到海峡、岛屿等未收录地点，可让本地 AI 临时标注。
-   地图右下角的「问地图」输入框可直接向本机 Codex 提问、继续追问或取消回复；旁边的「离线浏览：霍尔木兹五步故事」无需 Codex 或网络即可使用。地图内会话由 QuickMap 单独管理，不共享当前 Codex 桌面对话记录。
+   地图左下角的「问地图」输入框可直接向本机 Codex 提问、继续追问或取消回复；下方的「离线浏览：霍尔木兹五步故事」无需 Codex 或网络即可使用。地图内会话由 QuickMap 单独管理，不共享当前 Codex 桌面对话记录。
 3. 在运行 Codex 的 Windows 终端注册地图工具，路径换成你实际解压的位置：
 
    ```powershell
@@ -51,7 +51,7 @@ On the map, hover a country to see Chinese and English names and its capital. Cl
 
 ## 在地图里提问与浏览故事
 
-在运行的 Windows 地图右下角输入问题，按 **Enter** 发送，或按 **Shift+Enter** 换行。QuickMap 通过 Electron 主进程连接本机已安装、已登录的 Codex CLI `app-server`；回复在地图内逐字显示，可继续追问、取消当前回复或开启新会话。已完成的最近 12 轮问答保存在本机 QuickMap 用户数据中，重开地图可继续；若 Codex 原线程无法恢复，地图会明确提示并清除失效的历史显示。首次使用需先让本机 Codex 完成登录；模型请求可能需要联网。若 Codex 不可用，地图会显示错误状态，离线图文故事仍能浏览。这里的会话不读取 Codex 桌面应用当前聊天。
+在运行的 Windows 地图左下角输入问题，按 **Enter** 发送，或按 **Shift+Enter** 换行。QuickMap 通过 Electron 主进程连接本机已安装、已登录的 Codex CLI `app-server`；回复在地图内逐字显示，可继续追问、取消当前回复或开启新会话。已完成的最近 12 轮问答保存在本机 QuickMap 用户数据中，重开地图可继续；若 Codex 原线程无法恢复，地图会明确提示并清除失效的历史显示。首次使用需先让本机 Codex 完成登录；模型请求可能需要联网。若 Codex 不可用，地图会显示错误状态，离线图文故事仍能浏览。这里的会话不读取 Codex 桌面应用当前聊天。
 
 点击「离线浏览：霍尔木兹五步故事」可按狭窄出口、出口体系、亚洲方向、2026 年扰动、陆上绕行五步阅读。正文段落与地图示意层双向关联；退出故事会恢复进入前的视角，个人临时标注仍保留。故事中的海路、管道及海峡标记均为示意，数字标明来源和统计时段。详见[故事来源与口径](docs/hormuz-story-sources.md)。普通城市只显示位置点及“暂无边界数据”；香港城市点和香港地区轮廓是两条不同记录（[截图](docs/screenshots/hong-kong-city-point-1280.png)）。
 
