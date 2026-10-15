@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { CSSProperties, PointerEvent as ReactPointerEvent, ReactNode, SVGProps } from 'react';
-import { geoArea, geoGraticule10, geoNaturalEarth1, geoPath } from 'd3-geo';
+import { geoArea, geoBounds, geoGraticule10, geoNaturalEarth1, geoPath } from 'd3-geo';
 import type { Geometry } from 'geojson';
 import { countries, findPlaces, getCountryCities } from './data/mapData';
 import type { CountryRecord, PlaceMatch } from './shared/types';
@@ -28,8 +28,11 @@ const geometryLabels = { Point: '坐标点', MultiPoint: '坐标点组', LineStr
 // d3 uses spherical clockwise exterior rings. Accept ordinary GeoJSON winding
 // from local tools too, so a small highlighted region never fills the globe.
 function displayGeometry(geometry: MapOverlay['geometry']): MapOverlay['geometry'] {
-  const orientPolygon = (coordinates: number[][][]) => geoArea({ type: 'Polygon', coordinates }) > Math.PI * 2
-    ? coordinates.map((ring) => [...ring].reverse()) : coordinates;
+  const orientPolygon = (coordinates: number[][][]) => coordinates.map((ring, index) => {
+    const isLarge = geoArea({ type: 'Polygon', coordinates: [ring] }) > Math.PI * 2;
+    // Exterior and hole rings must have opposite spherical winding.
+    return isLarge === (index === 0) ? [...ring].reverse() : ring;
+  });
   if (geometry.type === 'Polygon') return { ...geometry, coordinates: orientPolygon(geometry.coordinates) as [number, number][][] };
   if (geometry.type === 'MultiPolygon') return { ...geometry, coordinates: geometry.coordinates.map(orientPolygon) as [number, number][][][] };
   return geometry;
@@ -45,6 +48,7 @@ const DEMO_OVERLAY: MapOverlay = {
 
 export default function App() {
   const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight });
+  const [rotation, setRotation] = useState(0);
   const [view, setView] = useState<View>(INITIAL_VIEW);
   const [selectedCode, setSelectedCode] = useState<string | null>(null);
   const [hover, setHover] = useState<{ country: CountryRecord; x: number; y: number } | null>(null);
@@ -57,6 +61,7 @@ export default function App() {
   const [notice, setNotice] = useState('');
   const [hidden, setHidden] = useState(false);
   const [dragging, setDragging] = useState(false);
+  const focusTarget = useRef<{ geometry: Geometry } | { lon: number; lat: number; scale: number } | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
   const drag = useRef<{ x: number; y: number; origin: View; moved: boolean } | null>(null);
@@ -77,7 +82,7 @@ export default function App() {
   const projection = useMemo(() => geoNaturalEarth1().fitExtent(
     [[size.width < 850 ? 20 : 66, 105], [size.width - (size.width < 850 ? 20 : 66), size.height - 100]],
     { type: 'Sphere' },
-  ), [size]);
+  ).rotate([rotation, 0]), [size, rotation]);
   const path = useMemo(() => geoPath(projection), [projection]);
   const countryPaths = useMemo(() => countries.map((country) => ({ country, d: path(country.geometry) ?? '' })), [path]);
   const graticule = useMemo(() => path(geoGraticule10()) ?? '', [path]);
@@ -98,22 +103,46 @@ export default function App() {
 
   const announce = useCallback((message: string) => setNotice(message), []);
   const focusPoint = useCallback((lon: number, lat: number, scale = 5) => {
-    const point = projection([lon, lat]);
+    // Start each focus with a fresh seam, so a previous Pacific focus cannot
+    // split a newly selected place at the map edge.
+    const nextRotation = Math.abs(lon) > 150 ? -lon : 0;
+    const point = geoNaturalEarth1().scale(projection.scale()).translate(projection.translate()).rotate([nextRotation, 0])([lon, lat]);
     if (!point) return;
+    focusTarget.current = { lon, lat, scale };
+    setRotation(nextRotation);
     const centerX = size.width > 950 ? size.width * 0.44 : size.width * 0.5;
     setView({ x: centerX - point[0] * scale, y: size.height * 0.5 - point[1] * scale, k: scale });
     setHidden(false);
   }, [projection, size]);
 
   const focusGeometry = useCallback((geometry: Geometry) => {
-    const [[x0, y0], [x1, y1]] = path.bounds(geometry);
+    const [[west], [east]] = geoBounds(geometry);
+    const centerLon = west > east ? ((west + east + 360) / 2) : (west + east) / 2;
+    const nextRotation = west > east ? -centerLon : 0;
+    const focusPath = geoPath(geoNaturalEarth1().scale(projection.scale()).translate(projection.translate()).rotate([nextRotation, 0]));
+    const [[x0, y0], [x1, y1]] = focusPath.bounds(geometry);
     if (![x0, y0, x1, y1].every(Number.isFinite)) return;
+    focusTarget.current = { geometry };
+    setRotation(nextRotation);
     const availableWidth = size.width > 950 ? size.width - 470 : size.width - 80;
-    const scale = Math.max(1.35, Math.min(30, Math.min(availableWidth / Math.max(12, x1 - x0), (size.height - 260) / Math.max(12, y1 - y0)) * 0.78));
+    const scale = Math.max(1.35, Math.min(30, Math.min(availableWidth / Math.max(12, x1 - x0), Math.max(100, size.height - 260) / Math.max(12, y1 - y0)) * 0.78));
     const centerX = size.width > 950 ? (size.width - 330) / 2 : size.width / 2;
     setView({ x: centerX - (x0 + x1) / 2 * scale, y: size.height / 2 - (y0 + y1) / 2 * scale, k: scale });
     setHidden(false);
-  }, [path, size]);
+  }, [projection, size]);
+
+  // Electron can resize after delivering a command while showing its window.
+  // Refit the current target using the new projection instead of losing focus.
+  const refocus = useRef(() => {});
+  refocus.current = () => {
+    const target = focusTarget.current;
+    if (!target) return;
+    if ('geometry' in target) focusGeometry(target.geometry);
+    else focusPoint(target.lon, target.lat, target.scale);
+  };
+  useLayoutEffect(() => { refocus.current(); }, [size]);
+
+  const resetView = useCallback(() => { focusTarget.current = null; setRotation(0); setView(INITIAL_VIEW); }, []);
 
   const selectCountry = useCallback((country: CountryRecord, focus = true) => {
     setSelectedCode(country.code);
@@ -171,13 +200,13 @@ export default function App() {
         break;
       case 'search': runSearch(command.query); break;
       case 'upsert_overlay': addOverlay(command.overlay); announce(`已更新标注：${command.overlay.label}`); break;
-      case 'remove_overlay': setOverlays((previous) => previous.filter((item) => item.id !== command.id)); break;
+      case 'remove_overlay': setOverlays((previous) => previous.filter((item) => item.id !== command.id)); setActiveOverlay((previous) => previous === command.id ? null : previous); break;
       case 'clear_overlays': setOverlays([]); setActiveOverlay(null); announce('已清除全部临时标注'); break;
     }
   };
 
   useEffect(() => {
-    const resize = () => { setSize({ width: window.innerWidth, height: window.innerHeight }); setView(INITIAL_VIEW); };
+    const resize = () => { setSize({ width: window.innerWidth, height: window.innerHeight }); };
     window.addEventListener('resize', resize);
     const unsubscribe = window.quickMap?.onCommand((command) => commandHandler.current(command));
     window.quickMap?.ready();
@@ -218,11 +247,11 @@ export default function App() {
       if (event.key === 'Escape') { event.preventDefault(); hide(); }
       if (event.key === '/' && !editing) { event.preventDefault(); setSearchOpen(true); searchRef.current?.focus(); }
       if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'v' && !editing) { event.preventDefault(); void readClipboard(); }
-      if (event.key === 'Home' && !editing) setView(INITIAL_VIEW);
+      if (event.key === 'Home' && !editing) resetView();
     };
     window.addEventListener('keydown', keydown);
     return () => window.removeEventListener('keydown', keydown);
-  }, [hide, readClipboard]);
+  }, [hide, readClipboard, resetView]);
 
   useEffect(() => {
     const svg = svgRef.current;
@@ -263,13 +292,14 @@ export default function App() {
     }
   };
   const pointerUp = () => { drag.current = null; setDragging(false); };
+  const pointerLeave = () => { if (!drag.current?.moved) drag.current = null; setHover(null); };
 
   if (hidden) return <div className="hidden-screen"><div className="brand-mark"><Icon name="globe"/></div><h1>地图已收起</h1><p>桌面应用中，使用全局快捷键随时唤出。</p><button className="primary-button" onClick={() => setHidden(false)}>返回地图 <Icon name="arrow"/></button></div>;
 
   return <main className="app-shell">
     <svg ref={svgRef} className={`world-map ${dragging ? 'is-dragging' : ''}`} width={size.width} height={size.height} aria-label="交互式离线世界地图，可拖动平移、滚轮缩放，点击国家查看邻国和主要城市" role="img"
-      onPointerDown={pointerDown} onPointerMove={pointerMove} onPointerUp={pointerUp} onPointerCancel={pointerUp}
-      onClick={(event) => { if (event.target === event.currentTarget && !suppressClick.current) { setSelectedCode(null); setActiveOverlay(null); setSearchOpen(false); } }}>
+      onPointerDown={pointerDown} onPointerMove={pointerMove} onPointerUp={pointerUp} onPointerCancel={pointerUp} onPointerLeave={pointerLeave}
+      onClick={(event) => { if ((event.target === event.currentTarget || (event.target instanceof Element && event.target.classList.contains('ocean-border'))) && !suppressClick.current) { setSelectedCode(null); setActiveOverlay(null); setSearchOpen(false); } }}>
       <defs>
         <radialGradient id="ocean-glow"><stop offset="0%" stopColor="#183941" stopOpacity=".55"/><stop offset="100%" stopColor="#0c1922" stopOpacity="0"/></radialGradient>
         <pattern id="map-dots" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".65" fill="#73929b" opacity=".12"/></pattern>
@@ -297,7 +327,7 @@ export default function App() {
           const point = projection([city.lon, city.lat]);
           if (!point) return null;
           return <g key={city.id} transform={`translate(${point[0]},${point[1]}) scale(${1 / view.k})`} className={`city-marker ${city.isCapital ? 'capital' : ''} ${highlightCity === city.id ? 'highlight' : ''}`}
-            onClick={(event) => { event.stopPropagation(); setHighlightCity(city.id); focusPoint(city.lon, city.lat, Math.max(7, view.k)); }}>
+            onClick={(event) => { event.stopPropagation(); if (!suppressClick.current) { setHighlightCity(city.id); focusPoint(city.lon, city.lat, Math.max(7, view.k)); } }}>
             <circle className="city-halo" r={city.isCapital ? 9 : 7}/><circle r={city.isCapital ? 4 : 3}/>
             {visibleCityLabels.has(city.id) && <text x="11" y="4">{city.nameZh || city.nameEn}{city.isCapital ? ' ★' : ''}</text>}
             <title>{city.nameZh || city.nameEn} · {city.nameEn}</title>
@@ -320,7 +350,7 @@ export default function App() {
     </svg>
 
     <header className="topbar">
-      <a className="brand" href="#" onClick={(event) => { event.preventDefault(); setView(INITIAL_VIEW); setSelectedCode(null); setActiveOverlay(null); }} aria-label="Quick Map 返回世界视图"><span className="brand-mark"><Icon name="globe"/></span><span>Quick<span className="brand-light">Map</span><small>世界，随时在手边</small></span></a>
+      <a className="brand" href="#" onClick={(event) => { event.preventDefault(); resetView(); setSelectedCode(null); setActiveOverlay(null); }} aria-label="Quick Map 返回世界视图"><span className="brand-mark"><Icon name="globe"/></span><span>Quick<span className="brand-light">Map</span><small>世界，随时在手边</small></span></a>
       <div className="topbar-right"><span className="offline-pill"><i/>离线地图 <span>OFFLINE</span></span><button className="hide-button" onClick={hide} title="收起地图 (Esc)">收起 <kbd>esc</kbd></button></div>
     </header>
 
@@ -363,7 +393,7 @@ export default function App() {
       {overlays.length > 0 && <div className="layer-strip" aria-label="临时图层">{overlays.map((overlay) => <button className={activeOverlay === overlay.id ? 'active' : ''} key={overlay.id} onClick={() => { setActiveOverlay(overlay.id); setSelectedCode(null); if (overlay.geometry.type === 'Point') focusPoint(...overlay.geometry.coordinates, 7); else focusGeometry(overlay.geometry); }}><i style={{ background: overlay.color || '#f4b968' }}/>{overlay.label.split(' · ')[0]}</button>)}<button className="clear-layers" onClick={() => { setOverlays([]); setActiveOverlay(null); }} title="清除全部临时标注"><Icon name="close"/></button></div>}
     </div>
 
-    <nav className="map-controls" aria-label="地图视图控制"><button aria-label="放大" title="放大" onClick={() => zoom(1.5)}><Icon name="plus"/></button><button aria-label="缩小" title="缩小" onClick={() => zoom(1 / 1.5)}><Icon name="minus"/></button><span/><button aria-label="返回世界视图" title="世界视图 (Home)" onClick={() => setView(INITIAL_VIEW)}><Icon name="globe"/></button></nav>
+    <nav className="map-controls" aria-label="地图视图控制"><button aria-label="放大" title="放大" onClick={() => zoom(1.5)}><Icon name="plus"/></button><button aria-label="缩小" title="缩小" onClick={() => zoom(1 / 1.5)}><Icon name="minus"/></button><span/><button aria-label="返回世界视图" title="世界视图 (Home)" onClick={resetView}><Icon name="globe"/></button></nav>
     <footer className="map-footer"><span><i/>LOCAL EXPLORER <b>01</b></span><div className="map-legend"><span><i className="selected-key"/>当前国家</span><span><i className="neighbor-key"/>相邻国家</span><span><i className="city-key"/>主要城市</span></div><span className="footer-hint">拖动平移<span>·</span>滚轮缩放<span>·</span>{view.k.toFixed(1)}×<span className="data-attribution">地图数据 © Natural Earth</span></span></footer>
     {hover && !dragging && <div className="country-tooltip" style={{ left: Math.min(size.width - 255, Math.max(12, hover.x + 17)), top: Math.max(90, Math.min(size.height - 130, hover.y + 17)) }}><span className="tooltip-code">{hover.country.code}</span><strong>{hover.country.nameZh}</strong><span className="tooltip-english">{hover.country.nameEn}</span><div><span>首都</span>{hover.country.capitalZh || hover.country.capitalEn || '暂无资料'}</div><small>点击探索邻国与主要城市 <Icon name="arrow"/></small></div>}
     <div className={`toast ${notice ? 'visible' : ''}`} role="status" aria-live="polite">{notice}</div>

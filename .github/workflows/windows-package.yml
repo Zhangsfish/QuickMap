@@ -1,0 +1,28 @@
+name: Windows package
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  package:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Test
+        run: npm test
+      - name: Build Windows package
+        run: npm run package:win
+      - name: Upload portable package
+        uses: actions/upload-artifact@v4
+        with:
+          name: QuickMap-win32-x64
+          path: release/QuickMap-win32-x64/
+          if-no-files-found: error

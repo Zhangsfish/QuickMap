@@ -1,4 +1,4 @@
-import { copyFile, mkdir, rm } from 'node:fs/promises';
+import { copyFile, mkdir, rm, writeFile } from 'node:fs/promises';
 import { spawn } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -17,6 +17,7 @@ const [bundle] = await packager({
   name: 'QuickMap',
   platform: 'win32',
   arch: 'x64',
+  ...(process.env.QUICKMAP_ELECTRON_ZIP_DIR ? { electronZipDir: process.env.QUICKMAP_ELECTRON_ZIP_DIR } : {}),
   download: { cacheRoot: process.env.QUICKMAP_ELECTRON_CACHE || path.join(root, '.electron-cache') },
   out: release,
   overwrite: true,
@@ -39,6 +40,17 @@ const controlDir = path.join(bundle, 'control');
 await mkdir(controlDir, { recursive: true });
 await copyFile(path.join(root, 'dist-electron/quickmap.cjs'), path.join(controlDir, 'quickmap.cjs'));
 await copyFile(path.join(root, 'dist-electron/mcp.cjs'), path.join(controlDir, 'mcp.cjs'));
+for (const script of ['quickmap', 'mcp']) {
+  const launcher = [
+    '@echo off',
+    'setlocal',
+    'set "ELECTRON_RUN_AS_NODE=1"',
+    `"%~dp0..\\QuickMap.exe" "%~dp0${script}.cjs" %*`,
+    'exit /b %errorlevel%',
+    '',
+  ].join('\r\n');
+  await writeFile(path.join(controlDir, `${script}.cmd`), launcher);
+}
 const zipName = 'QuickMap-win32-x64.zip';
 await rm(path.join(release, zipName), { force: true });
 await new Promise((resolve, reject) => {
