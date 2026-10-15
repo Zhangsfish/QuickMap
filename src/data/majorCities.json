@@ -1,0 +1,5964 @@
+[
+  {
+    "id": "ne-1159149089",
+    "nameEn": "Andorra la Vella",
+    "nameZh": "安道尔城",
+    "countryCode": "AD",
+    "lon": 1.526594,
+    "lat": 42.510753,
+    "population": 53998,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151497",
+    "nameEn": "Dubai",
+    "nameZh": "迪拜",
+    "countryCode": "AE",
+    "lon": 55.286946,
+    "lat": 25.214912,
+    "population": 1379000
+  },
+  {
+    "id": "ne-1159126943",
+    "nameEn": "Sharjah",
+    "nameZh": "沙迦",
+    "countryCode": "AE",
+    "lon": 55.406478,
+    "lat": 25.371383,
+    "population": 1103027
+  },
+  {
+    "id": "ne-1159150565",
+    "nameEn": "Abu Dhabi",
+    "nameZh": "阿布扎比",
+    "countryCode": "AE",
+    "lon": 54.366593,
+    "lat": 24.466684,
+    "population": 603492,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151561",
+    "nameEn": "Kabul",
+    "nameZh": "喀布尔",
+    "countryCode": "AF",
+    "lon": 69.181314,
+    "lat": 34.518636,
+    "population": 3277000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150457",
+    "nameEn": "Saint John's",
+    "nameZh": "圣约翰",
+    "countryCode": "AG",
+    "lon": -61.850034,
+    "lat": 17.118036,
+    "population": 35499,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151117",
+    "nameEn": "Tirana",
+    "nameZh": "地拉那",
+    "countryCode": "AL",
+    "lon": 19.818883,
+    "lat": 41.327541,
+    "population": 895350,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151119",
+    "nameEn": "Yerevan",
+    "nameZh": "埃里温",
+    "countryCode": "AM",
+    "lon": 44.511606,
+    "lat": 40.183097,
+    "population": 1102000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151469",
+    "nameEn": "Luanda",
+    "nameZh": "罗安达",
+    "countryCode": "AO",
+    "lon": 13.232481,
+    "lat": -8.83634,
+    "population": 5172900,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151131",
+    "nameEn": "Huambo",
+    "nameZh": "万博",
+    "countryCode": "AO",
+    "lon": 15.758064,
+    "lat": -12.74804,
+    "population": 1100000
+  },
+  {
+    "id": "ne-1159151559",
+    "nameEn": "Buenos Aires",
+    "nameZh": "布宜诺斯艾利斯",
+    "countryCode": "AR",
+    "lon": -58.432513,
+    "lat": -34.610715,
+    "population": 12795000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151105",
+    "nameEn": "Córdoba",
+    "nameZh": "科尔多瓦",
+    "countryCode": "AR",
+    "lon": -64.18424,
+    "lat": -31.398012,
+    "population": 1452000
+  },
+  {
+    "id": "ne-1159150303",
+    "nameEn": "Rosario",
+    "nameZh": "罗萨里奥",
+    "countryCode": "AR",
+    "lon": -60.668253,
+    "lat": -32.949184,
+    "population": 1203000
+  },
+  {
+    "id": "ne-1159150429",
+    "nameEn": "Pago Pago",
+    "nameZh": "帕果帕果",
+    "countryCode": "AS",
+    "lon": -170.706645,
+    "lat": -14.276611,
+    "population": 12576,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151563",
+    "nameEn": "Vienna",
+    "nameZh": "维也纳",
+    "countryCode": "AT",
+    "lon": 16.364693,
+    "lat": 48.201961,
+    "population": 2400000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151623",
+    "nameEn": "Sydney",
+    "nameZh": "悉尼",
+    "countryCode": "AU",
+    "lon": 151.212548,
+    "lat": -33.871373,
+    "population": 4630000
+  },
+  {
+    "id": "ne-1159151565",
+    "nameEn": "Melbourne",
+    "nameZh": "墨尔本",
+    "countryCode": "AU",
+    "lon": 144.97307,
+    "lat": -37.818086,
+    "population": 4170000
+  },
+  {
+    "id": "ne-1159151169",
+    "nameEn": "Brisbane",
+    "nameZh": "布里斯班",
+    "countryCode": "AU",
+    "lon": 153.033147,
+    "lat": -27.453085,
+    "population": 1860000
+  },
+  {
+    "id": "ne-1159151475",
+    "nameEn": "Perth",
+    "nameZh": "珀斯",
+    "countryCode": "AU",
+    "lon": 115.838053,
+    "lat": -31.953069,
+    "population": 1532000
+  },
+  {
+    "id": "ne-1159151165",
+    "nameEn": "Adelaide",
+    "nameZh": "阿德莱德",
+    "countryCode": "AU",
+    "lon": 138.598059,
+    "lat": -34.933042,
+    "population": 1145000
+  },
+  {
+    "id": "ne-1159151161",
+    "nameEn": "Canberra",
+    "nameZh": "堪培拉",
+    "countryCode": "AU",
+    "lon": 149.129026,
+    "lat": -35.283029,
+    "population": 327700,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159146057",
+    "nameEn": "Oranjestad",
+    "nameZh": "奥腊涅斯塔德",
+    "countryCode": "AW",
+    "lon": -70.025526,
+    "lat": 12.521503,
+    "population": 68775,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159119239",
+    "nameEn": "Mariehamn",
+    "nameZh": "玛丽港",
+    "countryCode": "AX",
+    "lon": 19.949005,
+    "lat": 60.096996,
+    "population": 10682,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151123",
+    "nameEn": "Baku",
+    "nameZh": "巴库",
+    "countryCode": "AZ",
+    "lon": 49.860271,
+    "lat": 40.397218,
+    "population": 2122300,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151177",
+    "nameEn": "Sarajevo",
+    "nameZh": "萨拉热窝",
+    "countryCode": "BA",
+    "lon": 18.383002,
+    "lat": 43.850022,
+    "population": 696731,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159145889",
+    "nameEn": "Banja Luka",
+    "nameZh": "巴尼亚卢卡",
+    "countryCode": "BA",
+    "lon": 17.179974,
+    "lat": 44.780405,
+    "population": 221738
+  },
+  {
+    "id": "ne-1159150339",
+    "nameEn": "Bridgetown",
+    "nameZh": "布里奇顿",
+    "countryCode": "BB",
+    "lon": -59.616527,
+    "lat": 13.102003,
+    "population": 191152,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151467",
+    "nameEn": "Dhaka",
+    "nameZh": "达卡",
+    "countryCode": "BD",
+    "lon": 90.406634,
+    "lat": 23.725006,
+    "population": 12797394,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151473",
+    "nameEn": "Chattogram",
+    "nameZh": "吉大港",
+    "countryCode": "BD",
+    "lon": 91.798022,
+    "lat": 22.331938,
+    "population": 4529000
+  },
+  {
+    "id": "ne-1159150353",
+    "nameEn": "Khulna",
+    "nameZh": "库尔纳",
+    "countryCode": "BD",
+    "lon": 89.558055,
+    "lat": 22.841933,
+    "population": 1553000
+  },
+  {
+    "id": "ne-1159151465",
+    "nameEn": "Brussels",
+    "nameZh": "布鲁塞尔",
+    "countryCode": "BE",
+    "lon": 4.331371,
+    "lat": 50.835263,
+    "population": 1743000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151173",
+    "nameEn": "Ouagadougou",
+    "nameZh": "瓦加杜古",
+    "countryCode": "BF",
+    "lon": -1.52667,
+    "lat": 12.372262,
+    "population": 1149000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151147",
+    "nameEn": "Sofia",
+    "nameZh": "索非亚",
+    "countryCode": "BG",
+    "lon": 23.314708,
+    "lat": 42.685295,
+    "population": 1185000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150451",
+    "nameEn": "Manama",
+    "nameZh": "麦纳麦",
+    "countryCode": "BH",
+    "lon": 50.583052,
+    "lat": 26.236136,
+    "population": 563920,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150427",
+    "nameEn": "Bujumbura",
+    "nameZh": "布琼布拉",
+    "countryCode": "BI",
+    "lon": 29.360006,
+    "lat": -3.376087,
+    "population": 331700
+  },
+  {
+    "id": "ne-1159151141",
+    "nameEn": "Cotonou",
+    "nameZh": "科托努",
+    "countryCode": "BJ",
+    "lon": 2.404355,
+    "lat": 6.36298,
+    "population": 762000
+  },
+  {
+    "id": "ne-1159150345",
+    "nameEn": "Porto-Novo",
+    "nameZh": "波多诺伏",
+    "countryCode": "BJ",
+    "lon": 2.616626,
+    "lat": 6.483311,
+    "population": 300000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151185",
+    "nameEn": "Hamilton",
+    "nameZh": "哈密尔顿",
+    "countryCode": "BM",
+    "lon": -64.783937,
+    "lat": 32.29419,
+    "population": 52320,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151083",
+    "nameEn": "Bandar Seri Begawan",
+    "nameZh": "斯里巴加湾",
+    "countryCode": "BN",
+    "lon": 114.933284,
+    "lat": 4.883331,
+    "population": 296500,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151135",
+    "nameEn": "Santa Cruz de la Sierra",
+    "nameZh": "圣克鲁斯",
+    "countryCode": "BO",
+    "lon": -63.227942,
+    "lat": -17.751972,
+    "population": 2102998
+  },
+  {
+    "id": "ne-1159151133",
+    "nameEn": "La Paz",
+    "nameZh": "拉巴斯",
+    "countryCode": "BO",
+    "lon": -68.151931,
+    "lat": -16.496028,
+    "population": 1590000
+  },
+  {
+    "id": "ne-1159147681",
+    "nameEn": "Cochabamba",
+    "nameZh": "科恰班巴",
+    "countryCode": "BO",
+    "lon": -66.169977,
+    "lat": -17.410011,
+    "population": 1000000
+  },
+  {
+    "id": "ne-1159151095",
+    "nameEn": "Sucre",
+    "nameZh": "苏克雷",
+    "countryCode": "BO",
+    "lon": -65.259516,
+    "lat": -19.040971,
+    "population": 224838,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151621",
+    "nameEn": "São Paulo",
+    "nameZh": "圣保罗",
+    "countryCode": "BR",
+    "lon": -46.626966,
+    "lat": -23.556734,
+    "population": 18845000
+  },
+  {
+    "id": "ne-1159151619",
+    "nameEn": "Rio de Janeiro",
+    "nameZh": "里约热内卢",
+    "countryCode": "BR",
+    "lon": -43.212117,
+    "lat": -22.907308,
+    "population": 11748000
+  },
+  {
+    "id": "ne-1159150193",
+    "nameEn": "Belo Horizonte",
+    "nameZh": "贝洛奥里藏特",
+    "countryCode": "BR",
+    "lon": -43.91695,
+    "lat": -19.91308,
+    "population": 5575000
+  },
+  {
+    "id": "ne-1159151447",
+    "nameEn": "Porto Alegre",
+    "nameZh": "阿雷格里港",
+    "countryCode": "BR",
+    "lon": -51.201958,
+    "lat": -30.048069,
+    "population": 3917000
+  },
+  {
+    "id": "ne-1159151443",
+    "nameEn": "Brasília",
+    "nameZh": "巴西利亚",
+    "countryCode": "BR",
+    "lon": -47.917998,
+    "lat": -15.781394,
+    "population": 3716996,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151461",
+    "nameEn": "Recife",
+    "nameZh": "累西腓",
+    "countryCode": "BR",
+    "lon": -34.908766,
+    "lat": -8.060532,
+    "population": 3651000
+  },
+  {
+    "id": "ne-1159151451",
+    "nameEn": "Fortaleza",
+    "nameZh": "福塔雷萨",
+    "countryCode": "BR",
+    "lon": -38.581927,
+    "lat": -3.748072,
+    "population": 3602319
+  },
+  {
+    "id": "ne-1159151453",
+    "nameEn": "Salvador",
+    "nameZh": "萨尔瓦多",
+    "countryCode": "BR",
+    "lon": -38.481933,
+    "lat": -12.968026,
+    "population": 3484000
+  },
+  {
+    "id": "ne-1159151449",
+    "nameEn": "Curitiba",
+    "nameZh": "库里奇巴",
+    "countryCode": "BR",
+    "lon": -49.321944,
+    "lat": -25.418067,
+    "population": 3084000
+  },
+  {
+    "id": "ne-1159150305",
+    "nameEn": "Campinas",
+    "nameZh": "坎皮纳斯",
+    "countryCode": "BR",
+    "lon": -47.055885,
+    "lat": -22.907898,
+    "population": 2791000
+  },
+  {
+    "id": "ne-1159151441",
+    "nameEn": "Belém",
+    "nameZh": "贝伦",
+    "countryCode": "BR",
+    "lon": -48.481969,
+    "lat": -1.448057,
+    "population": 2167000
+  },
+  {
+    "id": "ne-1159151459",
+    "nameEn": "Goiânia",
+    "nameZh": "戈亚尼亚",
+    "countryCode": "BR",
+    "lon": -49.301971,
+    "lat": -16.718081,
+    "population": 2022000
+  },
+  {
+    "id": "ne-1159151005",
+    "nameEn": "Manaus",
+    "nameZh": "马瑙斯",
+    "countryCode": "BR",
+    "lon": -60.001963,
+    "lat": -3.098086,
+    "population": 1753000
+  },
+  {
+    "id": "ne-1159148975",
+    "nameEn": "Santos",
+    "nameZh": "桑托斯",
+    "countryCode": "BR",
+    "lon": -46.328496,
+    "lat": -23.961836,
+    "population": 1709000
+  },
+  {
+    "id": "ne-1159147621",
+    "nameEn": "Vitoria",
+    "nameZh": "维多利亚",
+    "countryCode": "BR",
+    "lon": -40.353943,
+    "lat": -20.332042,
+    "population": 1704000
+  },
+  {
+    "id": "ne-1159131309",
+    "nameEn": "Niterói",
+    "nameZh": "尼泰罗伊",
+    "countryCode": "BR",
+    "lon": -43.105826,
+    "lat": -22.882534,
+    "population": 1500513
+  },
+  {
+    "id": "ne-1159148899",
+    "nameEn": "Vila Velha",
+    "nameZh": "韦利亚镇",
+    "countryCode": "BR",
+    "lon": -51.216652,
+    "lat": 3.216663,
+    "population": 1209091
+  },
+  {
+    "id": "ne-1159150223",
+    "nameEn": "Vila Velha",
+    "nameZh": "韦利亚镇",
+    "countryCode": "BR",
+    "lon": -40.290233,
+    "lat": -20.338046,
+    "population": 1209091
+  },
+  {
+    "id": "ne-1159150215",
+    "nameEn": "Maceió",
+    "nameZh": "马塞约",
+    "countryCode": "BR",
+    "lon": -35.73192,
+    "lat": -9.61805,
+    "population": 1186000
+  },
+  {
+    "id": "ne-1159150225",
+    "nameEn": "Natal",
+    "nameZh": "纳塔尔",
+    "countryCode": "BR",
+    "lon": -35.24195,
+    "lat": -5.778077,
+    "population": 1088000
+  },
+  {
+    "id": "ne-1159150183",
+    "nameEn": "São Luís",
+    "nameZh": "圣路易斯",
+    "countryCode": "BR",
+    "lon": -44.267937,
+    "lat": -2.514039,
+    "population": 1038000
+  },
+  {
+    "id": "ne-1159151021",
+    "nameEn": "Florianópolis",
+    "nameZh": "弗洛里亚诺波利斯",
+    "countryCode": "BR",
+    "lon": -48.521966,
+    "lat": -27.578039,
+    "population": 1023000
+  },
+  {
+    "id": "ne-1159151207",
+    "nameEn": "Nassau",
+    "nameZh": "拿骚",
+    "countryCode": "BS",
+    "lon": -77.350044,
+    "lat": 25.08339,
+    "population": 227940,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151151",
+    "nameEn": "Thimphu",
+    "nameZh": "廷布",
+    "countryCode": "BT",
+    "lon": 89.639014,
+    "lat": 27.472986,
+    "population": 98676,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151153",
+    "nameEn": "Gaborone",
+    "nameZh": "嘉柏隆里",
+    "countryCode": "BW",
+    "lon": 25.911948,
+    "lat": -24.646314,
+    "population": 208411,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151149",
+    "nameEn": "Minsk",
+    "nameZh": "明斯克",
+    "countryCode": "BY",
+    "lon": 27.564681,
+    "lat": 53.901923,
+    "population": 1805000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151109",
+    "nameEn": "Belmopan",
+    "nameZh": "贝尔墨邦",
+    "countryCode": "BZ",
+    "lon": -88.767073,
+    "lat": 17.252033,
+    "population": 15220,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151557",
+    "nameEn": "Toronto",
+    "nameZh": "多伦多",
+    "countryCode": "CA",
+    "lon": -79.389459,
+    "lat": 43.664645,
+    "population": 5213000
+  },
+  {
+    "id": "ne-1159151457",
+    "nameEn": "Montreal",
+    "nameZh": "蒙特利尔",
+    "countryCode": "CA",
+    "lon": -73.585243,
+    "lat": 45.501945,
+    "population": 3678000
+  },
+  {
+    "id": "ne-1159151555",
+    "nameEn": "Vancouver",
+    "nameZh": "温哥华",
+    "countryCode": "CA",
+    "lon": -123.12359,
+    "lat": 49.275362,
+    "population": 2313328
+  },
+  {
+    "id": "ne-1159151059",
+    "nameEn": "Ottawa",
+    "nameZh": "渥太华",
+    "countryCode": "CA",
+    "lon": -75.701961,
+    "lat": 45.418643,
+    "population": 1145000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151035",
+    "nameEn": "Calgary",
+    "nameZh": "卡尔加里",
+    "countryCode": "CA",
+    "lon": -114.081944,
+    "lat": 51.084938,
+    "population": 1110000
+  },
+  {
+    "id": "ne-1159151455",
+    "nameEn": "Edmonton",
+    "nameZh": "埃德蒙顿",
+    "countryCode": "CA",
+    "lon": -113.501928,
+    "lat": 53.551971,
+    "population": 1058000
+  },
+  {
+    "id": "ne-1159151539",
+    "nameEn": "Kinshasa",
+    "nameZh": "金沙萨",
+    "countryCode": "CD",
+    "lon": 15.313026,
+    "lat": -4.327778,
+    "population": 7843000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150903",
+    "nameEn": "Lubumbashi",
+    "nameZh": "卢本巴希",
+    "countryCode": "CD",
+    "lon": 27.478072,
+    "lat": -11.678079,
+    "population": 1352000
+  },
+  {
+    "id": "ne-1159149981",
+    "nameEn": "Mbuji-Mayi",
+    "nameZh": "姆布吉马伊",
+    "countryCode": "CD",
+    "lon": 23.59805,
+    "lat": -6.148081,
+    "population": 1295000
+  },
+  {
+    "id": "ne-1159151111",
+    "nameEn": "Bangui",
+    "nameZh": "班吉",
+    "countryCode": "CF",
+    "lon": 18.558288,
+    "lat": 4.366644,
+    "population": 831925,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150993",
+    "nameEn": "Brazzaville",
+    "nameZh": "布拉柴维尔",
+    "countryCode": "CG",
+    "lon": 15.282744,
+    "lat": -4.25724,
+    "population": 1355000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151505",
+    "nameEn": "Geneva",
+    "nameZh": "日内瓦",
+    "countryCode": "CH",
+    "lon": 6.140028,
+    "lat": 46.210008,
+    "population": 1240000
+  },
+  {
+    "id": "ne-1159151271",
+    "nameEn": "Zürich",
+    "nameZh": "苏黎世",
+    "countryCode": "CH",
+    "lon": 8.548064,
+    "lat": 47.381934,
+    "population": 1108000
+  },
+  {
+    "id": "ne-1159149737",
+    "nameEn": "Bern",
+    "nameZh": "伯尔尼",
+    "countryCode": "CH",
+    "lon": 7.466976,
+    "lat": 46.916683,
+    "population": 275329,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151439",
+    "nameEn": "Abidjan",
+    "nameZh": "阿比让",
+    "countryCode": "CI",
+    "lon": -4.020207,
+    "lat": 5.323126,
+    "population": 3802000
+  },
+  {
+    "id": "ne-1159150999",
+    "nameEn": "Yamoussoukro",
+    "nameZh": "亚穆苏克罗",
+    "countryCode": "CI",
+    "lon": -5.275503,
+    "lat": 6.818381,
+    "population": 206499,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151615",
+    "nameEn": "Santiago",
+    "nameZh": "圣地亚哥",
+    "countryCode": "CL",
+    "lon": -70.650504,
+    "lat": -33.440205,
+    "population": 5720000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150931",
+    "nameEn": "Valparaíso",
+    "nameZh": "瓦尔帕莱索",
+    "countryCode": "CL",
+    "lon": -71.617026,
+    "lat": -33.047739,
+    "population": 854000
+  },
+  {
+    "id": "ne-1159149365",
+    "nameEn": "Douala",
+    "nameZh": "杜阿拉",
+    "countryCode": "CM",
+    "lon": 9.708045,
+    "lat": 4.062356,
+    "population": 1906000
+  },
+  {
+    "id": "ne-1159151115",
+    "nameEn": "Yaoundé",
+    "nameZh": "雅温得",
+    "countryCode": "CM",
+    "lon": 11.514705,
+    "lat": 3.868647,
+    "population": 1611000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151605",
+    "nameEn": "Shanghai",
+    "nameZh": "上海",
+    "countryCode": "CN",
+    "lon": 121.434559,
+    "lat": 31.218398,
+    "population": 14987000
+  },
+  {
+    "id": "ne-1159151595",
+    "nameEn": "Beijing",
+    "nameZh": "北京",
+    "countryCode": "CN",
+    "lon": 116.394201,
+    "lat": 39.90172,
+    "population": 11106000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151331",
+    "nameEn": "Guangzhou",
+    "nameZh": "广州",
+    "countryCode": "CN",
+    "lon": 113.261785,
+    "lat": 23.124723,
+    "population": 8829000
+  },
+  {
+    "id": "ne-1159151215",
+    "nameEn": "Shenzhen",
+    "nameZh": "深圳",
+    "countryCode": "CN",
+    "lon": 114.061154,
+    "lat": 22.548097,
+    "population": 7581000
+  },
+  {
+    "id": "ne-1159151367",
+    "nameEn": "Wuhan",
+    "nameZh": "武汉",
+    "countryCode": "CN",
+    "lon": 114.268071,
+    "lat": 30.581977,
+    "population": 7243000
+  },
+  {
+    "id": "ne-1159151381",
+    "nameEn": "Tianjin",
+    "nameZh": "天津",
+    "countryCode": "CN",
+    "lon": 117.196607,
+    "lat": 39.082772,
+    "population": 7180000
+  },
+  {
+    "id": "ne-1159151327",
+    "nameEn": "Chongqing",
+    "nameZh": "重庆",
+    "countryCode": "CN",
+    "lon": 106.593036,
+    "lat": 29.566923,
+    "population": 6461000
+  },
+  {
+    "id": "ne-1159151377",
+    "nameEn": "Shenyang",
+    "nameZh": "沈阳",
+    "countryCode": "CN",
+    "lon": 123.448028,
+    "lat": 41.806925,
+    "population": 4787000
+  },
+  {
+    "id": "ne-1159151333",
+    "nameEn": "Dongguan",
+    "nameZh": "东莞",
+    "countryCode": "CN",
+    "lon": 113.750474,
+    "lat": 23.021537,
+    "population": 4528000
+  },
+  {
+    "id": "ne-1159151533",
+    "nameEn": "Chengdu",
+    "nameZh": "成都",
+    "countryCode": "CN",
+    "lon": 104.068074,
+    "lat": 30.671946,
+    "population": 4123000
+  },
+  {
+    "id": "ne-1159151363",
+    "nameEn": "Xi'an",
+    "nameZh": "西安",
+    "countryCode": "CN",
+    "lon": 108.89305,
+    "lat": 34.276971,
+    "population": 4009000
+  },
+  {
+    "id": "ne-1159139657",
+    "nameEn": "Hechi",
+    "nameZh": "河池",
+    "countryCode": "CN",
+    "lon": 108.083,
+    "lat": 24.695252,
+    "population": 3830000
+  },
+  {
+    "id": "ne-1159151385",
+    "nameEn": "Nanjing",
+    "nameZh": "南京",
+    "countryCode": "CN",
+    "lon": 118.778029,
+    "lat": 32.051965,
+    "population": 3679000
+  },
+  {
+    "id": "ne-1159151325",
+    "nameEn": "Guiyang",
+    "nameZh": "贵阳",
+    "countryCode": "CN",
+    "lon": 106.718093,
+    "lat": 26.581989,
+    "population": 3662000
+  },
+  {
+    "id": "ne-1159151397",
+    "nameEn": "Harbin",
+    "nameZh": "哈尔滨",
+    "countryCode": "CN",
+    "lon": 126.648039,
+    "lat": 45.75193,
+    "population": 3621000
+  },
+  {
+    "id": "ne-1159151531",
+    "nameEn": "Ürümqi",
+    "nameZh": "乌鲁木齐",
+    "countryCode": "CN",
+    "lon": 87.57306,
+    "lat": 43.806958,
+    "population": 3575000
+  },
+  {
+    "id": "ne-1159139683",
+    "nameEn": "Zhangzhou",
+    "nameZh": "漳州",
+    "countryCode": "CN",
+    "lon": 117.670016,
+    "lat": 24.520375,
+    "population": 3531147
+  },
+  {
+    "id": "ne-1159151393",
+    "nameEn": "Changchun",
+    "nameZh": "长春",
+    "countryCode": "CN",
+    "lon": 125.338042,
+    "lat": 43.866954,
+    "population": 3183000
+  },
+  {
+    "id": "ne-1159149913",
+    "nameEn": "Dalian",
+    "nameZh": "大连",
+    "countryCode": "CN",
+    "lon": 121.627885,
+    "lat": 38.924784,
+    "population": 3167000
+  },
+  {
+    "id": "ne-1159151217",
+    "nameEn": "Zibo",
+    "nameZh": "淄博",
+    "countryCode": "CN",
+    "lon": 117.99646,
+    "lat": 36.821365,
+    "population": 3061000
+  },
+  {
+    "id": "ne-1159151387",
+    "nameEn": "Hangzhou",
+    "nameZh": "杭州",
+    "countryCode": "CN",
+    "lon": 120.168073,
+    "lat": 30.25192,
+    "population": 3007000
+  },
+  {
+    "id": "ne-1159151371",
+    "nameEn": "Kunming",
+    "nameZh": "昆明",
+    "countryCode": "CN",
+    "lon": 102.69744,
+    "lat": 25.042859,
+    "population": 2931000
+  },
+  {
+    "id": "ne-1159151365",
+    "nameEn": "Taiyuan",
+    "nameZh": "太原",
+    "countryCode": "CN",
+    "lon": 112.543112,
+    "lat": 37.876958,
+    "population": 2913000
+  },
+  {
+    "id": "ne-1159149917",
+    "nameEn": "Qingdao",
+    "nameZh": "青岛",
+    "countryCode": "CN",
+    "lon": 120.328063,
+    "lat": 36.091925,
+    "population": 2866000
+  },
+  {
+    "id": "ne-1159151379",
+    "nameEn": "Jinan",
+    "nameZh": "济南",
+    "countryCode": "CN",
+    "lon": 116.993073,
+    "lat": 36.676928,
+    "population": 2798000
+  },
+  {
+    "id": "ne-1159151375",
+    "nameEn": "Zhengzhou",
+    "nameZh": "郑州",
+    "countryCode": "CN",
+    "lon": 113.663147,
+    "lat": 34.756942,
+    "population": 2636000
+  },
+  {
+    "id": "ne-1159151329",
+    "nameEn": "Fuzhou",
+    "nameZh": "福州",
+    "countryCode": "CN",
+    "lon": 119.2981,
+    "lat": 26.081942,
+    "population": 2606000
+  },
+  {
+    "id": "ne-1159151369",
+    "nameEn": "Changsha",
+    "nameZh": "长沙",
+    "countryCode": "CN",
+    "lon": 112.968047,
+    "lat": 28.201916,
+    "population": 2604000
+  },
+  {
+    "id": "ne-1159140809",
+    "nameEn": "Xiangtan",
+    "nameZh": "湘潭",
+    "countryCode": "CN",
+    "lon": 112.900023,
+    "lat": 27.850431,
+    "population": 2586948
+  },
+  {
+    "id": "ne-1159151321",
+    "nameEn": "Lanzhou",
+    "nameZh": "兰州",
+    "countryCode": "CN",
+    "lon": 103.790054,
+    "lat": 36.057974,
+    "population": 2561000
+  },
+  {
+    "id": "ne-1159149129",
+    "nameEn": "Xiamen",
+    "nameZh": "厦门",
+    "countryCode": "CN",
+    "lon": 118.078071,
+    "lat": 24.451938,
+    "population": 2519000
+  },
+  {
+    "id": "ne-1159149137",
+    "nameEn": "Lianshan",
+    "nameZh": "锦溪",
+    "countryCode": "CN",
+    "lon": 120.828033,
+    "lat": 40.752287,
+    "population": 2426000
+  },
+  {
+    "id": "ne-1159149907",
+    "nameEn": "Shijiazhuang",
+    "nameZh": "石家庄",
+    "countryCode": "CN",
+    "lon": 114.478032,
+    "lat": 38.05196,
+    "population": 2417000
+  },
+  {
+    "id": "ne-1159149151",
+    "nameEn": "Jilin City",
+    "nameZh": "吉林",
+    "countryCode": "CN",
+    "lon": 126.548097,
+    "lat": 43.851917,
+    "population": 2396000
+  },
+  {
+    "id": "ne-1159151383",
+    "nameEn": "Nanchang",
+    "nameZh": "南昌",
+    "countryCode": "CN",
+    "lon": 115.87805,
+    "lat": 28.681938,
+    "population": 2350000
+  },
+  {
+    "id": "ne-1159149923",
+    "nameEn": "Wenzhou",
+    "nameZh": "温州",
+    "countryCode": "CN",
+    "lon": 120.648147,
+    "lat": 28.021927,
+    "population": 2350000
+  },
+  {
+    "id": "ne-1159149131",
+    "nameEn": "Nanchong",
+    "nameZh": "南充",
+    "countryCode": "CN",
+    "lon": 106.128051,
+    "lat": 30.782378,
+    "population": 2174000
+  },
+  {
+    "id": "ne-1159151323",
+    "nameEn": "Nanning",
+    "nameZh": "南宁",
+    "countryCode": "CN",
+    "lon": 108.318099,
+    "lat": 22.821934,
+    "population": 2167000
+  },
+  {
+    "id": "ne-1159149143",
+    "nameEn": "Zaozhuang",
+    "nameZh": "枣庄",
+    "countryCode": "CN",
+    "lon": 117.568077,
+    "lat": 34.881947,
+    "population": 2145000
+  },
+  {
+    "id": "ne-1159149139",
+    "nameEn": "Yantai",
+    "nameZh": "烟台",
+    "countryCode": "CN",
+    "lon": 121.398075,
+    "lat": 37.532354,
+    "population": 2116000
+  },
+  {
+    "id": "ne-1159149147",
+    "nameEn": "Xuzhou",
+    "nameZh": "徐州",
+    "countryCode": "CN",
+    "lon": 117.178074,
+    "lat": 34.281958,
+    "population": 2091000
+  },
+  {
+    "id": "ne-1159149919",
+    "nameEn": "Linyi",
+    "nameZh": "临沂",
+    "countryCode": "CN",
+    "lon": 118.32803,
+    "lat": 35.081935,
+    "population": 2082000
+  },
+  {
+    "id": "ne-1159146977",
+    "nameEn": "Haikou",
+    "nameZh": "海口",
+    "countryCode": "CN",
+    "lon": 110.320026,
+    "lat": 20.050002,
+    "population": 2046189
+  },
+  {
+    "id": "ne-1159151395",
+    "nameEn": "Baotou",
+    "nameZh": "包头",
+    "countryCode": "CN",
+    "lon": 109.820074,
+    "lat": 40.654153,
+    "population": 2036000
+  },
+  {
+    "id": "ne-1159149793",
+    "nameEn": "Hefei",
+    "nameZh": "合肥",
+    "countryCode": "CN",
+    "lon": 117.278068,
+    "lat": 31.851977,
+    "population": 2035000
+  },
+  {
+    "id": "ne-1159149795",
+    "nameEn": "Suzhou",
+    "nameZh": "宿州",
+    "countryCode": "CN",
+    "lon": 116.976943,
+    "lat": 33.638057,
+    "population": 1964000
+  },
+  {
+    "id": "ne-1159149135",
+    "nameEn": "Nanyang",
+    "nameZh": "南阳",
+    "countryCode": "CN",
+    "lon": 112.528074,
+    "lat": 33.002346,
+    "population": 1944000
+  },
+  {
+    "id": "ne-1159149925",
+    "nameEn": "Ningbo",
+    "nameZh": "宁波",
+    "countryCode": "CN",
+    "lon": 121.548092,
+    "lat": 29.881917,
+    "population": 1923000
+  },
+  {
+    "id": "ne-1159147045",
+    "nameEn": "Tangshan",
+    "nameZh": "唐山",
+    "countryCode": "CN",
+    "lon": 118.192431,
+    "lat": 39.626283,
+    "population": 1879000
+  },
+  {
+    "id": "ne-1159146991",
+    "nameEn": "Datong",
+    "nameZh": "大同",
+    "countryCode": "CN",
+    "lon": 113.298053,
+    "lat": 40.081966,
+    "population": 1873000
+  },
+  {
+    "id": "ne-1159140995",
+    "nameEn": "Shuyang",
+    "nameZh": "沭阳县",
+    "countryCode": "CN",
+    "lon": 118.77336,
+    "lat": 34.129866,
+    "population": 1770000
+  },
+  {
+    "id": "ne-1159147055",
+    "nameEn": "Shangqiu",
+    "nameZh": "商丘",
+    "countryCode": "CN",
+    "lon": 115.64961,
+    "lat": 34.412942,
+    "population": 1753000
+  },
+  {
+    "id": "ne-1159149149",
+    "nameEn": "Wuxi",
+    "nameZh": "无锡",
+    "countryCode": "CN",
+    "lon": 120.298039,
+    "lat": 31.581942,
+    "population": 1749000
+  },
+  {
+    "id": "ne-1159149941",
+    "nameEn": "Hohhot",
+    "nameZh": "呼和浩特",
+    "countryCode": "CN",
+    "lon": 111.65805,
+    "lat": 40.821921,
+    "population": 1726000
+  },
+  {
+    "id": "ne-1159147063",
+    "nameEn": "Luoyang",
+    "nameZh": "洛阳",
+    "countryCode": "CN",
+    "lon": 112.444471,
+    "lat": 34.64377,
+    "population": 1715000
+  },
+  {
+    "id": "ne-1159146993",
+    "nameEn": "Jingmen City",
+    "nameZh": "荆门",
+    "countryCode": "CN",
+    "lon": 113.158061,
+    "lat": 30.651999,
+    "population": 1708000
+  },
+  {
+    "id": "ne-1159149955",
+    "nameEn": "Daqing",
+    "nameZh": "大庆",
+    "countryCode": "CN",
+    "lon": 124.998062,
+    "lat": 46.581905,
+    "population": 1693000
+  },
+  {
+    "id": "ne-1159146895",
+    "nameEn": "Lu'an",
+    "nameZh": "六安",
+    "countryCode": "CN",
+    "lon": 116.478065,
+    "lat": 31.752293,
+    "population": 1690000
+  },
+  {
+    "id": "ne-1159146887",
+    "nameEn": "Wanzhou",
+    "nameZh": "万州",
+    "countryCode": "CN",
+    "lon": 108.400039,
+    "lat": 30.819991,
+    "population": 1680000
+  },
+  {
+    "id": "ne-1159149145",
+    "nameEn": "Suzhou",
+    "nameZh": "苏州",
+    "countryCode": "CN",
+    "lon": 120.618071,
+    "lat": 31.302424,
+    "population": 1650000
+  },
+  {
+    "id": "ne-1159150895",
+    "nameEn": "Qiqihar",
+    "nameZh": "齐齐哈尔",
+    "countryCode": "CN",
+    "lon": 123.988046,
+    "lat": 47.346923,
+    "population": 1641000
+  },
+  {
+    "id": "ne-1159149911",
+    "nameEn": "Anshan",
+    "nameZh": "鞍山",
+    "countryCode": "CN",
+    "lon": 122.938085,
+    "lat": 41.116967,
+    "population": 1639000
+  },
+  {
+    "id": "ne-1159149909",
+    "nameEn": "Handan",
+    "nameZh": "邯郸",
+    "countryCode": "CN",
+    "lon": 114.478032,
+    "lat": 36.581921,
+    "population": 1631000
+  },
+  {
+    "id": "ne-1159147085",
+    "nameEn": "Tai'an",
+    "nameZh": "泰安",
+    "countryCode": "CN",
+    "lon": 117.11813,
+    "lat": 36.201944,
+    "population": 1629000
+  },
+  {
+    "id": "ne-1159150825",
+    "nameEn": "Shantou",
+    "nameZh": "汕头",
+    "countryCode": "CN",
+    "lon": 116.66808,
+    "lat": 23.371952,
+    "population": 1601000
+  },
+  {
+    "id": "ne-1159149797",
+    "nameEn": "Zhanjiang",
+    "nameZh": "湛江",
+    "countryCode": "CN",
+    "lon": 110.378076,
+    "lat": 21.20193,
+    "population": 1590000
+  },
+  {
+    "id": "ne-1159146997",
+    "nameEn": "Xiantao City",
+    "nameZh": "仙桃",
+    "countryCode": "CN",
+    "lon": 113.438096,
+    "lat": 30.372352,
+    "population": 1556000
+  },
+  {
+    "id": "ne-1159147083",
+    "nameEn": "Weifang",
+    "nameZh": "潍坊",
+    "countryCode": "CN",
+    "lon": 119.155626,
+    "lat": 36.702285,
+    "population": 1553000
+  },
+  {
+    "id": "ne-1159147059",
+    "nameEn": "Xinyang",
+    "nameZh": "信阳",
+    "countryCode": "CN",
+    "lon": 114.068032,
+    "lat": 32.132322,
+    "population": 1541000
+  },
+  {
+    "id": "ne-1159147025",
+    "nameEn": "Luzhou",
+    "nameZh": "泸州",
+    "countryCode": "CN",
+    "lon": 105.378071,
+    "lat": 28.881926,
+    "population": 1537000
+  },
+  {
+    "id": "ne-1159147095",
+    "nameEn": "Ganzhou",
+    "nameZh": "赣州",
+    "countryCode": "CN",
+    "lon": 114.950027,
+    "lat": 25.91998,
+    "population": 1500000
+  },
+  {
+    "id": "ne-1159146879",
+    "nameEn": "Liuzhou",
+    "nameZh": "柳州",
+    "countryCode": "CN",
+    "lon": 109.413529,
+    "lat": 24.320777,
+    "population": 1497000
+  },
+  {
+    "id": "ne-1159147079",
+    "nameEn": "Fushun",
+    "nameZh": "抚顺",
+    "countryCode": "CN",
+    "lon": 123.868054,
+    "lat": 41.867335,
+    "population": 1470000
+  },
+  {
+    "id": "ne-1159147011",
+    "nameEn": "Changde",
+    "nameZh": "常德",
+    "countryCode": "CN",
+    "lon": 111.6781,
+    "lat": 29.031943,
+    "population": 1469000
+  },
+  {
+    "id": "ne-1159149133",
+    "nameEn": "Neijiang",
+    "nameZh": "内江",
+    "countryCode": "CN",
+    "lon": 105.048066,
+    "lat": 29.582323,
+    "population": 1466000
+  },
+  {
+    "id": "ne-1159149791",
+    "nameEn": "Quanzhou",
+    "nameZh": "泉州",
+    "countryCode": "CN",
+    "lon": 118.578041,
+    "lat": 24.901962,
+    "population": 1463000
+  },
+  {
+    "id": "ne-1159150823",
+    "nameEn": "Huainan",
+    "nameZh": "淮南",
+    "countryCode": "CN",
+    "lon": 116.978035,
+    "lat": 32.63193,
+    "population": 1451000
+  },
+  {
+    "id": "ne-1159148461",
+    "nameEn": "Suining",
+    "nameZh": "遂宁",
+    "countryCode": "CN",
+    "lon": 105.531387,
+    "lat": 30.535279,
+    "population": 1425000
+  },
+  {
+    "id": "ne-1159149899",
+    "nameEn": "Mianyang",
+    "nameZh": "绵阳",
+    "countryCode": "CN",
+    "lon": 104.689993,
+    "lat": 31.464828,
+    "population": 1396000
+  },
+  {
+    "id": "ne-1159139721",
+    "nameEn": "Ma'anshan",
+    "nameZh": "马鞍山",
+    "countryCode": "CN",
+    "lon": 118.485148,
+    "lat": 31.672564,
+    "population": 1366302
+  },
+  {
+    "id": "ne-1159147009",
+    "nameEn": "Yiyang",
+    "nameZh": "益阳",
+    "countryCode": "CN",
+    "lon": 112.328086,
+    "lat": 28.602356,
+    "population": 1352000
+  },
+  {
+    "id": "ne-1159147087",
+    "nameEn": "Heze",
+    "nameZh": "菏泽",
+    "countryCode": "CN",
+    "lon": 115.448103,
+    "lat": 35.231926,
+    "population": 1338000
+  },
+  {
+    "id": "ne-1159147099",
+    "nameEn": "Changzhou",
+    "nameZh": "常州",
+    "countryCode": "CN",
+    "lon": 119.968033,
+    "lat": 31.78193,
+    "population": 1327000
+  },
+  {
+    "id": "ne-1159149943",
+    "nameEn": "Chifeng",
+    "nameZh": "赤峰",
+    "countryCode": "CN",
+    "lon": 118.948044,
+    "lat": 42.271961,
+    "population": 1277000
+  },
+  {
+    "id": "ne-1159149921",
+    "nameEn": "Huai'an",
+    "nameZh": "淮安",
+    "countryCode": "CN",
+    "lon": 119.065967,
+    "lat": 33.585165,
+    "population": 1264000
+  },
+  {
+    "id": "ne-1159147155",
+    "nameEn": "Mudanjiang",
+    "nameZh": "牡丹江",
+    "countryCode": "CN",
+    "lon": 129.588066,
+    "lat": 44.576963,
+    "population": 1244000
+  },
+  {
+    "id": "ne-1159147109",
+    "nameEn": "Huzhou",
+    "nameZh": "湖州",
+    "countryCode": "CN",
+    "lon": 120.098051,
+    "lat": 30.872321,
+    "population": 1231000
+  },
+  {
+    "id": "ne-1159149775",
+    "nameEn": "Tianshui",
+    "nameZh": "天水",
+    "countryCode": "CN",
+    "lon": 105.918038,
+    "lat": 34.601964,
+    "population": 1225000
+  },
+  {
+    "id": "ne-1159149787",
+    "nameEn": "Liupanshui",
+    "nameZh": "六盘水",
+    "countryCode": "CN",
+    "lon": 104.831386,
+    "lat": 26.596381,
+    "population": 1221000
+  },
+  {
+    "id": "ne-1159139761",
+    "nameEn": "Maoming",
+    "nameZh": "茂名",
+    "countryCode": "CN",
+    "lon": 110.870018,
+    "lat": 21.920405,
+    "population": 1217715
+  },
+  {
+    "id": "ne-1159147081",
+    "nameEn": "Jining",
+    "nameZh": "济宁",
+    "countryCode": "CN",
+    "lon": 116.548087,
+    "lat": 35.402355,
+    "population": 1186000
+  },
+  {
+    "id": "ne-1159147015",
+    "nameEn": "Leshan",
+    "nameZh": "乐山",
+    "countryCode": "CN",
+    "lon": 103.731402,
+    "lat": 29.569042,
+    "population": 1157000
+  },
+  {
+    "id": "ne-1159140981",
+    "nameEn": "Shangrao",
+    "nameZh": "上饶",
+    "countryCode": "CN",
+    "lon": 117.969998,
+    "lat": 28.470393,
+    "population": 1144577
+  },
+  {
+    "id": "ne-1159149781",
+    "nameEn": "Yulin",
+    "nameZh": "玉林",
+    "countryCode": "CN",
+    "lon": 110.148064,
+    "lat": 22.63192,
+    "population": 1127000
+  },
+  {
+    "id": "ne-1159148455",
+    "nameEn": "Xianyang",
+    "nameZh": "咸阳",
+    "countryCode": "CN",
+    "lon": 108.712776,
+    "lat": 34.347501,
+    "population": 1126000
+  },
+  {
+    "id": "ne-1159140855",
+    "nameEn": "Baoding",
+    "nameZh": "保定",
+    "countryCode": "CN",
+    "lon": 115.468897,
+    "lat": 38.85834,
+    "population": 1107000
+  },
+  {
+    "id": "ne-1159140813",
+    "nameEn": "Zigong",
+    "nameZh": "自贡",
+    "countryCode": "CN",
+    "lon": 104.778056,
+    "lat": 29.401946,
+    "population": 1105000
+  },
+  {
+    "id": "ne-1159149889",
+    "nameEn": "Ankang",
+    "nameZh": "安康",
+    "countryCode": "CN",
+    "lon": 109.020002,
+    "lat": 32.679981,
+    "population": 1100000
+  },
+  {
+    "id": "ne-1159147113",
+    "nameEn": "Jinhua",
+    "nameZh": "金华",
+    "countryCode": "CN",
+    "lon": 119.649999,
+    "lat": 29.120043,
+    "population": 1092852
+  },
+  {
+    "id": "ne-1159147005",
+    "nameEn": "Zhuzhou",
+    "nameZh": "株洲",
+    "countryCode": "CN",
+    "lon": 113.148088,
+    "lat": 27.831938,
+    "population": 1080000
+  },
+  {
+    "id": "ne-1159148459",
+    "nameEn": "Xiangyang",
+    "nameZh": "襄阳",
+    "countryCode": "CN",
+    "lon": 112.128098,
+    "lat": 32.021941,
+    "population": 1069000
+  },
+  {
+    "id": "ne-1159130203",
+    "nameEn": "Zhucheng",
+    "nameZh": "诸城",
+    "countryCode": "CN",
+    "lon": 119.380093,
+    "lat": 35.989959,
+    "population": 1060000
+  },
+  {
+    "id": "ne-1159150819",
+    "nameEn": "Xining",
+    "nameZh": "西宁",
+    "countryCode": "CN",
+    "lon": 101.768059,
+    "lat": 36.621944,
+    "population": 1048000
+  },
+  {
+    "id": "ne-1159147043",
+    "nameEn": "Zhangjiakou",
+    "nameZh": "张家口",
+    "countryCode": "CN",
+    "lon": 114.852027,
+    "lat": 40.805255,
+    "population": 1046000
+  },
+  {
+    "id": "ne-1159148325",
+    "nameEn": "Zhuhai",
+    "nameZh": "珠海",
+    "countryCode": "CN",
+    "lon": 113.565832,
+    "lat": 22.27889,
+    "population": 1023000
+  },
+  {
+    "id": "ne-1159149949",
+    "nameEn": "Jiamusi",
+    "nameZh": "佳木斯",
+    "countryCode": "CN",
+    "lon": 130.348072,
+    "lat": 46.831967,
+    "population": 1020000
+  },
+  {
+    "id": "ne-1159149895",
+    "nameEn": "Hengyang",
+    "nameZh": "衡阳",
+    "countryCode": "CN",
+    "lon": 112.58807,
+    "lat": 26.881971,
+    "population": 1016000
+  },
+  {
+    "id": "ne-1159147077",
+    "nameEn": "Benxi",
+    "nameZh": "本溪",
+    "countryCode": "CN",
+    "lon": 123.748061,
+    "lat": 41.332329,
+    "population": 1012000
+  },
+  {
+    "id": "ne-1159147039",
+    "nameEn": "Qinhuangdao",
+    "nameZh": "秦皇岛",
+    "countryCode": "CN",
+    "lon": 119.618081,
+    "lat": 39.932311,
+    "population": 1003000
+  },
+  {
+    "id": "ne-1159149903",
+    "nameEn": "Baoshan",
+    "nameZh": "保山",
+    "countryCode": "CN",
+    "lon": 99.15001,
+    "lat": 25.119977,
+    "population": 1000000
+  },
+  {
+    "id": "ne-1159147007",
+    "nameEn": "Yongzhou",
+    "nameZh": "永州",
+    "countryCode": "CN",
+    "lon": 111.609135,
+    "lat": 26.41792,
+    "population": 1000000
+  },
+  {
+    "id": "ne-1159151601",
+    "nameEn": "Bogotá",
+    "nameZh": "波哥大",
+    "countryCode": "CO",
+    "lon": -74.08529,
+    "lat": 4.598369,
+    "population": 7772000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151343",
+    "nameEn": "Medellin",
+    "nameZh": "麦德林",
+    "countryCode": "CO",
+    "lon": -75.576956,
+    "lat": 6.276949,
+    "population": 3297000
+  },
+  {
+    "id": "ne-1159151345",
+    "nameEn": "Cali",
+    "nameZh": "卡利",
+    "countryCode": "CO",
+    "lon": -76.501912,
+    "lat": 3.401905,
+    "population": 2254000
+  },
+  {
+    "id": "ne-1159149845",
+    "nameEn": "Barranquilla",
+    "nameZh": "巴兰基亚",
+    "countryCode": "CO",
+    "lon": -74.801913,
+    "lat": 10.961934,
+    "population": 1798000
+  },
+  {
+    "id": "ne-1159146917",
+    "nameEn": "Bucaramanga",
+    "nameZh": "布卡拉曼加",
+    "countryCode": "CO",
+    "lon": -73.127829,
+    "lat": 7.132039,
+    "population": 1009000
+  },
+  {
+    "id": "ne-1159150849",
+    "nameEn": "San José",
+    "nameZh": "圣荷西",
+    "countryCode": "CR",
+    "lon": -84.078814,
+    "lat": 9.930371,
+    "population": 1284000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151347",
+    "nameEn": "Havana",
+    "nameZh": "哈瓦那",
+    "countryCode": "CU",
+    "lon": -82.366128,
+    "lat": 23.133905,
+    "population": 2174000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151205",
+    "nameEn": "Praia",
+    "nameZh": "培亞",
+    "countryCode": "CV",
+    "lon": -23.516689,
+    "lat": 14.916698,
+    "population": 113364,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159146055",
+    "nameEn": "Willemstad",
+    "nameZh": "威廉斯塔德",
+    "countryCode": "CW",
+    "lon": -68.872356,
+    "lat": 12.11229,
+    "population": 146813,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151209",
+    "nameEn": "Nicosia",
+    "nameZh": "尼科西亚",
+    "countryCode": "CY",
+    "lon": 33.366635,
+    "lat": 35.166677,
+    "population": 224300,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151359",
+    "nameEn": "Prague",
+    "nameZh": "布拉格",
+    "countryCode": "CZ",
+    "lon": 14.422939,
+    "lat": 50.086967,
+    "population": 1162000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151529",
+    "nameEn": "Berlin",
+    "nameZh": "柏林",
+    "countryCode": "DE",
+    "lon": 13.399603,
+    "lat": 52.523764,
+    "population": 3406000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159146949",
+    "nameEn": "Stuttgart",
+    "nameZh": "斯图加特",
+    "countryCode": "DE",
+    "lon": 9.199996,
+    "lat": 48.77998,
+    "population": 2944700
+  },
+  {
+    "id": "ne-1159151351",
+    "nameEn": "Frankfurt",
+    "nameZh": "美因河畔法兰克福",
+    "countryCode": "DE",
+    "lon": 8.675015,
+    "lat": 50.099977,
+    "population": 2895000
+  },
+  {
+    "id": "ne-1159140549",
+    "nameEn": "Mannheim",
+    "nameZh": "曼海姆",
+    "countryCode": "DE",
+    "lon": 8.470015,
+    "lat": 49.500375,
+    "population": 2362000
+  },
+  {
+    "id": "ne-1159151353",
+    "nameEn": "Hamburg",
+    "nameZh": "汉堡",
+    "countryCode": "DE",
+    "lon": 9.998053,
+    "lat": 53.551971,
+    "population": 1757000
+  },
+  {
+    "id": "ne-1159130011",
+    "nameEn": "Essen",
+    "nameZh": "埃森",
+    "countryCode": "DE",
+    "lon": 7.016615,
+    "lat": 51.449998,
+    "population": 1742135
+  },
+  {
+    "id": "ne-1159130001",
+    "nameEn": "Duisburg",
+    "nameZh": "杜伊斯堡",
+    "countryCode": "DE",
+    "lon": 6.750017,
+    "lat": 51.429973,
+    "population": 1276757
+  },
+  {
+    "id": "ne-1159151357",
+    "nameEn": "Munich",
+    "nameZh": "慕尼黑",
+    "countryCode": "DE",
+    "lon": 11.573048,
+    "lat": 48.131888,
+    "population": 1275000
+  },
+  {
+    "id": "ne-1159140545",
+    "nameEn": "Düsseldorf",
+    "nameZh": "杜塞道夫",
+    "countryCode": "DE",
+    "lon": 6.779989,
+    "lat": 51.220374,
+    "population": 1220000
+  },
+  {
+    "id": "ne-1159148451",
+    "nameEn": "Cologne",
+    "nameZh": "科隆",
+    "countryCode": "DE",
+    "lon": 6.948059,
+    "lat": 50.93195,
+    "population": 1004000
+  },
+  {
+    "id": "ne-1159149869",
+    "nameEn": "Djibouti",
+    "nameZh": "吉布地",
+    "countryCode": "DJ",
+    "lon": 43.148002,
+    "lat": 11.595014,
+    "population": 923000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151437",
+    "nameEn": "Copenhagen",
+    "nameZh": "哥本哈根",
+    "countryCode": "DK",
+    "lon": 12.56154,
+    "lat": 55.68051,
+    "population": 1085000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159149847",
+    "nameEn": "Roseau",
+    "nameZh": "罗索",
+    "countryCode": "DM",
+    "lon": -61.387013,
+    "lat": 15.301016,
+    "population": 23336,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151401",
+    "nameEn": "Santo Domingo",
+    "nameZh": "圣多明哥",
+    "countryCode": "DO",
+    "lon": -69.929742,
+    "lat": 18.470745,
+    "population": 2154000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159149837",
+    "nameEn": "Santiago de los Caballeros",
+    "nameZh": "聖地牙哥",
+    "countryCode": "DO",
+    "lon": -70.670012,
+    "lat": 19.50001,
+    "population": 1550753
+  },
+  {
+    "id": "ne-1159151471",
+    "nameEn": "Algiers",
+    "nameZh": "阿尔及尔",
+    "countryCode": "DZ",
+    "lon": 3.048607,
+    "lat": 36.765011,
+    "population": 3354000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151341",
+    "nameEn": "Guayaquil",
+    "nameZh": "瓜亚基尔",
+    "countryCode": "EC",
+    "lon": -79.921988,
+    "lat": -2.218088,
+    "population": 2514000
+  },
+  {
+    "id": "ne-1159150847",
+    "nameEn": "Quito",
+    "nameZh": "基多",
+    "countryCode": "EC",
+    "lon": -78.501997,
+    "lat": -0.213042,
+    "population": 1701000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150877",
+    "nameEn": "Tallinn",
+    "nameZh": "塔林",
+    "countryCode": "EE",
+    "lon": 24.728041,
+    "lat": 59.433877,
+    "population": 394024,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151603",
+    "nameEn": "Cairo",
+    "nameZh": "开罗",
+    "countryCode": "EG",
+    "lon": 31.248022,
+    "lat": 30.051906,
+    "population": 11893000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151349",
+    "nameEn": "Alexandria",
+    "nameZh": "亚历山大港",
+    "countryCode": "EG",
+    "lon": 29.94805,
+    "lat": 31.201965,
+    "population": 4165000
+  },
+  {
+    "id": "ne-1159146947",
+    "nameEn": "Giza",
+    "nameZh": "吉萨",
+    "countryCode": "EG",
+    "lon": 31.190024,
+    "lat": 30.009989,
+    "population": 2681863
+  },
+  {
+    "id": "ne-1159149075",
+    "nameEn": "Bir Lehlou",
+    "nameZh": "比鄂-雷楼",
+    "countryCode": "EH",
+    "lon": -9.652522,
+    "lat": 26.119167,
+    "population": 500
+  },
+  {
+    "id": "ne-1159150873",
+    "nameEn": "Asmara",
+    "nameZh": "阿斯马拉",
+    "countryCode": "ER",
+    "lon": 38.933324,
+    "lat": 15.333339,
+    "population": 620802,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151503",
+    "nameEn": "Madrid",
+    "nameZh": "马德里",
+    "countryCode": "ES",
+    "lon": -3.685297,
+    "lat": 40.401972,
+    "population": 5567000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151261",
+    "nameEn": "Barcelona",
+    "nameZh": "巴塞罗那",
+    "countryCode": "ES",
+    "lon": 2.181424,
+    "lat": 41.385245,
+    "population": 4920000
+  },
+  {
+    "id": "ne-1159150601",
+    "nameEn": "Seville",
+    "nameZh": "塞维利亚",
+    "countryCode": "ES",
+    "lon": -5.980007,
+    "lat": 37.405015,
+    "population": 1212045
+  },
+  {
+    "id": "ne-1159151549",
+    "nameEn": "Addis Ababa",
+    "nameZh": "亚的斯亚贝巴",
+    "countryCode": "ET",
+    "lon": 38.698059,
+    "lat": 9.035256,
+    "population": 3100000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151419",
+    "nameEn": "Helsinki",
+    "nameZh": "赫尔辛基",
+    "countryCode": "FI",
+    "lon": 24.932457,
+    "lat": 60.163804,
+    "population": 1115000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150917",
+    "nameEn": "Suva",
+    "nameZh": "苏瓦",
+    "countryCode": "FJ",
+    "lon": 178.441707,
+    "lat": -18.133016,
+    "population": 175399,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151183",
+    "nameEn": "Stanley",
+    "nameZh": "斯坦利",
+    "countryCode": "FK",
+    "lon": -57.849968,
+    "lat": -51.700011,
+    "population": 2213,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159149061",
+    "nameEn": "Palikir",
+    "nameZh": "帕利基尔",
+    "countryCode": "FM",
+    "lon": 158.149974,
+    "lat": 6.916644,
+    "population": 4645,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151613",
+    "nameEn": "Paris",
+    "nameZh": "巴黎",
+    "countryCode": "FR",
+    "lon": 2.352992,
+    "lat": 48.858092,
+    "population": 9904000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150845",
+    "nameEn": "Lyon",
+    "nameZh": "里昂",
+    "countryCode": "FR",
+    "lon": 4.828085,
+    "lat": 45.771954,
+    "population": 1423000
+  },
+  {
+    "id": "ne-1159150037",
+    "nameEn": "Marseille",
+    "nameZh": "马赛",
+    "countryCode": "FR",
+    "lon": 5.373064,
+    "lat": 43.291925,
+    "population": 1400000
+  },
+  {
+    "id": "ne-1159147227",
+    "nameEn": "Lille",
+    "nameZh": "里尔",
+    "countryCode": "FR",
+    "lon": 3.078062,
+    "lat": 50.651915,
+    "population": 1044000
+  },
+  {
+    "id": "ne-1159150913",
+    "nameEn": "Libreville",
+    "nameZh": "利伯维尔",
+    "countryCode": "GA",
+    "lon": 9.457965,
+    "lat": 0.385389,
+    "population": 578156,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151577",
+    "nameEn": "London",
+    "nameZh": "伦敦",
+    "countryCode": "GB",
+    "lon": -0.118668,
+    "lat": 51.501941,
+    "population": 8567000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159149367",
+    "nameEn": "Birmingham",
+    "nameZh": "伯明翰",
+    "countryCode": "GB",
+    "lon": -1.921943,
+    "lat": 52.47692,
+    "population": 2285000
+  },
+  {
+    "id": "ne-1159149119",
+    "nameEn": "Manchester",
+    "nameZh": "曼彻斯特",
+    "countryCode": "GB",
+    "lon": -2.248685,
+    "lat": 53.47532,
+    "population": 2230000
+  },
+  {
+    "id": "ne-1159146385",
+    "nameEn": "Leeds",
+    "nameZh": "利兹",
+    "countryCode": "GB",
+    "lon": -1.551348,
+    "lat": 53.790017,
+    "population": 1529000
+  },
+  {
+    "id": "ne-1159127645",
+    "nameEn": "Sheffield",
+    "nameZh": "谢菲尔德",
+    "countryCode": "GB",
+    "lon": -1.499997,
+    "lat": 53.366677,
+    "population": 1292900
+  },
+  {
+    "id": "ne-1159150591",
+    "nameEn": "Glasgow",
+    "nameZh": "格拉斯哥",
+    "countryCode": "GB",
+    "lon": -4.239101,
+    "lat": 55.86227,
+    "population": 1160000
+  },
+  {
+    "id": "ne-1159146373",
+    "nameEn": "Cardiff",
+    "nameZh": "加地夫",
+    "countryCode": "GB",
+    "lon": -3.167598,
+    "lat": 51.482619,
+    "population": 861400
+  },
+  {
+    "id": "ne-1159146365",
+    "nameEn": "Edinburgh",
+    "nameZh": "爱丁堡",
+    "countryCode": "GB",
+    "lon": -3.219091,
+    "lat": 55.948328,
+    "population": 504966
+  },
+  {
+    "id": "ne-1159149369",
+    "nameEn": "Belfast",
+    "nameZh": "贝尔法斯特",
+    "countryCode": "GB",
+    "lon": -5.928178,
+    "lat": 54.594245,
+    "population": 450406
+  },
+  {
+    "id": "ne-1159150447",
+    "nameEn": "St. George's",
+    "nameZh": "圣乔治",
+    "countryCode": "GD",
+    "lon": -61.741643,
+    "lat": 12.052633,
+    "population": 33734,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150961",
+    "nameEn": "Tbilisi",
+    "nameZh": "第比利斯",
+    "countryCode": "GE",
+    "lon": 44.78885,
+    "lat": 41.726956,
+    "population": 1100000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159147265",
+    "nameEn": "Batumi",
+    "nameZh": "巴统",
+    "countryCode": "GE",
+    "lon": 41.630007,
+    "lat": 41.600005,
+    "population": 155542
+  },
+  {
+    "id": "ne-1159148621",
+    "nameEn": "Sukhumi",
+    "nameZh": "苏呼米",
+    "countryCode": "GE",
+    "lon": 41.020018,
+    "lat": 43.020021,
+    "population": 81546
+  },
+  {
+    "id": "ne-1159151403",
+    "nameEn": "Accra",
+    "nameZh": "阿克拉",
+    "countryCode": "GH",
+    "lon": -0.218662,
+    "lat": 5.55198,
+    "population": 2121000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159148507",
+    "nameEn": "Kumasi",
+    "nameZh": "库马西",
+    "countryCode": "GH",
+    "lon": -1.63196,
+    "lat": 6.691937,
+    "population": 1646000
+  },
+  {
+    "id": "ne-1159146301",
+    "nameEn": "Gibraltar",
+    "nameZh": "直布罗陀",
+    "countryCode": "GI",
+    "lon": -5.346014,
+    "lat": 36.128342,
+    "population": 187083,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150939",
+    "nameEn": "Nuuk",
+    "nameZh": "努克",
+    "countryCode": "GL",
+    "lon": -51.732659,
+    "lat": 64.198281,
+    "population": 14798,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159149997",
+    "nameEn": "Banjul",
+    "nameZh": "班竹",
+    "countryCode": "GM",
+    "lon": -16.591701,
+    "lat": 13.453876,
+    "population": 43094,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150997",
+    "nameEn": "Conakry",
+    "nameZh": "科纳克里",
+    "countryCode": "GN",
+    "lon": -13.682181,
+    "lat": 9.533469,
+    "population": 1494000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150867",
+    "nameEn": "Malabo",
+    "nameZh": "马拉博",
+    "countryCode": "GQ",
+    "lon": 8.783278,
+    "lat": 3.750015,
+    "population": 155963,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151545",
+    "nameEn": "Athens",
+    "nameZh": "雅典",
+    "countryCode": "GR",
+    "lon": 23.731375,
+    "lat": 37.985272,
+    "population": 3242000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150909",
+    "nameEn": "Guatemala City",
+    "nameZh": "瓜地馬拉",
+    "countryCode": "GT",
+    "lon": -90.528911,
+    "lat": 14.623081,
+    "population": 1024000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159149065",
+    "nameEn": "Hagåtña",
+    "nameZh": "阿加尼亚",
+    "countryCode": "GU",
+    "lon": 144.750017,
+    "lat": 13.470016,
+    "population": 122411,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150803",
+    "nameEn": "Bissau",
+    "nameZh": "比绍",
+    "countryCode": "GW",
+    "lon": -15.598361,
+    "lat": 11.865024,
+    "population": 403339,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150585",
+    "nameEn": "Georgetown",
+    "nameZh": "乔治敦",
+    "countryCode": "GY",
+    "lon": -58.167029,
+    "lat": 6.801974,
+    "population": 264350,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151629",
+    "nameEn": "Hong Kong",
+    "nameZh": "香港",
+    "countryCode": "HK",
+    "lon": 114.183064,
+    "lat": 22.306927,
+    "population": 7206000
+  },
+  {
+    "id": "ne-1159150583",
+    "nameEn": "Tegucigalpa",
+    "nameZh": "特古西加尔巴",
+    "countryCode": "HN",
+    "lon": -87.219475,
+    "lat": 14.103991,
+    "population": 946000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150875",
+    "nameEn": "Zagreb",
+    "nameZh": "萨格勒布",
+    "countryCode": "HR",
+    "lon": 15.999995,
+    "lat": 45.800007,
+    "population": 722526,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150589",
+    "nameEn": "Port-au-Prince",
+    "nameZh": "太子港",
+    "countryCode": "HT",
+    "lon": -72.33798,
+    "lat": 18.54297,
+    "population": 1998000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151257",
+    "nameEn": "Budapest",
+    "nameZh": "布达佩斯",
+    "countryCode": "HU",
+    "lon": 19.081375,
+    "lat": 47.501952,
+    "population": 1679000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151599",
+    "nameEn": "Jakarta",
+    "nameZh": "雅加达",
+    "countryCode": "ID",
+    "lon": 106.827492,
+    "lat": -6.172472,
+    "population": 9125000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151339",
+    "nameEn": "Surabaya",
+    "nameZh": "泗水",
+    "countryCode": "ID",
+    "lon": 112.748887,
+    "lat": -7.24729,
+    "population": 2845000
+  },
+  {
+    "id": "ne-1159151335",
+    "nameEn": "Bandung",
+    "nameZh": "万隆",
+    "countryCode": "ID",
+    "lon": 107.568067,
+    "lat": -6.948083,
+    "population": 2394000
+  },
+  {
+    "id": "ne-1159139809",
+    "nameEn": "Bekasi",
+    "nameZh": "勿加泗",
+    "countryCode": "ID",
+    "lon": 106.972323,
+    "lat": -6.217257,
+    "population": 2378211
+  },
+  {
+    "id": "ne-1159151307",
+    "nameEn": "Medan",
+    "nameZh": "棉兰",
+    "countryCode": "ID",
+    "lon": 98.648094,
+    "lat": 3.58192,
+    "population": 2115000
+  },
+  {
+    "id": "ne-1159150839",
+    "nameEn": "Palembang",
+    "nameZh": "巨港",
+    "countryCode": "ID",
+    "lon": 104.748084,
+    "lat": -2.978093,
+    "population": 1749000
+  },
+  {
+    "id": "ne-1159150837",
+    "nameEn": "Semarang",
+    "nameZh": "三宝垄",
+    "countryCode": "ID",
+    "lon": 110.418074,
+    "lat": -6.964672,
+    "population": 1396000
+  },
+  {
+    "id": "ne-1159150843",
+    "nameEn": "Makassar",
+    "nameZh": "望加锡",
+    "countryCode": "ID",
+    "lon": 119.430082,
+    "lat": -5.138013,
+    "population": 1262000
+  },
+  {
+    "id": "ne-1159139775",
+    "nameEn": "Cilacap",
+    "nameZh": "芝拉扎",
+    "countryCode": "ID",
+    "lon": 109.015402,
+    "lat": -7.71882,
+    "population": 1174964
+  },
+  {
+    "id": "ne-1159151309",
+    "nameEn": "Dublin",
+    "nameZh": "都柏林",
+    "countryCode": "IE",
+    "lon": -6.25698,
+    "lat": 53.346731,
+    "population": 1059000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151417",
+    "nameEn": "Tel Aviv",
+    "nameZh": "特拉维夫",
+    "countryCode": "IL",
+    "lon": 34.768066,
+    "lat": 32.081937,
+    "population": 3112000
+  },
+  {
+    "id": "ne-1159151203",
+    "nameEn": "Jerusalem",
+    "nameZh": "耶路撒冷",
+    "countryCode": "IL",
+    "lon": 35.206626,
+    "lat": 31.778408,
+    "population": 1029300,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159142281",
+    "nameEn": "Haifa",
+    "nameZh": "海法",
+    "countryCode": "IL",
+    "lon": 34.978079,
+    "lat": 32.822357,
+    "population": 1011000
+  },
+  {
+    "id": "ne-1159146037",
+    "nameEn": "Douglas",
+    "nameZh": "道格拉斯",
+    "countryCode": "IM",
+    "lon": -4.480269,
+    "lat": 54.149122,
+    "population": 35854,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151611",
+    "nameEn": "Mumbai",
+    "nameZh": "孟买",
+    "countryCode": "IN",
+    "lon": 72.875839,
+    "lat": 19.068408,
+    "population": 18978000
+  },
+  {
+    "id": "ne-1159151405",
+    "nameEn": "Delhi",
+    "nameZh": "德里",
+    "countryCode": "IN",
+    "lon": 77.228058,
+    "lat": 28.671939,
+    "population": 15926000
+  },
+  {
+    "id": "ne-1159151617",
+    "nameEn": "Kolkata",
+    "nameZh": "加尔各答",
+    "countryCode": "IN",
+    "lon": 88.369126,
+    "lat": 22.569579,
+    "population": 14787000
+  },
+  {
+    "id": "ne-1159151431",
+    "nameEn": "Chennai",
+    "nameZh": "金奈",
+    "countryCode": "IN",
+    "lon": 80.278053,
+    "lat": 13.091934,
+    "population": 7163000
+  },
+  {
+    "id": "ne-1159151543",
+    "nameEn": "Bengaluru",
+    "nameZh": "班加罗尔",
+    "countryCode": "IN",
+    "lon": 77.558064,
+    "lat": 12.971941,
+    "population": 6787000
+  },
+  {
+    "id": "ne-1159151407",
+    "nameEn": "Hyderabad",
+    "nameZh": "海德拉巴",
+    "countryCode": "IN",
+    "lon": 78.478008,
+    "lat": 17.401929,
+    "population": 6376000
+  },
+  {
+    "id": "ne-1730025037",
+    "nameEn": "Amaravati",
+    "nameZh": "阿马拉瓦蒂",
+    "countryCode": "IN",
+    "lon": 80.52432,
+    "lat": 16.533658,
+    "population": 5800000
+  },
+  {
+    "id": "ne-1159151433",
+    "nameEn": "Ahmedabad",
+    "nameZh": "阿麼达巴德",
+    "countryCode": "IN",
+    "lon": 72.578058,
+    "lat": 23.031999,
+    "population": 5375000
+  },
+  {
+    "id": "ne-1159142843",
+    "nameEn": "Howrah",
+    "nameZh": "豪拉",
+    "countryCode": "IN",
+    "lon": 88.318516,
+    "lat": 22.584698,
+    "population": 4841638
+  },
+  {
+    "id": "ne-1159151411",
+    "nameEn": "Pune",
+    "nameZh": "浦那",
+    "countryCode": "IN",
+    "lon": 73.851892,
+    "lat": 18.516394,
+    "population": 4672000
+  },
+  {
+    "id": "ne-1159151435",
+    "nameEn": "Surat",
+    "nameZh": "苏拉特",
+    "countryCode": "IN",
+    "lon": 72.838094,
+    "lat": 21.20193,
+    "population": 3842000
+  },
+  {
+    "id": "ne-1159151425",
+    "nameEn": "Kanpur",
+    "nameZh": "坎普尔",
+    "countryCode": "IN",
+    "lon": 80.31805,
+    "lat": 26.461945,
+    "population": 3162000
+  },
+  {
+    "id": "ne-1159151423",
+    "nameEn": "Jaipur",
+    "nameZh": "斋浦尔",
+    "countryCode": "IN",
+    "lon": 75.808042,
+    "lat": 26.923079,
+    "population": 2917000
+  },
+  {
+    "id": "ne-1159150147",
+    "nameEn": "Lucknow",
+    "nameZh": "勒克瑙",
+    "countryCode": "IN",
+    "lon": 80.913053,
+    "lat": 26.856985,
+    "population": 2695000
+  },
+  {
+    "id": "ne-1159151413",
+    "nameEn": "Nagpur",
+    "nameZh": "纳格普尔",
+    "countryCode": "IN",
+    "lon": 79.088048,
+    "lat": 21.171906,
+    "population": 2454000
+  },
+  {
+    "id": "ne-1159151429",
+    "nameEn": "Patna",
+    "nameZh": "巴特那",
+    "countryCode": "IN",
+    "lon": 85.128093,
+    "lat": 25.626905,
+    "population": 2158000
+  },
+  {
+    "id": "ne-1159150161",
+    "nameEn": "Indore",
+    "nameZh": "因多尔",
+    "countryCode": "IN",
+    "lon": 75.863077,
+    "lat": 22.717005,
+    "population": 2026000
+  },
+  {
+    "id": "ne-1159149187",
+    "nameEn": "Vadodara",
+    "nameZh": "瓦多达拉",
+    "countryCode": "IN",
+    "lon": 73.178073,
+    "lat": 22.311965,
+    "population": 1756000
+  },
+  {
+    "id": "ne-1159150985",
+    "nameEn": "Bhopal",
+    "nameZh": "博帕尔",
+    "countryCode": "IN",
+    "lon": 77.408047,
+    "lat": 23.251934,
+    "population": 1727000
+  },
+  {
+    "id": "ne-1159150989",
+    "nameEn": "Coimbatore",
+    "nameZh": "科伊巴拓雷",
+    "countryCode": "IN",
+    "lon": 76.948075,
+    "lat": 11.001906,
+    "population": 1696000
+  },
+  {
+    "id": "ne-1159150137",
+    "nameEn": "Ludhiana",
+    "nameZh": "卢迪亚纳",
+    "countryCode": "IN",
+    "lon": 75.870312,
+    "lat": 30.929708,
+    "population": 1649000
+  },
+  {
+    "id": "ne-1159149175",
+    "nameEn": "Agra",
+    "nameZh": "阿格拉",
+    "countryCode": "IN",
+    "lon": 78.013075,
+    "lat": 27.172366,
+    "population": 1592000
+  },
+  {
+    "id": "ne-1159130467",
+    "nameEn": "Kalyan",
+    "nameZh": "卡延",
+    "countryCode": "IN",
+    "lon": 73.160175,
+    "lat": 19.250232,
+    "population": 1576614
+  },
+  {
+    "id": "ne-1159150915",
+    "nameEn": "Visakhapatnam",
+    "nameZh": "维沙卡帕特南",
+    "countryCode": "IN",
+    "lon": 83.219848,
+    "lat": 17.682903,
+    "population": 1529000
+  },
+  {
+    "id": "ne-1159150009",
+    "nameEn": "Kochi",
+    "nameZh": "戈奇",
+    "countryCode": "IN",
+    "lon": 76.22197,
+    "lat": 10.016953,
+    "population": 1519000
+  },
+  {
+    "id": "ne-1159149163",
+    "nameEn": "Nashik",
+    "nameZh": "纳西克",
+    "countryCode": "IN",
+    "lon": 73.778036,
+    "lat": 20.002365,
+    "population": 1473000
+  },
+  {
+    "id": "ne-1159149181",
+    "nameEn": "Meerut",
+    "nameZh": "密拉特",
+    "countryCode": "IN",
+    "lon": 77.698055,
+    "lat": 29.002358,
+    "population": 1398000
+  },
+  {
+    "id": "ne-1159149999",
+    "nameEn": "Faridabad",
+    "nameZh": "法里达巴德",
+    "countryCode": "IN",
+    "lon": 77.314721,
+    "lat": 28.435279,
+    "population": 1394000
+  },
+  {
+    "id": "ne-1159150979",
+    "nameEn": "Varanasi",
+    "nameZh": "瓦兰希",
+    "countryCode": "IN",
+    "lon": 82.998094,
+    "lat": 25.331936,
+    "population": 1352000
+  },
+  {
+    "id": "ne-1159149173",
+    "nameEn": "Ghaziabad",
+    "nameZh": "加济阿巴德",
+    "countryCode": "IN",
+    "lon": 77.406445,
+    "lat": 28.662327,
+    "population": 1341000
+  },
+  {
+    "id": "ne-1159150981",
+    "nameEn": "Asansol",
+    "nameZh": "阿桑索尔",
+    "countryCode": "IN",
+    "lon": 86.981387,
+    "lat": 23.685279,
+    "population": 1328000
+  },
+  {
+    "id": "ne-1159150467",
+    "nameEn": "Jamshedpur",
+    "nameZh": "贾姆谢德布尔",
+    "countryCode": "IN",
+    "lon": 86.195573,
+    "lat": 22.789481,
+    "population": 1300000
+  },
+  {
+    "id": "ne-1159150987",
+    "nameEn": "Madurai",
+    "nameZh": "马杜赖",
+    "countryCode": "IN",
+    "lon": 78.118081,
+    "lat": 9.921972,
+    "population": 1294000
+  },
+  {
+    "id": "ne-1159150159",
+    "nameEn": "Jabalpur",
+    "nameZh": "贾巴尔普尔",
+    "countryCode": "IN",
+    "lon": 79.953112,
+    "lat": 23.177003,
+    "population": 1285000
+  },
+  {
+    "id": "ne-1159149189",
+    "nameEn": "Rajkot",
+    "nameZh": "莱科特",
+    "countryCode": "IN",
+    "lon": 70.798063,
+    "lat": 22.311965,
+    "population": 1260000
+  },
+  {
+    "id": "ne-1159149183",
+    "nameEn": "Dhanbad",
+    "nameZh": "丹巴德",
+    "countryCode": "IN",
+    "lon": 86.41804,
+    "lat": 23.802339,
+    "population": 1246000
+  },
+  {
+    "id": "ne-1159150975",
+    "nameEn": "Amritsar",
+    "nameZh": "阿姆利则",
+    "countryCode": "IN",
+    "lon": 74.868047,
+    "lat": 31.641938,
+    "population": 1212000
+  },
+  {
+    "id": "ne-1159147191",
+    "nameEn": "Warangal",
+    "nameZh": "瓦朗加尔",
+    "countryCode": "IN",
+    "lon": 79.57999,
+    "lat": 18.009998,
+    "population": 1203853
+  },
+  {
+    "id": "ne-1159149169",
+    "nameEn": "Allahabad",
+    "nameZh": "安拉阿巴德",
+    "countryCode": "IN",
+    "lon": 81.838061,
+    "lat": 25.456941,
+    "population": 1201000
+  },
+  {
+    "id": "ne-1159150001",
+    "nameEn": "Srinagar",
+    "nameZh": "斯利那加",
+    "countryCode": "IN",
+    "lon": 74.828309,
+    "lat": 34.069474,
+    "population": 1140000
+  },
+  {
+    "id": "ne-1159150003",
+    "nameEn": "Vijayawada",
+    "nameZh": "维杰亚瓦达",
+    "countryCode": "IN",
+    "lon": 80.628057,
+    "lat": 16.521905,
+    "population": 1137000
+  },
+  {
+    "id": "ne-1159149161",
+    "nameEn": "Aurangabad",
+    "nameZh": "奥郎加巴德",
+    "countryCode": "IN",
+    "lon": 75.328948,
+    "lat": 19.861686,
+    "population": 1113000
+  },
+  {
+    "id": "ne-1159150983",
+    "nameEn": "Bhilai",
+    "nameZh": "比莱",
+    "countryCode": "IN",
+    "lon": 81.372213,
+    "lat": 21.211262,
+    "population": 1097000
+  },
+  {
+    "id": "ne-1159149157",
+    "nameEn": "Solapur",
+    "nameZh": "索拉普",
+    "countryCode": "IN",
+    "lon": 75.898062,
+    "lat": 17.672352,
+    "population": 1057000
+  },
+  {
+    "id": "ne-1159150153",
+    "nameEn": "Ranchi",
+    "nameZh": "兰契",
+    "countryCode": "IN",
+    "lon": 85.32808,
+    "lat": 23.371952,
+    "population": 1044000
+  },
+  {
+    "id": "ne-1159151541",
+    "nameEn": "New Delhi",
+    "nameZh": "新德里",
+    "countryCode": "IN",
+    "lon": 77.19998,
+    "lat": 28.600023,
+    "population": 317797,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151547",
+    "nameEn": "Baghdad",
+    "nameZh": "巴格达",
+    "countryCode": "IQ",
+    "lon": 44.391923,
+    "lat": 33.340594,
+    "population": 5054000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150087",
+    "nameEn": "Mosul",
+    "nameZh": "摩苏尔",
+    "countryCode": "IQ",
+    "lon": 43.143059,
+    "lat": 36.346948,
+    "population": 1316000
+  },
+  {
+    "id": "ne-1159151551",
+    "nameEn": "Tehran",
+    "nameZh": "德黑兰",
+    "countryCode": "IR",
+    "lon": 51.422398,
+    "lat": 35.673889,
+    "population": 7873000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151421",
+    "nameEn": "Mashhad",
+    "nameZh": "马什哈德",
+    "countryCode": "IR",
+    "lon": 59.568051,
+    "lat": 36.271966,
+    "population": 2469000
+  },
+  {
+    "id": "ne-1159150971",
+    "nameEn": "Isfahan",
+    "nameZh": "伊斯法罕",
+    "countryCode": "IR",
+    "lon": 51.698092,
+    "lat": 32.701951,
+    "population": 1628000
+  },
+  {
+    "id": "ne-1159142617",
+    "nameEn": "Karaj",
+    "nameZh": "卡拉季",
+    "countryCode": "IR",
+    "lon": 50.968059,
+    "lat": 35.802305,
+    "population": 1423000
+  },
+  {
+    "id": "ne-1159150135",
+    "nameEn": "Tabriz",
+    "nameZh": "大不里士",
+    "countryCode": "IR",
+    "lon": 46.2993,
+    "lat": 38.088237,
+    "population": 1413000
+  },
+  {
+    "id": "ne-1159150973",
+    "nameEn": "Shiraz",
+    "nameZh": "西菈子",
+    "countryCode": "IR",
+    "lon": 52.568065,
+    "lat": 29.631906,
+    "population": 1240000
+  },
+  {
+    "id": "ne-1159150587",
+    "nameEn": "Reykjavík",
+    "nameZh": "雷克雅未克",
+    "countryCode": "IS",
+    "lon": -21.936546,
+    "lat": 64.143459,
+    "population": 166212,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151593",
+    "nameEn": "Rome",
+    "nameZh": "罗马",
+    "countryCode": "IT",
+    "lon": 12.481313,
+    "lat": 41.897902,
+    "population": 3339000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151315",
+    "nameEn": "Milan",
+    "nameZh": "米兰",
+    "countryCode": "IT",
+    "lon": 9.203063,
+    "lat": 45.471921,
+    "population": 2945000
+  },
+  {
+    "id": "ne-1159151313",
+    "nameEn": "Naples",
+    "nameZh": "那不勒斯",
+    "countryCode": "IT",
+    "lon": 14.243066,
+    "lat": 40.841971,
+    "population": 2250000
+  },
+  {
+    "id": "ne-1159146875",
+    "nameEn": "Turin",
+    "nameZh": "都灵",
+    "countryCode": "IT",
+    "lon": 7.668015,
+    "lat": 45.072333,
+    "population": 1652000
+  },
+  {
+    "id": "ne-1159149751",
+    "nameEn": "Florence",
+    "nameZh": "佛罗伦萨",
+    "countryCode": "IT",
+    "lon": 11.25,
+    "lat": 43.780001,
+    "population": 1500000
+  },
+  {
+    "id": "ne-1159150855",
+    "nameEn": "Kingston",
+    "nameZh": "京斯敦",
+    "countryCode": "JM",
+    "lon": -76.767434,
+    "lat": 17.977077,
+    "population": 937700,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150807",
+    "nameEn": "Amman",
+    "nameZh": "安曼",
+    "countryCode": "JO",
+    "lon": 35.931354,
+    "lat": 31.951971,
+    "population": 1060000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151609",
+    "nameEn": "Tokyo",
+    "nameZh": "东京",
+    "countryCode": "JP",
+    "lon": 139.749462,
+    "lat": 35.686963,
+    "population": 35676000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151537",
+    "nameEn": "Osaka",
+    "nameZh": "大阪",
+    "countryCode": "JP",
+    "lon": 135.503754,
+    "lat": 34.691095,
+    "population": 11294000
+  },
+  {
+    "id": "ne-1159147167",
+    "nameEn": "Yokohama",
+    "nameZh": "横滨",
+    "countryCode": "JP",
+    "lon": 139.602021,
+    "lat": 35.430656,
+    "population": 3697894
+  },
+  {
+    "id": "ne-1159149959",
+    "nameEn": "Nagoya",
+    "nameZh": "名古屋",
+    "countryCode": "JP",
+    "lon": 136.913046,
+    "lat": 35.156943,
+    "population": 3230000
+  },
+  {
+    "id": "ne-1159149927",
+    "nameEn": "Fukuoka",
+    "nameZh": "福冈",
+    "countryCode": "JP",
+    "lon": 130.408068,
+    "lat": 33.596961,
+    "population": 2792000
+  },
+  {
+    "id": "ne-1159151399",
+    "nameEn": "Sapporo",
+    "nameZh": "札幌",
+    "countryCode": "JP",
+    "lon": 141.338099,
+    "lat": 43.076925,
+    "population": 2544000
+  },
+  {
+    "id": "ne-1159149971",
+    "nameEn": "Sendai",
+    "nameZh": "仙台",
+    "countryCode": "JP",
+    "lon": 140.869667,
+    "lat": 38.268441,
+    "population": 2250000
+  },
+  {
+    "id": "ne-1159151389",
+    "nameEn": "Hiroshima",
+    "nameZh": "广岛",
+    "countryCode": "JP",
+    "lon": 132.440967,
+    "lat": 34.389781,
+    "population": 2045000
+  },
+  {
+    "id": "ne-1159149967",
+    "nameEn": "Kyoto",
+    "nameZh": "京都",
+    "countryCode": "JP",
+    "lon": 135.748052,
+    "lat": 35.031938,
+    "population": 1805000
+  },
+  {
+    "id": "ne-1159147165",
+    "nameEn": "Kōbe",
+    "nameZh": "神戶",
+    "countryCode": "JP",
+    "lon": 135.169982,
+    "lat": 34.679988,
+    "population": 1528478
+  },
+  {
+    "id": "ne-1159130361",
+    "nameEn": "Kawasaki",
+    "nameZh": "川崎",
+    "countryCode": "JP",
+    "lon": 139.705002,
+    "lat": 35.529988,
+    "population": 1437266
+  },
+  {
+    "id": "ne-1159151597",
+    "nameEn": "Nairobi",
+    "nameZh": "内罗毕",
+    "countryCode": "KE",
+    "lon": 36.814711,
+    "lat": -1.281401,
+    "population": 3010000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150813",
+    "nameEn": "Bishkek",
+    "nameZh": "比什凯克",
+    "countryCode": "KG",
+    "lon": 74.583258,
+    "lat": 42.875025,
+    "population": 837000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151127",
+    "nameEn": "Phnom Penh",
+    "nameZh": "金边",
+    "countryCode": "KH",
+    "lon": 104.914689,
+    "lat": 11.551976,
+    "population": 1466000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159149079",
+    "nameEn": "South Tarawa",
+    "nameZh": "南塔拉瓦",
+    "countryCode": "KI",
+    "lon": 173.017571,
+    "lat": 1.338188,
+    "population": 28802,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159149083",
+    "nameEn": "Moroni",
+    "nameZh": "莫洛尼",
+    "countryCode": "KM",
+    "lon": 43.240244,
+    "lat": -11.704158,
+    "population": 128698,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150435",
+    "nameEn": "Basseterre",
+    "nameZh": "巴斯特尔",
+    "countryCode": "KN",
+    "lon": -62.717009,
+    "lat": 17.302031,
+    "population": 21887,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151303",
+    "nameEn": "Pyongyang",
+    "nameZh": "平壤",
+    "countryCode": "KP",
+    "lon": 125.752745,
+    "lat": 39.021385,
+    "population": 3300000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159146825",
+    "nameEn": "Nampho",
+    "nameZh": "南浦特别",
+    "countryCode": "KP",
+    "lon": 125.450488,
+    "lat": 38.768867,
+    "population": 1127000
+  },
+  {
+    "id": "ne-1159151523",
+    "nameEn": "Seoul",
+    "nameZh": "首尔",
+    "countryCode": "KR",
+    "lon": 126.997785,
+    "lat": 37.568295,
+    "population": 9796000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159149599",
+    "nameEn": "Busan",
+    "nameZh": "釜山",
+    "countryCode": "KR",
+    "lon": 129.008102,
+    "lat": 35.096999,
+    "population": 3480000
+  },
+  {
+    "id": "ne-1159149125",
+    "nameEn": "Incheon",
+    "nameZh": "仁川廣域",
+    "countryCode": "KR",
+    "lon": 126.640288,
+    "lat": 37.478094,
+    "population": 2550000
+  },
+  {
+    "id": "ne-1159146599",
+    "nameEn": "Daegu",
+    "nameZh": "大邱",
+    "countryCode": "KR",
+    "lon": 128.605026,
+    "lat": 35.868735,
+    "population": 2460000
+  },
+  {
+    "id": "ne-1159149595",
+    "nameEn": "Daejeon",
+    "nameZh": "大田广域",
+    "countryCode": "KR",
+    "lon": 127.423082,
+    "lat": 36.337491,
+    "population": 1468000
+  },
+  {
+    "id": "ne-1159149597",
+    "nameEn": "Gwangju",
+    "nameZh": "光州广域",
+    "countryCode": "KR",
+    "lon": 126.908488,
+    "lat": 35.172911,
+    "population": 1440000
+  },
+  {
+    "id": "ne-1159127593",
+    "nameEn": "Changwon",
+    "nameZh": "昌原",
+    "countryCode": "KR",
+    "lon": 128.583562,
+    "lat": 35.219102,
+    "population": 1081499
+  },
+  {
+    "id": "ne-1159146381",
+    "nameEn": "Suwon",
+    "nameZh": "水原",
+    "countryCode": "KR",
+    "lon": 127.008947,
+    "lat": 37.259735,
+    "population": 1078000
+  },
+  {
+    "id": "ne-1159146597",
+    "nameEn": "Ulsan",
+    "nameZh": "蔚山广域",
+    "countryCode": "KR",
+    "lon": 129.315008,
+    "lat": 35.548677,
+    "population": 1061000
+  },
+  {
+    "id": "ne-1159151361",
+    "nameEn": "Kuwait City",
+    "nameZh": "科威特城",
+    "countryCode": "KW",
+    "lon": 47.976355,
+    "lat": 29.371664,
+    "population": 2063000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159146033",
+    "nameEn": "George Town",
+    "nameZh": "乔治敦",
+    "countryCode": "KY",
+    "lon": -81.37157,
+    "lat": 19.294748,
+    "population": 4268,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150969",
+    "nameEn": "Almaty",
+    "nameZh": "阿拉木图",
+    "countryCode": "KZ",
+    "lon": 76.91309,
+    "lat": 43.326936,
+    "population": 1209000
+  },
+  {
+    "id": "ne-1159150965",
+    "nameEn": "Nur-Sultan",
+    "nameZh": "努尔苏丹",
+    "countryCode": "KZ",
+    "lon": 71.427774,
+    "lat": 51.181125,
+    "population": 345604,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150991",
+    "nameEn": "Vientiane",
+    "nameZh": "万象",
+    "countryCode": "LA",
+    "lon": 102.59998,
+    "lat": 17.966693,
+    "population": 754000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150957",
+    "nameEn": "Beirut",
+    "nameZh": "贝鲁特",
+    "countryCode": "LB",
+    "lon": 35.507762,
+    "lat": 33.873921,
+    "population": 1846000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150433",
+    "nameEn": "Castries",
+    "nameZh": "卡斯特里",
+    "countryCode": "LC",
+    "lon": -60.992875,
+    "lat": 14.007875,
+    "population": 37963,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159146061",
+    "nameEn": "Vaduz",
+    "nameZh": "瓦都兹",
+    "countryCode": "LI",
+    "lon": 9.51667,
+    "lat": 47.133724,
+    "population": 36281,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150719",
+    "nameEn": "Colombo",
+    "nameZh": "科伦坡",
+    "countryCode": "LK",
+    "lon": 79.857751,
+    "lat": 6.931966,
+    "population": 217000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159149593",
+    "nameEn": "Sri Jayawardenepura Kotte",
+    "nameZh": "斯里贾亚瓦德纳普拉科特",
+    "countryCode": "LK",
+    "lon": 79.949993,
+    "lat": 6.900004,
+    "population": 115826
+  },
+  {
+    "id": "ne-1159151311",
+    "nameEn": "Monrovia",
+    "nameZh": "蒙罗维亚",
+    "countryCode": "LR",
+    "lon": -10.79966,
+    "lat": 6.314582,
+    "population": 1041000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150831",
+    "nameEn": "Maseru",
+    "nameZh": "马塞卢",
+    "countryCode": "LS",
+    "lon": 27.483273,
+    "lat": -29.316674,
+    "population": 361324,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150809",
+    "nameEn": "Vilnius",
+    "nameZh": "维尔纽斯",
+    "countryCode": "LT",
+    "lon": 25.316635,
+    "lat": 54.683366,
+    "population": 542366,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159146437",
+    "nameEn": "Luxembourg",
+    "nameZh": "卢森堡",
+    "countryCode": "LU",
+    "lon": 6.130003,
+    "lat": 49.61166,
+    "population": 107260,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150811",
+    "nameEn": "Riga",
+    "nameZh": "里加",
+    "countryCode": "LV",
+    "lon": 24.099965,
+    "lat": 56.950024,
+    "population": 742572,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151415",
+    "nameEn": "Tripoli",
+    "nameZh": "的黎波里",
+    "countryCode": "LY",
+    "lon": 13.180012,
+    "lat": 32.8925,
+    "population": 2189000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150953",
+    "nameEn": "Benghazi",
+    "nameZh": "班加西",
+    "countryCode": "LY",
+    "lon": 20.064777,
+    "lat": 32.118679,
+    "population": 1180000
+  },
+  {
+    "id": "ne-1159151521",
+    "nameEn": "Casablanca",
+    "nameZh": "卡萨布兰卡",
+    "countryCode": "MA",
+    "lon": -7.618313,
+    "lat": 33.601922,
+    "population": 3181000
+  },
+  {
+    "id": "ne-1159150673",
+    "nameEn": "Rabat",
+    "nameZh": "拉巴特",
+    "countryCode": "MA",
+    "lon": -6.836408,
+    "lat": 34.025307,
+    "population": 1705000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150669",
+    "nameEn": "Fez",
+    "nameZh": "非斯",
+    "countryCode": "MA",
+    "lon": -5.002323,
+    "lat": 34.056545,
+    "population": 1002000
+  },
+  {
+    "id": "ne-1159149741",
+    "nameEn": "Laayoune",
+    "nameZh": "阿尤恩",
+    "countryCode": "MA",
+    "lon": -13.200006,
+    "lat": 27.149982,
+    "population": 188084
+  },
+  {
+    "id": "ne-1159149077",
+    "nameEn": "Monaco",
+    "nameZh": "摩纳哥",
+    "countryCode": "MC",
+    "lon": 7.406913,
+    "lat": 43.739646,
+    "population": 36371,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150677",
+    "nameEn": "Chișinău",
+    "nameZh": "基希讷乌",
+    "countryCode": "MD",
+    "lon": 28.857711,
+    "lat": 47.005024,
+    "population": 688134,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159149511",
+    "nameEn": "Podgorica",
+    "nameZh": "波德戈里察",
+    "countryCode": "ME",
+    "lon": 19.266307,
+    "lat": 42.465972,
+    "population": 145850,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150835",
+    "nameEn": "Antananarivo",
+    "nameZh": "塔那那利佛",
+    "countryCode": "MG",
+    "lon": 47.514678,
+    "lat": -18.914691,
+    "population": 1697000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159149063",
+    "nameEn": "Majuro",
+    "nameZh": "马朱罗",
+    "countryCode": "MH",
+    "lon": 171.38,
+    "lat": 7.103004,
+    "population": 25400,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150073",
+    "nameEn": "Skopje",
+    "nameZh": "斯科普里",
+    "countryCode": "MK",
+    "lon": 21.433461,
+    "lat": 42.000006,
+    "population": 494087,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150945",
+    "nameEn": "Bamako",
+    "nameZh": "巴马科",
+    "countryCode": "ML",
+    "lon": -8.001985,
+    "lat": 12.65196,
+    "population": 1494000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151477",
+    "nameEn": "Yangon",
+    "nameZh": "仰光",
+    "countryCode": "MM",
+    "lon": 96.164732,
+    "lat": 16.7853,
+    "population": 4088000
+  },
+  {
+    "id": "ne-1159150423",
+    "nameEn": "Mandalay",
+    "nameZh": "曼德勒",
+    "countryCode": "MM",
+    "lon": 96.083083,
+    "lat": 21.971934,
+    "population": 1300000
+  },
+  {
+    "id": "ne-1159151179",
+    "nameEn": "Naypyidaw",
+    "nameZh": "奈比多",
+    "countryCode": "MM",
+    "lon": 96.116673,
+    "lat": 19.768503,
+    "population": 930000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150781",
+    "nameEn": "Ulaanbaatar",
+    "nameZh": "乌兰巴托",
+    "countryCode": "MN",
+    "lon": 106.91467,
+    "lat": 47.918619,
+    "population": 885000
+  },
+  {
+    "id": "ne-1159149085",
+    "nameEn": "Macau",
+    "nameZh": "澳门",
+    "countryCode": "MO",
+    "lon": 113.544375,
+    "lat": 22.189135,
+    "population": 568700
+  },
+  {
+    "id": "ne-1159150943",
+    "nameEn": "Nouakchott",
+    "nameZh": "努瓦克肖特",
+    "countryCode": "MR",
+    "lon": -15.97534,
+    "lat": 18.086427,
+    "population": 742144,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151199",
+    "nameEn": "Valletta",
+    "nameZh": "瓦莱塔",
+    "countryCode": "MT",
+    "lon": 14.514711,
+    "lat": 35.899732,
+    "population": 368250,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150443",
+    "nameEn": "Port Louis",
+    "nameZh": "路易港",
+    "countryCode": "MU",
+    "lon": 57.499994,
+    "lat": -20.166639,
+    "population": 595491,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151201",
+    "nameEn": "Malé",
+    "nameZh": "马累",
+    "countryCode": "MV",
+    "lon": 73.508901,
+    "lat": 4.172037,
+    "population": 112927,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150907",
+    "nameEn": "Lilongwe",
+    "nameZh": "利隆圭",
+    "countryCode": "MW",
+    "lon": 33.783302,
+    "lat": -13.983295,
+    "population": 646750,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151587",
+    "nameEn": "Mexico City",
+    "nameZh": "墨西哥城",
+    "countryCode": "MX",
+    "lon": -99.132934,
+    "lat": 19.444388,
+    "population": 19028000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151293",
+    "nameEn": "Guadalajara",
+    "nameZh": "瓜达拉哈拉",
+    "countryCode": "MX",
+    "lon": -103.33198,
+    "lat": 20.671962,
+    "population": 4198000
+  },
+  {
+    "id": "ne-1159151527",
+    "nameEn": "Monterrey",
+    "nameZh": "蒙特雷",
+    "countryCode": "MX",
+    "lon": -100.331931,
+    "lat": 25.671941,
+    "population": 3712000
+  },
+  {
+    "id": "ne-1159151295",
+    "nameEn": "Puebla City",
+    "nameZh": "普埃布拉",
+    "countryCode": "MX",
+    "lon": -98.203737,
+    "lat": 19.032594,
+    "population": 2195000
+  },
+  {
+    "id": "ne-1159150751",
+    "nameEn": "Tijuana",
+    "nameZh": "蒂华纳",
+    "countryCode": "MX",
+    "lon": -117.081942,
+    "lat": 32.501963,
+    "population": 1553000
+  },
+  {
+    "id": "ne-1159138577",
+    "nameEn": "Toluca",
+    "nameZh": "托卢卡",
+    "countryCode": "MX",
+    "lon": -99.653179,
+    "lat": 19.289308,
+    "population": 1531000
+  },
+  {
+    "id": "ne-1159149689",
+    "nameEn": "León de Los Aldama",
+    "nameZh": "莱昂",
+    "countryCode": "MX",
+    "lon": -101.701976,
+    "lat": 21.151933,
+    "population": 1488000
+  },
+  {
+    "id": "ne-1159146789",
+    "nameEn": "Ciudad Juárez",
+    "nameZh": "華雷斯城",
+    "countryCode": "MX",
+    "lon": -106.491994,
+    "lat": 31.692323,
+    "population": 1343000
+  },
+  {
+    "id": "ne-1159149665",
+    "nameEn": "Torreón",
+    "nameZh": "托雷翁",
+    "countryCode": "MX",
+    "lon": -103.421949,
+    "lat": 25.571999,
+    "population": 1144000
+  },
+  {
+    "id": "ne-1159129381",
+    "nameEn": "Ciudad Nezahualcóyotl",
+    "nameZh": "内萨瓦尔科约特尔城",
+    "countryCode": "MX",
+    "lon": -99.029987,
+    "lat": 19.410016,
+    "population": 1109363
+  },
+  {
+    "id": "ne-1159149765",
+    "nameEn": "George Town",
+    "nameZh": "乔治",
+    "countryCode": "MY",
+    "lon": 100.329368,
+    "lat": 5.413613,
+    "population": 2500000
+  },
+  {
+    "id": "ne-1159151317",
+    "nameEn": "Kuala Lumpur",
+    "nameZh": "吉隆坡",
+    "countryCode": "MY",
+    "lon": 101.688699,
+    "lat": 3.139797,
+    "population": 1448000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159149883",
+    "nameEn": "Putrajaya",
+    "nameZh": "布城",
+    "countryCode": "MY",
+    "lon": 101.695037,
+    "lat": 2.932515,
+    "population": 67964
+  },
+  {
+    "id": "ne-1159150683",
+    "nameEn": "Maputo",
+    "nameZh": "马普托",
+    "countryCode": "MZ",
+    "lon": 32.587217,
+    "lat": -25.953332,
+    "population": 1446000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150785",
+    "nameEn": "Windhoek",
+    "nameZh": "温得和克",
+    "countryCode": "NA",
+    "lon": 17.083546,
+    "lat": -22.570006,
+    "population": 268132,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159146907",
+    "nameEn": "Noumea",
+    "nameZh": "努美阿",
+    "countryCode": "NC",
+    "lon": 166.444285,
+    "lat": -22.262528,
+    "population": 93060,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150605",
+    "nameEn": "Niamey",
+    "nameZh": "尼亚美",
+    "countryCode": "NE",
+    "lon": 2.11471,
+    "lat": 13.518652,
+    "population": 915000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151591",
+    "nameEn": "Lagos",
+    "nameZh": "拉各斯",
+    "countryCode": "NG",
+    "lon": 3.389585,
+    "lat": 6.445208,
+    "population": 9466000
+  },
+  {
+    "id": "ne-1159151297",
+    "nameEn": "Kano",
+    "nameZh": "卡诺",
+    "countryCode": "NG",
+    "lon": 8.518092,
+    "lat": 12.001923,
+    "population": 3140000
+  },
+  {
+    "id": "ne-1159149697",
+    "nameEn": "Ibadan",
+    "nameZh": "伊巴丹",
+    "countryCode": "NG",
+    "lon": 3.928036,
+    "lat": 7.381972,
+    "population": 2628000
+  },
+  {
+    "id": "ne-1159150799",
+    "nameEn": "Abuja",
+    "nameZh": "阿布贾",
+    "countryCode": "NG",
+    "lon": 7.489505,
+    "lat": 9.05462,
+    "population": 1576000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159149705",
+    "nameEn": "Kaduna",
+    "nameZh": "卡杜纳",
+    "countryCode": "NG",
+    "lon": 7.438054,
+    "lat": 10.521961,
+    "population": 1442000
+  },
+  {
+    "id": "ne-1159149127",
+    "nameEn": "Benin City",
+    "nameZh": "贝宁城",
+    "countryCode": "NG",
+    "lon": 5.618062,
+    "lat": 6.342423,
+    "population": 1190000
+  },
+  {
+    "id": "ne-1159138813",
+    "nameEn": "Ikare",
+    "nameZh": "伊卡雷",
+    "countryCode": "NG",
+    "lon": 5.76,
+    "lat": 7.53043,
+    "population": 1099931
+  },
+  {
+    "id": "ne-1159149693",
+    "nameEn": "Port Harcourt",
+    "nameZh": "哈科特港",
+    "countryCode": "NG",
+    "lon": 7.008055,
+    "lat": 4.811948,
+    "population": 1020000
+  },
+  {
+    "id": "ne-1159150623",
+    "nameEn": "Managua",
+    "nameZh": "馬拿瓜",
+    "countryCode": "NI",
+    "lon": -86.270437,
+    "lat": 12.154962,
+    "population": 920000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159149457",
+    "nameEn": "The Hague",
+    "nameZh": "海牙",
+    "countryCode": "NL",
+    "lon": 4.269961,
+    "lat": 52.080037,
+    "population": 1406000
+  },
+  {
+    "id": "ne-1159151519",
+    "nameEn": "Amsterdam",
+    "nameZh": "阿姆斯特丹",
+    "countryCode": "NL",
+    "lon": 4.914694,
+    "lat": 52.351914,
+    "population": 1031000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159146435",
+    "nameEn": "Rotterdam",
+    "nameZh": "鹿特丹",
+    "countryCode": "NL",
+    "lon": 4.478028,
+    "lat": 51.921915,
+    "population": 1005000
+  },
+  {
+    "id": "ne-1159151281",
+    "nameEn": "Oslo",
+    "nameZh": "奥斯陆",
+    "countryCode": "NO",
+    "lon": 10.748033,
+    "lat": 59.918636,
+    "population": 835000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150655",
+    "nameEn": "Kathmandu",
+    "nameZh": "加德满都",
+    "countryCode": "NP",
+    "lon": 85.314696,
+    "lat": 27.718638,
+    "population": 895000,
+    "isCapital": true
+  },
+  {
+    "id": "supplemental-yaren",
+    "nameEn": "Yaren",
+    "nameZh": "亚伦",
+    "countryCode": "NR",
+    "lon": 166.920867,
+    "lat": -0.5477,
+    "population": 1100,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151703",
+    "nameEn": "Auckland",
+    "nameZh": "奥克兰都会区",
+    "countryCode": "NZ",
+    "lon": 174.763027,
+    "lat": -36.848055,
+    "population": 1377200
+  },
+  {
+    "id": "ne-1159151699",
+    "nameEn": "Wellington",
+    "nameZh": "惠灵顿",
+    "countryCode": "NZ",
+    "lon": 174.777201,
+    "lat": -41.292068,
+    "population": 393400,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150717",
+    "nameEn": "Muscat",
+    "nameZh": "马斯喀特",
+    "countryCode": "OM",
+    "lon": 58.378311,
+    "lat": 23.585179,
+    "population": 734697,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150667",
+    "nameEn": "Panama City",
+    "nameZh": "巴拿马城",
+    "countryCode": "PA",
+    "lon": -79.534983,
+    "lat": 8.969963,
+    "population": 1281000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151511",
+    "nameEn": "Lima",
+    "nameZh": "利马",
+    "countryCode": "PE",
+    "lon": -77.052008,
+    "lat": -12.046067,
+    "population": 8012000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150449",
+    "nameEn": "Papeete",
+    "nameZh": "帕皮提",
+    "countryCode": "PF",
+    "lon": -149.566669,
+    "lat": -17.533363,
+    "population": 131695,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150663",
+    "nameEn": "Port Moresby",
+    "nameZh": "莫尔兹比港",
+    "countryCode": "PG",
+    "lon": 147.192504,
+    "lat": -9.464708,
+    "population": 283733,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151525",
+    "nameEn": "Manila",
+    "nameZh": "马尼拉",
+    "countryCode": "PH",
+    "lon": 120.980271,
+    "lat": 14.606105,
+    "population": 11100000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159137967",
+    "nameEn": "Quezon City",
+    "nameZh": "奎松",
+    "countryCode": "PH",
+    "lon": 121.029966,
+    "lat": 14.650435,
+    "population": 2761720
+  },
+  {
+    "id": "ne-1159150727",
+    "nameEn": "Davao City",
+    "nameZh": "达沃",
+    "countryCode": "PH",
+    "lon": 125.62805,
+    "lat": 7.111963,
+    "population": 1402000
+  },
+  {
+    "id": "ne-1159148193",
+    "nameEn": "Cagayan de Oro",
+    "nameZh": "卡加延德奥罗",
+    "countryCode": "PH",
+    "lon": 124.685299,
+    "lat": 8.45084,
+    "population": 1121561
+  },
+  {
+    "id": "ne-1159149605",
+    "nameEn": "Baguio",
+    "nameZh": "碧瑶",
+    "countryCode": "PH",
+    "lon": 120.569943,
+    "lat": 16.429991,
+    "population": 447824
+  },
+  {
+    "id": "ne-1159151287",
+    "nameEn": "Karachi",
+    "nameZh": "卡拉奇",
+    "countryCode": "PK",
+    "lon": 66.988063,
+    "lat": 24.871938,
+    "population": 12130000
+  },
+  {
+    "id": "ne-1159151285",
+    "nameEn": "Lahore",
+    "nameZh": "拉合尔",
+    "countryCode": "PK",
+    "lon": 74.348079,
+    "lat": 31.561917,
+    "population": 6577000
+  },
+  {
+    "id": "ne-1159146463",
+    "nameEn": "Faisalabad",
+    "nameZh": "费萨拉巴德",
+    "countryCode": "PK",
+    "lon": 73.108051,
+    "lat": 31.411927,
+    "population": 2617000
+  },
+  {
+    "id": "ne-1159146475",
+    "nameEn": "Saidu Sharif",
+    "nameZh": "赛杜",
+    "countryCode": "PK",
+    "lon": 72.349992,
+    "lat": 34.750035,
+    "population": 1860310
+  },
+  {
+    "id": "ne-1159146465",
+    "nameEn": "Rawalpindi",
+    "nameZh": "拉瓦尔品第",
+    "countryCode": "PK",
+    "lon": 73.067502,
+    "lat": 33.591002,
+    "population": 1858000
+  },
+  {
+    "id": "ne-1159150647",
+    "nameEn": "Multan",
+    "nameZh": "木尔坦",
+    "countryCode": "PK",
+    "lon": 71.453062,
+    "lat": 30.201923,
+    "population": 1522000
+  },
+  {
+    "id": "ne-1159149121",
+    "nameEn": "Gujranwala",
+    "nameZh": "古吉兰瓦拉",
+    "countryCode": "PK",
+    "lon": 74.183076,
+    "lat": 32.162372,
+    "population": 1513000
+  },
+  {
+    "id": "ne-1159150649",
+    "nameEn": "Hyderabad",
+    "nameZh": "海得拉巴",
+    "countryCode": "PK",
+    "lon": 68.373043,
+    "lat": 25.381933,
+    "population": 1459000
+  },
+  {
+    "id": "ne-1159150651",
+    "nameEn": "Peshawar",
+    "nameZh": "白沙瓦",
+    "countryCode": "PK",
+    "lon": 71.533057,
+    "lat": 34.006962,
+    "population": 1303000
+  },
+  {
+    "id": "ne-1159128399",
+    "nameEn": "Abbottabad",
+    "nameZh": "阿伯塔巴德",
+    "countryCode": "PK",
+    "lon": 73.199501,
+    "lat": 34.149503,
+    "population": 1183647
+  },
+  {
+    "id": "ne-1159150645",
+    "nameEn": "Islamabad",
+    "nameZh": "伊斯兰堡",
+    "countryCode": "PK",
+    "lon": 73.08063,
+    "lat": 33.689368,
+    "population": 780000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159139075",
+    "nameEn": "Katowice",
+    "nameZh": "卡托维兹",
+    "countryCode": "PL",
+    "lon": 19.020017,
+    "lat": 50.26038,
+    "population": 2746000
+  },
+  {
+    "id": "ne-1159151299",
+    "nameEn": "Warsaw",
+    "nameZh": "华沙",
+    "countryCode": "PL",
+    "lon": 21.005347,
+    "lat": 52.230872,
+    "population": 1707000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151181",
+    "nameEn": "San Juan",
+    "nameZh": "圣胡安",
+    "countryCode": "PR",
+    "lon": -66.129979,
+    "lat": 18.440023,
+    "population": 2478905,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150445",
+    "nameEn": "Gaza City",
+    "nameZh": "加薩",
+    "countryCode": "PS",
+    "lon": 34.445019,
+    "lat": 31.529999,
+    "population": 505700
+  },
+  {
+    "id": "ne-1159121947",
+    "nameEn": "Ramallah",
+    "nameZh": "拉姆安拉",
+    "countryCode": "PS",
+    "lon": 35.206209,
+    "lat": 31.902945,
+    "population": 24599,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151273",
+    "nameEn": "Lisbon",
+    "nameZh": "里斯本",
+    "countryCode": "PT",
+    "lon": -9.146812,
+    "lat": 38.724669,
+    "population": 2812000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159146429",
+    "nameEn": "Porto",
+    "nameZh": "波尔图",
+    "countryCode": "PT",
+    "lon": -8.621947,
+    "lat": 41.151952,
+    "population": 1337000
+  },
+  {
+    "id": "ne-1159147945",
+    "nameEn": "Funchal",
+    "nameZh": "丰沙尔",
+    "countryCode": "PT",
+    "lon": -16.88004,
+    "lat": 32.649983,
+    "population": 204767
+  },
+  {
+    "id": "ne-1159149431",
+    "nameEn": "Ponta Delgada",
+    "nameZh": "蓬塔德尔加达",
+    "countryCode": "PT",
+    "lon": -25.666584,
+    "lat": 37.748302,
+    "population": 61526
+  },
+  {
+    "id": "ne-1159149073",
+    "nameEn": "Melekeok",
+    "nameZh": "梅莱凯奥克",
+    "countryCode": "PW",
+    "lon": 134.626549,
+    "lat": 7.487396,
+    "population": 7026
+  },
+  {
+    "id": "ne-1159150621",
+    "nameEn": "Asunción",
+    "nameZh": "亚松森",
+    "countryCode": "PY",
+    "lon": -57.625834,
+    "lat": -25.290671,
+    "population": 1870000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159149469",
+    "nameEn": "Doha",
+    "nameZh": "多哈",
+    "countryCode": "QA",
+    "lon": 51.532968,
+    "lat": 25.286556,
+    "population": 1450000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151263",
+    "nameEn": "Bucharest",
+    "nameZh": "布加勒斯特",
+    "countryCode": "RO",
+    "lon": 26.098001,
+    "lat": 44.435318,
+    "population": 1942000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151079",
+    "nameEn": "Belgrade",
+    "nameZh": "贝尔格莱德",
+    "countryCode": "RS",
+    "lon": 20.466045,
+    "lat": 44.820591,
+    "population": 1099000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159144059",
+    "nameEn": "Novi Sad",
+    "nameZh": "诺维萨德",
+    "countryCode": "RS",
+    "lon": 19.849941,
+    "lat": 45.250376,
+    "population": 225457
+  },
+  {
+    "id": "ne-1159151585",
+    "nameEn": "Moscow",
+    "nameZh": "莫斯科",
+    "countryCode": "RU",
+    "lon": 37.613577,
+    "lat": 55.75411,
+    "population": 10452000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151291",
+    "nameEn": "Saint Petersburg",
+    "nameZh": "圣彼得堡",
+    "countryCode": "RU",
+    "lon": 30.314074,
+    "lat": 59.94096,
+    "population": 4553000
+  },
+  {
+    "id": "ne-1159150713",
+    "nameEn": "Novosibirsk",
+    "nameZh": "新西伯利亚",
+    "countryCode": "RU",
+    "lon": 82.958096,
+    "lat": 55.031906,
+    "population": 1389000
+  },
+  {
+    "id": "ne-1159150701",
+    "nameEn": "Yekaterinburg",
+    "nameZh": "叶卡捷琳堡",
+    "countryCode": "RU",
+    "lon": 60.598014,
+    "lat": 56.851976,
+    "population": 1313000
+  },
+  {
+    "id": "ne-1159150695",
+    "nameEn": "Nizhny Novgorod",
+    "nameZh": "下诺夫哥罗德",
+    "countryCode": "RU",
+    "lon": 43.998148,
+    "lat": 56.334953,
+    "population": 1278000
+  },
+  {
+    "id": "ne-1159150703",
+    "nameEn": "Samara",
+    "nameZh": "萨马拉",
+    "countryCode": "RU",
+    "lon": 50.149349,
+    "lat": 53.196953,
+    "population": 1137000
+  },
+  {
+    "id": "ne-1159149579",
+    "nameEn": "Omsk",
+    "nameZh": "鄂木斯克",
+    "countryCode": "RU",
+    "lon": 73.398008,
+    "lat": 54.991934,
+    "population": 1135000
+  },
+  {
+    "id": "ne-1159150705",
+    "nameEn": "Kazan",
+    "nameZh": "喀山",
+    "countryCode": "RU",
+    "lon": 49.124399,
+    "lat": 55.751888,
+    "population": 1115000
+  },
+  {
+    "id": "ne-1159149561",
+    "nameEn": "Chelyabinsk",
+    "nameZh": "车里雅宾斯克",
+    "countryCode": "RU",
+    "lon": 61.436722,
+    "lat": 55.156937,
+    "population": 1091000
+  },
+  {
+    "id": "ne-1159149545",
+    "nameEn": "Rostov-on-Don",
+    "nameZh": "顿河畔罗斯托夫",
+    "countryCode": "RU",
+    "lon": 39.71071,
+    "lat": 47.236594,
+    "population": 1052000
+  },
+  {
+    "id": "ne-1159150699",
+    "nameEn": "Ufa",
+    "nameZh": "乌法",
+    "countryCode": "RU",
+    "lon": 56.038085,
+    "lat": 54.791921,
+    "population": 1018000
+  },
+  {
+    "id": "ne-1159149385",
+    "nameEn": "Kigali",
+    "nameZh": "吉佳利",
+    "countryCode": "RW",
+    "lon": 30.058586,
+    "lat": -1.951644,
+    "population": 860000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151581",
+    "nameEn": "Riyadh",
+    "nameZh": "利雅德",
+    "countryCode": "SA",
+    "lon": 46.720487,
+    "lat": 24.634497,
+    "population": 4465000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151277",
+    "nameEn": "Jeddah",
+    "nameZh": "吉达",
+    "countryCode": "SA",
+    "lon": 39.217252,
+    "lat": 21.518835,
+    "population": 3012000
+  },
+  {
+    "id": "ne-1159136389",
+    "nameEn": "Dammam",
+    "nameZh": "达曼",
+    "countryCode": "SA",
+    "lon": 50.097724,
+    "lat": 26.430138,
+    "population": 2054710
+  },
+  {
+    "id": "ne-1159151279",
+    "nameEn": "Mecca",
+    "nameZh": "麦加",
+    "countryCode": "SA",
+    "lon": 39.818094,
+    "lat": 21.431967,
+    "population": 1385000
+  },
+  {
+    "id": "ne-1159149443",
+    "nameEn": "Medina",
+    "nameZh": "麦地那",
+    "countryCode": "SA",
+    "lon": 39.578057,
+    "lat": 24.501935,
+    "population": 1010000
+  },
+  {
+    "id": "ne-1159150665",
+    "nameEn": "Honiara",
+    "nameZh": "霍尼亚拉",
+    "countryCode": "SB",
+    "lon": 159.949766,
+    "lat": -9.437994,
+    "population": 76328,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151191",
+    "nameEn": "Victoria",
+    "nameZh": "維多利亞",
+    "countryCode": "SC",
+    "lon": 55.44999,
+    "lat": -4.616632,
+    "population": 33576,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151275",
+    "nameEn": "Khartoum",
+    "nameZh": "喀土穆",
+    "countryCode": "SD",
+    "lon": 32.532233,
+    "lat": 15.590024,
+    "population": 4754000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159149453",
+    "nameEn": "Omdurman",
+    "nameZh": "恩图曼",
+    "countryCode": "SD",
+    "lon": 32.480022,
+    "lat": 15.616681,
+    "population": 2395159
+  },
+  {
+    "id": "ne-1159151507",
+    "nameEn": "Stockholm",
+    "nameZh": "斯德哥尔摩",
+    "countryCode": "SE",
+    "lon": 18.0663,
+    "lat": 59.324127,
+    "population": 1264000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151627",
+    "nameEn": "Singapore",
+    "nameZh": "新加坡",
+    "countryCode": "SG",
+    "lon": 103.853875,
+    "lat": 1.294979,
+    "population": 5183700,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159149461",
+    "nameEn": "Ljubljana",
+    "nameZh": "卢布尔雅那",
+    "countryCode": "SI",
+    "lon": 14.514969,
+    "lat": 46.055288,
+    "population": 314807,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159146433",
+    "nameEn": "Longyearbyen",
+    "nameZh": "朗伊尔城",
+    "countryCode": "SJ",
+    "lon": 15.620904,
+    "lat": 78.220971,
+    "population": 1232,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159149463",
+    "nameEn": "Bratislava",
+    "nameZh": "布拉迪斯拉发",
+    "countryCode": "SK",
+    "lon": 17.116981,
+    "lat": 48.150018,
+    "population": 423737,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150625",
+    "nameEn": "Freetown",
+    "nameZh": "弗里敦",
+    "countryCode": "SL",
+    "lon": -13.236162,
+    "lat": 8.471957,
+    "population": 827000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159146051",
+    "nameEn": "San Marino",
+    "nameZh": "圣马力诺",
+    "countryCode": "SM",
+    "lon": 12.44177,
+    "lat": 43.936096,
+    "population": 29579
+  },
+  {
+    "id": "ne-1159151513",
+    "nameEn": "Dakar",
+    "nameZh": "达喀尔",
+    "countryCode": "SN",
+    "lon": -17.475076,
+    "lat": 14.717778,
+    "population": 2604000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150715",
+    "nameEn": "Mogadishu",
+    "nameZh": "摩加迪休",
+    "countryCode": "SO",
+    "lon": 45.364732,
+    "lat": 2.068627,
+    "population": 1100000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150597",
+    "nameEn": "Paramaribo",
+    "nameZh": "帕拉马里博",
+    "countryCode": "SR",
+    "lon": -55.167031,
+    "lat": 5.83503,
+    "population": 254169,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159149449",
+    "nameEn": "Juba",
+    "nameZh": "朱巴",
+    "countryCode": "SS",
+    "lon": 31.580026,
+    "lat": 4.829975,
+    "population": 111975,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151195",
+    "nameEn": "São Tomé",
+    "nameZh": "圣多美",
+    "countryCode": "ST",
+    "lon": 6.72965,
+    "lat": 0.337466,
+    "population": 88219,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150853",
+    "nameEn": "San Salvador",
+    "nameZh": "圣萨尔瓦多",
+    "countryCode": "SV",
+    "lon": -89.215576,
+    "lat": 13.70328,
+    "population": 1433000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151267",
+    "nameEn": "Aleppo",
+    "nameZh": "阿勒颇",
+    "countryCode": "SY",
+    "lon": 37.168074,
+    "lat": 36.231917,
+    "population": 2738000
+  },
+  {
+    "id": "ne-1159151269",
+    "nameEn": "Damascus",
+    "nameZh": "大马士革",
+    "countryCode": "SY",
+    "lon": 36.29805,
+    "lat": 33.50198,
+    "population": 2466000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159147871",
+    "nameEn": "Homs",
+    "nameZh": "霍姆斯",
+    "countryCode": "SY",
+    "lon": 36.718076,
+    "lat": 34.731905,
+    "population": 1005000
+  },
+  {
+    "id": "ne-1159149413",
+    "nameEn": "Mbabane",
+    "nameZh": "墨巴本",
+    "countryCode": "SZ",
+    "lon": 31.133335,
+    "lat": -26.316651,
+    "population": 90138
+  },
+  {
+    "id": "ne-1159146343",
+    "nameEn": "Lobamba",
+    "nameZh": "洛班巴",
+    "countryCode": "SZ",
+    "lon": 31.199997,
+    "lat": -26.466667,
+    "population": 9782,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159146035",
+    "nameEn": "Cockburn Town",
+    "nameZh": "科伯恩城",
+    "countryCode": "TC",
+    "lon": -71.135979,
+    "lat": 21.466427,
+    "population": 5801,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150863",
+    "nameEn": "N'Djamena",
+    "nameZh": "恩贾梅纳",
+    "countryCode": "TD",
+    "lon": 15.047202,
+    "lat": 12.115042,
+    "population": 989000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150535",
+    "nameEn": "Lomé",
+    "nameZh": "洛美",
+    "countryCode": "TG",
+    "lon": 1.220811,
+    "lat": 6.133883,
+    "population": 1452000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151509",
+    "nameEn": "Bangkok",
+    "nameZh": "曼谷",
+    "countryCode": "TH",
+    "lon": 100.514699,
+    "lat": 13.751945,
+    "population": 6704000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150609",
+    "nameEn": "Dushanbe",
+    "nameZh": "杜尚别",
+    "countryCode": "TJ",
+    "lon": 68.773879,
+    "lat": 38.560035,
+    "population": 1086244,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150577",
+    "nameEn": "Dili",
+    "nameZh": "帝力",
+    "countryCode": "TL",
+    "lon": 125.579456,
+    "lat": -8.559388,
+    "population": 234331,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150567",
+    "nameEn": "Ashgabat",
+    "nameZh": "阿什哈巴德",
+    "countryCode": "TM",
+    "lon": 58.383299,
+    "lat": 37.949995,
+    "population": 727700,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150537",
+    "nameEn": "Tunis",
+    "nameZh": "突尼斯",
+    "countryCode": "TN",
+    "lon": 10.179678,
+    "lat": 36.802778,
+    "population": 2412500,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151187",
+    "nameEn": "Nuku'alofa",
+    "nameZh": "努库阿洛法",
+    "countryCode": "TO",
+    "lon": -175.220564,
+    "lat": -21.138512,
+    "population": 42620,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151579",
+    "nameEn": "Istanbul",
+    "nameZh": "伊斯坦布尔",
+    "countryCode": "TR",
+    "lon": 28.974277,
+    "lat": 41.017602,
+    "population": 10061000
+  },
+  {
+    "id": "ne-1159151255",
+    "nameEn": "Ankara",
+    "nameZh": "安卡拉",
+    "countryCode": "TR",
+    "lon": 32.862446,
+    "lat": 39.929184,
+    "population": 3716000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159149371",
+    "nameEn": "İzmir",
+    "nameZh": "伊兹密尔",
+    "countryCode": "TR",
+    "lon": 27.149848,
+    "lat": 38.438096,
+    "population": 2587000
+  },
+  {
+    "id": "ne-1159149373",
+    "nameEn": "Bursa",
+    "nameZh": "布尔萨",
+    "countryCode": "TR",
+    "lon": 29.068052,
+    "lat": 40.201933,
+    "population": 1492000
+  },
+  {
+    "id": "ne-1159149381",
+    "nameEn": "Adana",
+    "nameZh": "阿达纳",
+    "countryCode": "TR",
+    "lon": 35.318058,
+    "lat": 36.996935,
+    "population": 1293000
+  },
+  {
+    "id": "ne-1159147849",
+    "nameEn": "Gaziantep",
+    "nameZh": "加济安泰普",
+    "countryCode": "TR",
+    "lon": 37.383048,
+    "lat": 37.07693,
+    "population": 1044000
+  },
+  {
+    "id": "ne-1159149307",
+    "nameEn": "Port of Spain",
+    "nameZh": "西班牙港",
+    "countryCode": "TT",
+    "lon": -61.517031,
+    "lat": 10.651997,
+    "population": 294934,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159149071",
+    "nameEn": "Funafuti",
+    "nameZh": "富纳富提",
+    "countryCode": "TV",
+    "lon": 179.216647,
+    "lat": -8.516652,
+    "population": 4749,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151567",
+    "nameEn": "Taipei",
+    "nameZh": "台北",
+    "countryCode": "TW",
+    "lon": 121.568333,
+    "lat": 25.035833,
+    "population": 6900273,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159149107",
+    "nameEn": "New Taipei",
+    "nameZh": "新北",
+    "countryCode": "TW",
+    "lon": 121.465,
+    "lat": 25.012778,
+    "population": 3893740
+  },
+  {
+    "id": "ne-1159151213",
+    "nameEn": "Kaohsiung",
+    "nameZh": "高雄",
+    "countryCode": "TW",
+    "lon": 120.266602,
+    "lat": 22.633307,
+    "population": 2769072
+  },
+  {
+    "id": "ne-1159150461",
+    "nameEn": "Taichung",
+    "nameZh": "台中",
+    "countryCode": "TW",
+    "lon": 120.681667,
+    "lat": 24.152078,
+    "population": 2629323
+  },
+  {
+    "id": "ne-1159149109",
+    "nameEn": "Tainan",
+    "nameZh": "台南",
+    "countryCode": "TW",
+    "lon": 120.200043,
+    "lat": 23.000003,
+    "population": 1876312
+  },
+  {
+    "id": "ne-1159132389",
+    "nameEn": "Zhongli",
+    "nameZh": "中坜区",
+    "countryCode": "TW",
+    "lon": 121.216776,
+    "lat": 24.965025,
+    "population": 1632616
+  },
+  {
+    "id": "ne-1159151305",
+    "nameEn": "Dar es Salaam",
+    "nameZh": "三蘭港",
+    "countryCode": "TZ",
+    "lon": 39.266396,
+    "lat": -6.798067,
+    "population": 2930000
+  },
+  {
+    "id": "ne-1159149731",
+    "nameEn": "Dodoma",
+    "nameZh": "多多马",
+    "countryCode": "TZ",
+    "lon": 35.750004,
+    "lat": -6.183306,
+    "population": 218269,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151495",
+    "nameEn": "Kyiv",
+    "nameZh": "基辅",
+    "countryCode": "UA",
+    "lon": 30.514682,
+    "lat": 50.435313,
+    "population": 2709000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159149333",
+    "nameEn": "Kharkiv",
+    "nameZh": "哈尔科夫",
+    "countryCode": "UA",
+    "lon": 36.248079,
+    "lat": 50.001929,
+    "population": 1461000
+  },
+  {
+    "id": "ne-1159149329",
+    "nameEn": "Dnipro",
+    "nameZh": "第聂伯罗",
+    "countryCode": "UA",
+    "lon": 34.998078,
+    "lat": 48.481918,
+    "population": 1050000
+  },
+  {
+    "id": "ne-1159150593",
+    "nameEn": "Kampala",
+    "nameZh": "坎帕拉",
+    "countryCode": "UG",
+    "lon": 32.581378,
+    "lat": 0.318605,
+    "population": 1420000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151575",
+    "nameEn": "New York City",
+    "nameZh": "纽约",
+    "countryCode": "US",
+    "lon": -73.995718,
+    "lat": 40.721562,
+    "population": 19040000
+  },
+  {
+    "id": "ne-1159151569",
+    "nameEn": "Los Angeles",
+    "nameZh": "洛杉矶",
+    "countryCode": "US",
+    "lon": -118.231986,
+    "lat": 34.049219,
+    "population": 12500000
+  },
+  {
+    "id": "ne-1159151491",
+    "nameEn": "Chicago",
+    "nameZh": "芝加哥",
+    "countryCode": "US",
+    "lon": -87.635237,
+    "lat": 41.847961,
+    "population": 8990000
+  },
+  {
+    "id": "ne-1159151487",
+    "nameEn": "Miami",
+    "nameZh": "迈阿密",
+    "countryCode": "US",
+    "lon": -80.226052,
+    "lat": 25.789557,
+    "population": 5585000
+  },
+  {
+    "id": "ne-1159151243",
+    "nameEn": "Philadelphia",
+    "nameZh": "费城",
+    "countryCode": "US",
+    "lon": -75.179841,
+    "lat": 39.945942,
+    "population": 5492000
+  },
+  {
+    "id": "ne-1159151235",
+    "nameEn": "Dallas",
+    "nameZh": "达拉斯",
+    "countryCode": "US",
+    "lon": -96.794687,
+    "lat": 32.771958,
+    "population": 4798000
+  },
+  {
+    "id": "ne-1159151489",
+    "nameEn": "Atlanta",
+    "nameZh": "亚特兰大",
+    "countryCode": "US",
+    "lon": -84.367642,
+    "lat": 33.739457,
+    "population": 4506000
+  },
+  {
+    "id": "ne-1159151239",
+    "nameEn": "Boston",
+    "nameZh": "波士顿",
+    "countryCode": "US",
+    "lon": -71.07196,
+    "lat": 42.331906,
+    "population": 4467000
+  },
+  {
+    "id": "ne-1159151485",
+    "nameEn": "Houston",
+    "nameZh": "休斯敦",
+    "countryCode": "US",
+    "lon": -95.348436,
+    "lat": 29.741273,
+    "population": 4459000
+  },
+  {
+    "id": "ne-1159151573",
+    "nameEn": "Washington",
+    "nameZh": "华盛顿哥伦比亚特区",
+    "countryCode": "US",
+    "lon": -77.011364,
+    "lat": 38.901495,
+    "population": 4338000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151245",
+    "nameEn": "Detroit",
+    "nameZh": "底特律",
+    "countryCode": "US",
+    "lon": -83.051334,
+    "lat": 42.333558,
+    "population": 4101000
+  },
+  {
+    "id": "ne-1159151225",
+    "nameEn": "Phoenix",
+    "nameZh": "菲尼克斯",
+    "countryCode": "US",
+    "lon": -112.067365,
+    "lat": 33.448322,
+    "population": 3551000
+  },
+  {
+    "id": "ne-1159151479",
+    "nameEn": "San Francisco",
+    "nameZh": "旧金山",
+    "countryCode": "US",
+    "lon": -122.3996,
+    "lat": 37.784263,
+    "population": 3450000
+  },
+  {
+    "id": "ne-1159151223",
+    "nameEn": "Seattle",
+    "nameZh": "西雅图",
+    "countryCode": "US",
+    "lon": -122.315322,
+    "lat": 47.600423,
+    "population": 3074000
+  },
+  {
+    "id": "ne-1159132667",
+    "nameEn": "Irvine",
+    "nameZh": "歐文",
+    "countryCode": "US",
+    "lon": -117.82995,
+    "lat": 33.680411,
+    "population": 3010232
+  },
+  {
+    "id": "ne-1159151227",
+    "nameEn": "San Diego",
+    "nameZh": "圣迭戈",
+    "countryCode": "US",
+    "lon": -117.150881,
+    "lat": 32.718914,
+    "population": 2916000
+  },
+  {
+    "id": "ne-1159151219",
+    "nameEn": "Minneapolis",
+    "nameZh": "明尼阿波利斯",
+    "countryCode": "US",
+    "lon": -93.253732,
+    "lat": 44.981925,
+    "population": 2616000
+  },
+  {
+    "id": "ne-1159151241",
+    "nameEn": "Tampa",
+    "nameZh": "坦帕",
+    "countryCode": "US",
+    "lon": -82.460567,
+    "lat": 27.948934,
+    "population": 2314000
+  },
+  {
+    "id": "ne-1159151483",
+    "nameEn": "Denver",
+    "nameZh": "丹佛",
+    "countryCode": "US",
+    "lon": -104.985962,
+    "lat": 39.741134,
+    "population": 2313000
+  },
+  {
+    "id": "ne-1159149299",
+    "nameEn": "Baltimore",
+    "nameZh": "巴尔的摩",
+    "countryCode": "US",
+    "lon": -76.614582,
+    "lat": 39.281516,
+    "population": 2255000
+  },
+  {
+    "id": "ne-1159151231",
+    "nameEn": "St. Louis",
+    "nameZh": "圣路易斯",
+    "countryCode": "US",
+    "lon": -90.241926,
+    "lat": 38.636964,
+    "population": 2199000
+  },
+  {
+    "id": "ne-1159133279",
+    "nameEn": "Fort Lauderdale",
+    "nameZh": "劳德代尔堡",
+    "countryCode": "US",
+    "lon": -80.141785,
+    "lat": 26.136065,
+    "population": 2042042
+  },
+  {
+    "id": "ne-1159146199",
+    "nameEn": "Long Beach",
+    "nameZh": "長灘",
+    "countryCode": "US",
+    "lon": -118.200337,
+    "lat": 33.777018,
+    "population": 2036134
+  },
+  {
+    "id": "ne-1159150515",
+    "nameEn": "Cleveland",
+    "nameZh": "克里夫兰",
+    "countryCode": "US",
+    "lon": -81.696944,
+    "lat": 41.471933,
+    "population": 1890000
+  },
+  {
+    "id": "ne-1159150487",
+    "nameEn": "Portland",
+    "nameZh": "波特兰",
+    "countryCode": "US",
+    "lon": -122.681936,
+    "lat": 45.52197,
+    "population": 1875000
+  },
+  {
+    "id": "ne-1159150531",
+    "nameEn": "Pittsburgh",
+    "nameZh": "匹兹堡",
+    "countryCode": "US",
+    "lon": -80.001931,
+    "lat": 40.431945,
+    "population": 1838000
+  },
+  {
+    "id": "ne-1159150483",
+    "nameEn": "Las Vegas",
+    "nameZh": "拉斯维加斯",
+    "countryCode": "US",
+    "lon": -115.151362,
+    "lat": 36.164763,
+    "population": 1823000
+  },
+  {
+    "id": "ne-1159149113",
+    "nameEn": "San Bernardino",
+    "nameZh": "圣贝纳迪诺",
+    "countryCode": "US",
+    "lon": -117.30198,
+    "lat": 34.12233,
+    "population": 1745000
+  },
+  {
+    "id": "ne-1159150479",
+    "nameEn": "San Jose",
+    "nameZh": "圣何塞",
+    "countryCode": "US",
+    "lon": -121.888179,
+    "lat": 37.330943,
+    "population": 1668000
+  },
+  {
+    "id": "ne-1159150517",
+    "nameEn": "Cincinnati",
+    "nameZh": "辛辛那提",
+    "countryCode": "US",
+    "lon": -84.458868,
+    "lat": 39.163831,
+    "population": 1636000
+  },
+  {
+    "id": "ne-1159150481",
+    "nameEn": "Sacramento",
+    "nameZh": "沙加缅度",
+    "countryCode": "US",
+    "lon": -121.471984,
+    "lat": 38.576967,
+    "population": 1604000
+  },
+  {
+    "id": "ne-1159147363",
+    "nameEn": "Oakland",
+    "nameZh": "奥克兰",
+    "countryCode": "US",
+    "lon": -122.278038,
+    "lat": 37.804725,
+    "population": 1510271
+  },
+  {
+    "id": "ne-1159146281",
+    "nameEn": "Virginia Beach",
+    "nameZh": "維珍尼亞海灘",
+    "countryCode": "US",
+    "lon": -75.980265,
+    "lat": 36.85516,
+    "population": 1491000
+  },
+  {
+    "id": "ne-1159150503",
+    "nameEn": "San Antonio",
+    "nameZh": "圣安东尼奥",
+    "countryCode": "US",
+    "lon": -98.492693,
+    "lat": 29.419848,
+    "population": 1473000
+  },
+  {
+    "id": "ne-1159149245",
+    "nameEn": "Kansas City",
+    "nameZh": "堪萨斯城",
+    "countryCode": "US",
+    "lon": -94.60604,
+    "lat": 39.109034,
+    "population": 1469000
+  },
+  {
+    "id": "ne-1159149257",
+    "nameEn": "Fort Worth",
+    "nameZh": "沃思堡",
+    "countryCode": "US",
+    "lon": -97.340038,
+    "lat": 32.739977,
+    "population": 1440454
+  },
+  {
+    "id": "ne-1159149289",
+    "nameEn": "Indianapolis",
+    "nameZh": "印第安纳波利斯",
+    "countryCode": "US",
+    "lon": -86.171994,
+    "lat": 39.751934,
+    "population": 1436000
+  },
+  {
+    "id": "ne-1159150525",
+    "nameEn": "Milwaukee",
+    "nameZh": "密尔沃基",
+    "countryCode": "US",
+    "lon": -87.916673,
+    "lat": 43.029608,
+    "population": 1388000
+  },
+  {
+    "id": "ne-1159149279",
+    "nameEn": "Orlando",
+    "nameZh": "奥兰多",
+    "countryCode": "US",
+    "lon": -81.381976,
+    "lat": 28.511923,
+    "population": 1350000
+  },
+  {
+    "id": "ne-1159146257",
+    "nameEn": "Providence",
+    "nameZh": "普罗维登斯",
+    "countryCode": "US",
+    "lon": -71.416926,
+    "lat": 41.823048,
+    "population": 1277000
+  },
+  {
+    "id": "ne-1159147453",
+    "nameEn": "Columbus",
+    "nameZh": "哥伦布",
+    "countryCode": "US",
+    "lon": -82.991956,
+    "lat": 39.98192,
+    "population": 1270000
+  },
+  {
+    "id": "ne-1159147411",
+    "nameEn": "West Palm Beach",
+    "nameZh": "西棕榈滩",
+    "countryCode": "US",
+    "lon": -80.123621,
+    "lat": 26.74502,
+    "population": 1250000
+  },
+  {
+    "id": "ne-1159150513",
+    "nameEn": "Raleigh",
+    "nameZh": "罗利",
+    "countryCode": "US",
+    "lon": -78.647035,
+    "lat": 35.772696,
+    "population": 1163515
+  },
+  {
+    "id": "ne-1159149261",
+    "nameEn": "Austin",
+    "nameZh": "奥斯汀",
+    "countryCode": "US",
+    "lon": -97.744724,
+    "lat": 30.268895,
+    "population": 1161000
+  },
+  {
+    "id": "ne-1159146259",
+    "nameEn": "Birmingham",
+    "nameZh": "伯明翰",
+    "countryCode": "US",
+    "lon": -86.824995,
+    "lat": 33.530006,
+    "population": 1128047
+  },
+  {
+    "id": "ne-1159123391",
+    "nameEn": "Mesa",
+    "nameZh": "梅薩",
+    "countryCode": "US",
+    "lon": -111.820967,
+    "lat": 33.414796,
+    "population": 1085394
+  },
+  {
+    "id": "ne-1159150521",
+    "nameEn": "Memphis",
+    "nameZh": "孟菲斯",
+    "countryCode": "US",
+    "lon": -90.028777,
+    "lat": 35.144701,
+    "population": 1081000
+  },
+  {
+    "id": "ne-1159150523",
+    "nameEn": "Norfolk",
+    "nameZh": "諾福克",
+    "countryCode": "US",
+    "lon": -76.280006,
+    "lat": 36.849959,
+    "population": 1047869
+  },
+  {
+    "id": "ne-1159149115",
+    "nameEn": "Bridgeport",
+    "nameZh": "布里奇波特",
+    "countryCode": "US",
+    "lon": -73.201907,
+    "lat": 41.181925,
+    "population": 1018000
+  },
+  {
+    "id": "ne-1159150529",
+    "nameEn": "Buffalo",
+    "nameZh": "水牛城",
+    "countryCode": "US",
+    "lon": -78.881948,
+    "lat": 42.881924,
+    "population": 1016000
+  },
+  {
+    "id": "ne-1159150469",
+    "nameEn": "Montevideo",
+    "nameZh": "蒙得维的亚",
+    "countryCode": "UY",
+    "lon": -56.186823,
+    "lat": -34.905376,
+    "population": 1513000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151501",
+    "nameEn": "Tashkent",
+    "nameZh": "塔什干",
+    "countryCode": "UZ",
+    "lon": 69.268823,
+    "lat": 41.303828,
+    "population": 2184000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159127243",
+    "nameEn": "Vatican City",
+    "nameZh": "梵蒂冈",
+    "countryCode": "VA",
+    "lon": 12.453387,
+    "lat": 41.903282,
+    "population": 832,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150431",
+    "nameEn": "Kingstown",
+    "nameZh": "金斯敦",
+    "countryCode": "VC",
+    "lon": -61.220236,
+    "lat": 13.155756,
+    "population": 49485,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151493",
+    "nameEn": "Caracas",
+    "nameZh": "加拉加斯",
+    "countryCode": "VE",
+    "lon": -66.918983,
+    "lat": 10.502944,
+    "population": 2985000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151237",
+    "nameEn": "Maracaibo",
+    "nameZh": "马拉开波",
+    "countryCode": "VE",
+    "lon": -71.661924,
+    "lat": 10.731923,
+    "population": 2072000
+  },
+  {
+    "id": "ne-1159150507",
+    "nameEn": "Valencia",
+    "nameZh": "巴伦西亚",
+    "countryCode": "VE",
+    "lon": -67.981967,
+    "lat": 10.231927,
+    "population": 1770000
+  },
+  {
+    "id": "ne-1159146253",
+    "nameEn": "Barquisimeto",
+    "nameZh": "巴基西梅托",
+    "countryCode": "VE",
+    "lon": -69.301913,
+    "lat": 10.051938,
+    "population": 1116000
+  },
+  {
+    "id": "ne-1159147477",
+    "nameEn": "Maracay",
+    "nameZh": "马拉凯",
+    "countryCode": "VE",
+    "lon": -67.597753,
+    "lat": 10.248826,
+    "population": 1007000
+  },
+  {
+    "id": "ne-1159151253",
+    "nameEn": "Ho Chi Minh City",
+    "nameZh": "胡志明",
+    "countryCode": "VN",
+    "lon": 106.702985,
+    "lat": 10.762125,
+    "population": 5314000
+  },
+  {
+    "id": "ne-1159151251",
+    "nameEn": "Hanoi",
+    "nameZh": "河内",
+    "countryCode": "VN",
+    "lon": 105.848068,
+    "lat": 21.035273,
+    "population": 4378000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159149349",
+    "nameEn": "Haiphong",
+    "nameZh": "海防",
+    "countryCode": "VN",
+    "lon": 106.678147,
+    "lat": 20.831952,
+    "population": 1969000
+  },
+  {
+    "id": "ne-1159147553",
+    "nameEn": "Cần Thơ",
+    "nameZh": "芹苴",
+    "countryCode": "VN",
+    "lon": 105.770019,
+    "lat": 10.049993,
+    "population": 1121000
+  },
+  {
+    "id": "ne-1159149351",
+    "nameEn": "Da Nang",
+    "nameZh": "岘港",
+    "countryCode": "VN",
+    "lon": 108.249971,
+    "lat": 16.060039,
+    "population": 1000000
+  },
+  {
+    "id": "ne-1159150579",
+    "nameEn": "Port Vila",
+    "nameZh": "维拉港",
+    "countryCode": "VU",
+    "lon": 168.316641,
+    "lat": -17.73335,
+    "population": 44040,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151197",
+    "nameEn": "Apia",
+    "nameZh": "阿皮亚",
+    "countryCode": "WS",
+    "lon": -171.768599,
+    "lat": -13.835715,
+    "population": 61916,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159149757",
+    "nameEn": "Pristina",
+    "nameZh": "普里什蒂纳",
+    "countryCode": "XK",
+    "lon": 21.165984,
+    "lat": 42.66671,
+    "population": 465186,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151189",
+    "nameEn": "Hargeisa",
+    "nameZh": "哈尔格萨",
+    "countryCode": "XS",
+    "lon": 44.06531,
+    "lat": 9.560022,
+    "population": 477876,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159151259",
+    "nameEn": "Sanaa",
+    "nameZh": "萨那",
+    "countryCode": "YE",
+    "lon": 44.204648,
+    "lat": 15.356679,
+    "population": 2008000
+  },
+  {
+    "id": "ne-1159150595",
+    "nameEn": "Aden",
+    "nameZh": "亚丁",
+    "countryCode": "YE",
+    "lon": 45.00949,
+    "lat": 12.779723,
+    "population": 1000000
+  },
+  {
+    "id": "ne-1159151515",
+    "nameEn": "Johannesburg",
+    "nameZh": "约翰内斯堡",
+    "countryCode": "ZA",
+    "lon": 28.028064,
+    "lat": -26.168099,
+    "population": 3435000
+  },
+  {
+    "id": "ne-1159151583",
+    "nameEn": "Cape Town",
+    "nameZh": "开普敦",
+    "countryCode": "ZA",
+    "lon": 18.433042,
+    "lat": -33.918065,
+    "population": 3215000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159146483",
+    "nameEn": "Benoni",
+    "nameZh": "伯诺尼",
+    "countryCode": "ZA",
+    "lon": 28.327994,
+    "lat": -26.147635,
+    "population": 2986000
+  },
+  {
+    "id": "ne-1159151289",
+    "nameEn": "Durban",
+    "nameZh": "德班",
+    "countryCode": "ZA",
+    "lon": 31.010944,
+    "lat": -29.860662,
+    "population": 2729000
+  },
+  {
+    "id": "ne-1159150661",
+    "nameEn": "Pretoria",
+    "nameZh": "比勒陀利亚",
+    "countryCode": "ZA",
+    "lon": 28.227483,
+    "lat": -25.704975,
+    "population": 1338000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159146485",
+    "nameEn": "Vereeniging",
+    "nameZh": "弗里尼欣",
+    "countryCode": "ZA",
+    "lon": 27.958042,
+    "lat": -26.647656,
+    "population": 1074000
+  },
+  {
+    "id": "ne-1159150681",
+    "nameEn": "Port Elizabeth",
+    "nameZh": "伊莉莎白港",
+    "countryCode": "ZA",
+    "lon": 25.598083,
+    "lat": -33.968088,
+    "population": 1021000
+  },
+  {
+    "id": "ne-1159150659",
+    "nameEn": "Bloemfontein",
+    "nameZh": "布隆方丹",
+    "countryCode": "ZA",
+    "lon": 26.229913,
+    "lat": -29.119994,
+    "population": 463064,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150571",
+    "nameEn": "Lusaka",
+    "nameZh": "卢萨卡",
+    "countryCode": "ZM",
+    "lon": 28.281382,
+    "lat": -15.414698,
+    "population": 1328000,
+    "isCapital": true
+  },
+  {
+    "id": "ne-1159150573",
+    "nameEn": "Harare",
+    "nameZh": "哈拉雷",
+    "countryCode": "ZW",
+    "lon": 31.042764,
+    "lat": -17.815844,
+    "population": 1572000,
+    "isCapital": true
+  }
+]
