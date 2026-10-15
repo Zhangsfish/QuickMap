@@ -7,6 +7,7 @@ import countryMetadata from 'world-countries';
 import type { CityRecord, CountryRecord, PlaceMatch } from '../shared/types';
 import cityData from './majorCities.json';
 import supplementalCountryData from './supplementalCountries.json';
+import detailedRegionData from './detailedRegions.json';
 
 type CountryMetadata = (typeof countryMetadata)[number];
 
@@ -80,7 +81,12 @@ const metadataByAlpha2 = new Map(
   countryMetadata.map((country) => [country.cca2, country] as const),
 );
 
-export const cities: CityRecord[] = cityData as CityRecord[];
+// These regions have no capital; source datasets sometimes mark their cities as one.
+const regionsWithoutCapital = new Set(['HK', 'MO']);
+
+export const cities: CityRecord[] = (cityData as CityRecord[]).map((city) =>
+  regionsWithoutCapital.has(city.countryCode) ? { ...city, isCapital: false } : city,
+);
 
 const citiesByCountry = new Map<string, CityRecord[]>();
 for (const city of cities) {
@@ -126,8 +132,8 @@ const countryFromMetadata = (
     code: metadata.cca2,
     nameEn: metadata.name.common,
     nameZh: metadata.translations.zho?.common ?? metadata.name.common,
-    capitalEn: metadata.capital[0],
-    capitalZh: capital?.nameZh,
+    capitalEn: regionsWithoutCapital.has(metadata.cca2) ? undefined : metadata.capital[0],
+    capitalZh: regionsWithoutCapital.has(metadata.cca2) ? undefined : capital?.nameZh,
     neighbors: metadata.borders
       .map((code) => alpha2ByAlpha3.get(code))
       .filter((code): code is string => Boolean(code)),
@@ -218,6 +224,15 @@ for (const supplemental of supplementalCountryData as Array<{ code: string; geom
     );
   }
 }
+for (const detailed of detailedRegionData as Array<{ code: string; geometry: Geometry }>) {
+  const country = countriesByCode.get(detailed.code);
+  if (country) {
+    countriesByCode.set(detailed.code, {
+      ...country,
+      geometry: orientForD3(detailed.geometry),
+    });
+  }
+}
 
 export const countries: CountryRecord[] = [...countriesByCode.values()].sort((a, b) =>
   a.nameEn.localeCompare(b.nameEn),
@@ -231,6 +246,14 @@ type SearchEntry = {
   population: number;
 };
 
+// Common Chinese variants absent from world-countries' translated names.
+const regionSearchAliases: Record<string, string[]> = {
+  GB: ['英國', '联合王国', '聯合王國'],
+  HK: ['香港特别行政区', '香港特別行政區'],
+  MO: ['澳门特别行政区', '澳門', '澳門特別行政區'],
+  TW: ['台湾'],
+};
+
 const searchEntries: SearchEntry[] = [
   ...countries.map((country): SearchEntry => {
     const metadata = metadataByAlpha2.get(country.code);
@@ -242,6 +265,11 @@ const searchEntries: SearchEntry[] = [
       metadata?.name.official,
       metadata?.translations.zho?.official,
       ...(metadata?.altSpellings ?? []),
+      ...Object.values(metadata?.name.native ?? {}).flatMap((name) => [
+        name.common,
+        name.official,
+      ]),
+      ...(regionSearchAliases[country.code] ?? []),
     ].filter((term): term is string => Boolean(term));
     return {
       match: {
@@ -290,6 +318,16 @@ const matchScore = (term: string, query: string): number | undefined => {
   if (term.includes(query)) return 3;
   return undefined;
 };
+
+export function findRegion(query: string): CountryRecord | undefined {
+  const wanted = normalized(query);
+  if (!wanted) return undefined;
+
+  const entry = searchEntries.find(
+    (candidate) => candidate.match.kind === 'country' && candidate.terms.includes(wanted),
+  );
+  return entry?.match.countryCode ? countryByCode.get(entry.match.countryCode) : undefined;
+}
 
 export function findPlaces(query: string): PlaceMatch[] {
   const wanted = normalized(query);

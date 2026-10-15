@@ -82,7 +82,7 @@ test('MCP exposes tools, sends an area command, and rejects bad parameters', asy
     const tools = await client.listTools();
     assert.deepEqual(
       tools.tools.map(({ name }) => name).sort(),
-      ['add_overlay', 'clear_overlays', 'highlight_area', 'remove_overlay', 'search_place', 'show_place'],
+      ['add_overlay', 'clear_overlays', 'focus_region', 'highlight_area', 'remove_overlay', 'search_place', 'show_place'],
     );
 
     const accepted = await client.callTool({
@@ -134,6 +134,15 @@ test('built stdio MCP invokes the adjacent CLI and reaches the authenticated con
     assert.equal(received[0].type, 'upsert_overlay');
     assert.equal(received[0].overlay.label, '北方四岛');
     assert.equal(received[0].overlay.geometry.type, 'Polygon');
+    for (const query of ['UK', '英国', 'Hong Kong', '香港']) {
+      const focused = await client.callTool({ name: 'focus_region', arguments: { query } });
+      assert.notEqual(focused.isError, true);
+      assert.deepEqual(received.at(-1), { type: 'focus_region', query });
+    }
+    assert.equal(received.length, 5);
+    const invalid = await client.callTool({ name: 'focus_region', arguments: { query: '   ' } });
+    assert.equal(invalid.isError, true);
+    assert.equal(received.length, 5);
   } finally {
     await client.close();
     await control.close();

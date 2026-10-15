@@ -50,6 +50,10 @@ export const searchPlaceInputSchema = z.object({
   query: z.string().trim().min(1).max(200).describe('Place name to search for in QuickMap'),
 });
 
+export const focusRegionInputSchema = z.object({
+  query: z.string().trim().min(1).max(200).describe('Country or region name, such as UK, 英国, Hong Kong, or 香港'),
+});
+
 export const removeOverlayInputSchema = z.object({
   id: z.string().trim().min(1).max(100).describe('Overlay ID returned by highlight_area or add_overlay'),
 });
@@ -178,8 +182,16 @@ export function createQuickMapMcpServer(sendCommand: (command: unknown) => Promi
     return success(`Showing ${input.label}.`);
   });
 
+  server.registerTool('focus_region', {
+    description: 'When the user asks where a known country or region is, call this tool to zoom to it and highlight its available boundary, even if they do not explicitly say "on the map". For example, "英国在哪" should call focus_region with query "英国". Pass only the country or region name or alias (such as UK, 英国, Hong Kong, or 香港), removing question wording such as "在哪" or "where is". Prefer this tool over search_place or highlight_area for locating named countries and regions. QuickMap resolves names and geometry using its offline index.',
+    inputSchema: focusRegionInputSchema,
+  }, async ({ query }) => {
+    await sendCommand(mapCommandSchema.parse({ type: 'focus_region', query }));
+    return success(`Requested region focus for ${query}.`);
+  });
+
   server.registerTool('highlight_area', {
-    description: 'Circle and label a geographic area on QuickMap. For regions, islands, straits, seas, and disputed areas, infer a representative center and radius from your own reasoning and call this directly.',
+    description: 'Circle and label a geographic area on QuickMap using a representative center and radius. Use focus_region for named country or region boundaries; use this tool for approximate areas, straits, seas, or custom radius highlights.',
     inputSchema: highlightAreaInputSchema,
   }, async (input) => {
     const command = buildHighlightAreaCommand(input);

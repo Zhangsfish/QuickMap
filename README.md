@@ -12,13 +12,20 @@ QuickMap is a Windows desktop world map that opens with a global shortcut. It wo
    codex mcp add quickmap --env ELECTRON_RUN_AS_NODE=1 -- "C:\Apps\QuickMap-win32-x64\QuickMap.exe" "C:\Apps\QuickMap-win32-x64\control\mcp.cjs"
    ```
 
-   保持 `QuickMap.exe` 运行，并重新打开一个 Codex 会话。之后可以问“北方四岛在哪里？请在 QuickMap 圈出来”或“霍尔木兹海峡在哪里？请在地图上标注”。AI 可调用 `highlight_area` 画示意圈，或调用 `add_overlay` 画更精确的 GeoJSON 边界。圈的范围取决于 AI 提供的坐标，不能当作政治或法律边界。
+   保持 `QuickMap.exe` 运行，并重新打开一个 Codex 会话。可以直接问“英国在哪？”或“香港在哪？”。AI 可调用 `focus_region`，地图会放大该地区、加粗并高亮现有边界。问“北方四岛在哪里？请在 QuickMap 圈出来”或“霍尔木兹海峡在哪里？请在地图上标注”时，AI 可调用 `highlight_area` 画示意圈，或调用 `add_overlay` 画更精确的 GeoJSON 边界。圈的范围取决于 AI 提供的坐标，不能当作政治或法律边界。
 
    也可从 PowerShell 手动发命令，例如：
 
    ```powershell
+   & "C:\Apps\QuickMap-win32-x64\control\quickmap.cmd" region 英国
    & "C:\Apps\QuickMap-win32-x64\control\quickmap.cmd" circle northern-islands "北方四岛" 146.5 44.5 250
    ```
+
+## 效果预览
+
+| 英国边界高亮 | 香港边界高亮（10m 数据） |
+| --- | --- |
+| ![英国高亮](docs/screenshots/uk.png) | ![香港高亮](docs/screenshots/hong-kong.png) |
 
 ## Run it
 
@@ -41,6 +48,7 @@ On the map, hover a country to see Chinese and English names and its capital. Cl
 Start `QuickMap.exe` first. A command line interface ships beside it and communicates with the running app through an authenticated local loopback connection. The Windows `.cmd` launchers use the Node runtime inside QuickMap, so no separate Node installation is needed. Coordinates are **longitude, latitude** in decimal degrees. For example, from the unpacked Windows archive:
 
 ```powershell
+& .\control\quickmap.cmd region 香港
 & .\control\quickmap.cmd show "霍尔木兹海峡" 56.3 26.5
 & .\control\quickmap.cmd circle northern-islands "北方四岛" 146.5 44.5 250
 & .\control\quickmap.cmd remove northern-islands
@@ -54,7 +62,7 @@ For Codex or another MCP client, register the bundled stdio server using absolut
 codex mcp add quickmap --env ELECTRON_RUN_AS_NODE=1 -- "C:\Apps\QuickMap-win32-x64\QuickMap.exe" "C:\Apps\QuickMap-win32-x64\control\mcp.cjs"
 ```
 
-The MCP server offers `show_place`, `highlight_area`, `add_overlay`, `search_place`, `remove_overlay`, and `clear_overlays`. For a question like “北方四岛在哪里？”, the AI can call `highlight_area` with a center and radius, or `add_overlay` with more precise geometry. The AI must supply or look up coordinates; the built-in offline search covers countries and selected cities, not every geographic feature. No AI API key is needed for the map itself.
+The MCP server offers `focus_region`, `show_place`, `highlight_area`, `add_overlay`, `search_place`, `remove_overlay`, and `clear_overlays`. Use `focus_region` for a country or territory already in the offline map, such as `英国` or `香港`: QuickMap zooms to its existing shape and emphasizes its border. For a question like “北方四岛在哪里？”, the AI can call `highlight_area` with a center and radius, or `add_overlay` with more precise geometry. The AI must supply or look up coordinates for features absent from the offline index. No AI API key is needed for the map itself.
 
 ## Data and limits
 

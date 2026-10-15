@@ -43,6 +43,7 @@ export const mapCommandSchema = z.discriminatedUnion('type', [
     source: z.string().max(300).optional(),
   }),
   z.object({ type: z.literal('search'), query: z.string().min(1).max(200) }),
+  z.object({ type: z.literal('focus_region'), query: z.string().trim().min(1).max(200) }),
   z.object({ type: z.literal('upsert_overlay'), overlay: overlaySchema }),
   z.object({ type: z.literal('remove_overlay'), id: z.string().min(1).max(100) }),
   z.object({ type: z.literal('clear_overlays') }),

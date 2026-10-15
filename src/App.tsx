@@ -2,7 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import type { CSSProperties, PointerEvent as ReactPointerEvent, ReactNode, SVGProps } from 'react';
 import { geoArea, geoBounds, geoGraticule10, geoNaturalEarth1, geoPath } from 'd3-geo';
 import type { Geometry } from 'geojson';
-import { countries, findPlaces, getCountryCities } from './data/mapData';
+import { countries, findPlaces, findRegion, getCountryCities } from './data/mapData';
 import type { CountryRecord, PlaceMatch } from './shared/types';
 import type { MapCommand, MapOverlay } from './shared/protocol';
 
@@ -24,6 +24,7 @@ function Icon({ name, ...props }: SVGProps<SVGSVGElement> & { name: IconName }) 
 }
 
 const INITIAL_VIEW: View = { x: 0, y: 0, k: 1 };
+const MAX_ZOOM = 800;
 const geometryLabels = { Point: '坐标点', MultiPoint: '坐标点组', LineString: '路线', MultiLineString: '路线组', Polygon: '区域', MultiPolygon: '区域组' };
 // d3 uses spherical clockwise exterior rings. Accept ordinary GeoJSON winding
 // from local tools too, so a small highlighted region never fills the globe.
@@ -51,6 +52,7 @@ export default function App() {
   const [rotation, setRotation] = useState(0);
   const [view, setView] = useState<View>(INITIAL_VIEW);
   const [selectedCode, setSelectedCode] = useState<string | null>(null);
+  const [selectionPulse, setSelectionPulse] = useState(0);
   const [hover, setHover] = useState<{ country: CountryRecord; x: number; y: number } | null>(null);
   const [query, setQuery] = useState('');
   const [searchOpen, setSearchOpen] = useState(false);
@@ -125,7 +127,7 @@ export default function App() {
     focusTarget.current = { geometry };
     setRotation(nextRotation);
     const availableWidth = size.width > 950 ? size.width - 470 : size.width - 80;
-    const scale = Math.max(1.35, Math.min(30, Math.min(availableWidth / Math.max(12, x1 - x0), Math.max(100, size.height - 260) / Math.max(12, y1 - y0)) * 0.78));
+    const scale = Math.max(1.35, Math.min(MAX_ZOOM, Math.min(availableWidth / Math.max(0.1, x1 - x0), Math.max(100, size.height - 260) / Math.max(0.1, y1 - y0)) * 0.78));
     const centerX = size.width > 950 ? (size.width - 330) / 2 : size.width / 2;
     setView({ x: centerX - (x0 + x1) / 2 * scale, y: size.height / 2 - (y0 + y1) / 2 * scale, k: scale });
     setHidden(false);
@@ -146,6 +148,7 @@ export default function App() {
 
   const selectCountry = useCallback((country: CountryRecord, focus = true) => {
     setSelectedCode(country.code);
+    setSelectionPulse((previous) => previous + 1);
     setActiveOverlay(null);
     setHighlightCity(null);
     setHover(null);
@@ -199,6 +202,19 @@ export default function App() {
         announce(`已定位：${command.label}`);
         break;
       case 'search': runSearch(command.query); break;
+      case 'focus_region': {
+        const region = findRegion(command.query);
+        if (region) {
+          selectCountry(region);
+          setQuery(command.query);
+          announce(`已强调地区：${region.nameZh}`);
+        } else {
+          setQuery(command.query);
+          setSearchOpen(true);
+          announce(`没有找到名称完全匹配的地区“${command.query}”。请使用国家或地区的完整名称或代码；城市可使用地名搜索。`);
+        }
+        break;
+      }
       case 'upsert_overlay': addOverlay(command.overlay); announce(`已更新标注：${command.overlay.label}`); break;
       case 'remove_overlay': setOverlays((previous) => previous.filter((item) => item.id !== command.id)); setActiveOverlay((previous) => previous === command.id ? null : previous); break;
       case 'clear_overlays': setOverlays([]); setActiveOverlay(null); announce('已清除全部临时标注'); break;
@@ -262,7 +278,7 @@ export default function App() {
       const rect = svg.getBoundingClientRect();
       const x = event.clientX - rect.left, y = event.clientY - rect.top;
       setView((previous) => {
-        const k = Math.max(0.8, Math.min(40, previous.k * Math.exp(-event.deltaY * 0.0015)));
+        const k = Math.max(0.8, Math.min(MAX_ZOOM, previous.k * Math.exp(-event.deltaY * 0.0015)));
         return { k, x: x - (x - previous.x) * k / previous.k, y: y - (y - previous.y) * k / previous.k };
       });
     };
@@ -271,7 +287,7 @@ export default function App() {
   }, [hidden]);
 
   const zoom = (factor: number) => setView((previous) => {
-    const k = Math.max(0.8, Math.min(40, previous.k * factor));
+    const k = Math.max(0.8, Math.min(MAX_ZOOM, previous.k * factor));
     return { k, x: size.width / 2 - (size.width / 2 - previous.x) * k / previous.k, y: size.height / 2 - (size.height / 2 - previous.y) * k / previous.k };
   });
   const pointerDown = (event: ReactPointerEvent<SVGSVGElement>) => {
@@ -297,7 +313,7 @@ export default function App() {
   if (hidden) return <div className="hidden-screen"><div className="brand-mark"><Icon name="globe"/></div><h1>地图已收起</h1><p>桌面应用中，使用全局快捷键随时唤出。</p><button className="primary-button" onClick={() => setHidden(false)}>返回地图 <Icon name="arrow"/></button></div>;
 
   return <main className="app-shell">
-    <svg ref={svgRef} className={`world-map ${dragging ? 'is-dragging' : ''}`} width={size.width} height={size.height} aria-label="交互式离线世界地图，可拖动平移、滚轮缩放，点击国家查看邻国和主要城市" role="img"
+    <svg ref={svgRef} className={`world-map ${dragging ? 'is-dragging' : ''}`} width={size.width} height={size.height} aria-label="交互式离线世界地图，可拖动平移、滚轮缩放，点击国家或地区查看相邻地区和主要城市" role="img"
       onPointerDown={pointerDown} onPointerMove={pointerMove} onPointerUp={pointerUp} onPointerCancel={pointerUp} onPointerLeave={pointerLeave}
       onClick={(event) => { if ((event.target === event.currentTarget || (event.target instanceof Element && event.target.classList.contains('ocean-border'))) && !suppressClick.current) { setSelectedCode(null); setActiveOverlay(null); setSearchOpen(false); } }}>
       <defs>
@@ -316,9 +332,15 @@ export default function App() {
           onPointerMove={(event) => { if (!drag.current?.moved) setHover({ country, x: event.clientX, y: event.clientY }); }}
           onPointerLeave={() => setHover(null)}
           onClick={(event) => { event.stopPropagation(); if (!suppressClick.current) selectCountry(country); }}>
-          <title>{country.nameZh} · {country.nameEn} · 首都 {country.capitalZh || country.capitalEn || '暂无资料'}</title>
+          <title>{country.nameZh} · {country.nameEn}{(country.capitalZh || country.capitalEn) ? ` · 首都 ${country.capitalZh || country.capitalEn}` : ''}</title>
         </path>)}
+        {selected && <g key={`${selected.code}-${selectionPulse}`} className="selected-region-emphasis" aria-hidden="true" pointerEvents="none">
+          <path d={path(selected.geometry) ?? ''} className="selected-region-glow" vectorEffect="non-scaling-stroke"/>
+          <path d={path(selected.geometry) ?? ''} className="selected-region-boundary" vectorEffect="non-scaling-stroke"/>
+          <path d={path(selected.geometry) ?? ''} className="selected-region-pulse" vectorEffect="non-scaling-stroke"/>
+        </g>}
         {view.k > 2.2 && countries.map((country) => {
+          if (selectedCode === country.code && selectedCities.some((city) => city.nameZh === country.nameZh)) return null;
           const point = projection([country.lon, country.lat]);
           if (!point || point[0] * view.k + view.x < 0 || point[0] * view.k + view.x > size.width || point[1] * view.k + view.y < 80 || point[1] * view.k + view.y > size.height - 60) return null;
           return <g key={`label-${country.id}`} transform={`translate(${point[0]},${point[1]}) scale(${1 / view.k})`} className="country-label"><text textAnchor="middle">{country.nameZh}</text></g>;
@@ -355,7 +377,7 @@ export default function App() {
     </header>
 
     <section className="search-area" aria-label="地名搜索">
-      <div className={`search-box ${searchOpen ? 'focused' : ''}`}><Icon name="search"/><input ref={searchRef} value={query} placeholder="搜索国家、城市 / Search places" aria-label="搜索国家或城市" role="combobox" aria-expanded={searchOpen} aria-controls="search-results" aria-autocomplete="list" aria-activedescendant={searchOpen && matches[resultIndex] ? `result-${matches[resultIndex].id}` : undefined}
+      <div className={`search-box ${searchOpen ? 'focused' : ''}`}><Icon name="search"/><input ref={searchRef} value={query} placeholder="搜索国家、地区、城市 / Search places" aria-label="搜索国家、地区或城市" role="combobox" aria-expanded={searchOpen} aria-controls="search-results" aria-autocomplete="list" aria-activedescendant={searchOpen && matches[resultIndex] ? `result-${matches[resultIndex].id}` : undefined}
         onFocus={() => setSearchOpen(true)} onChange={(event) => { setQuery(event.target.value); setSearchOpen(true); setResultIndex(0); }}
         onKeyDown={(event) => {
           if (event.key === 'ArrowDown') { event.preventDefault(); setResultIndex((previous) => Math.min(previous + 1, matches.length - 1)); }
@@ -367,16 +389,16 @@ export default function App() {
       {searchOpen && <div className="search-results" id="search-results" role="listbox" aria-label="搜索结果">
         {query.trim() ? matches.length ? matches.map((match, index) => <button key={match.id} id={`result-${match.id}`} role="option" aria-selected={index === resultIndex} className={`search-result ${index === resultIndex ? 'active' : ''}`} onMouseEnter={() => setResultIndex(index)} onClick={() => choosePlace(match)}><span className="result-icon"><Icon name={match.kind === 'country' ? 'globe' : 'pin'}/></span><span>{match.label}<small>{match.kind === 'country' ? '国家 / 地区' : '城市'}{match.countryCode ? ` · ${countryByCode.get(match.countryCode)?.nameZh || match.countryCode}` : ''}</small></span><Icon name="arrow"/></button>) : <div className="search-empty"><Icon name="search"/><p>没有找到这个地名</p><span>试试中文、英文或国家代码；海峡等地点可由本地 AI 标注。</span></div> : <div className="search-suggestions"><span className="eyebrow">从一个地方开始</span><div>{['中国', '日本', '法国', 'Egypt'].map((text) => <button key={text} onClick={() => runSearch(text)}>{text}<Icon name="arrow"/></button>)}</div><p><Icon name="clipboard"/>复制地名后按 Ctrl + V，直接跳转</p></div>}
       </div>}
-      {!searchOpen && !selected && !active && <div className="map-intro"><span className="eyebrow">YOUR WORLD, AT A GLANCE</span><h1>每一个地名，<br/>都有了位置。</h1><p>悬停认识国家，点击探索邻国与城市。<br/>从一段文字，抵达世界的任何角落。</p><div className="intro-rule"/><span className="intro-caption">{countries.length} 个国家与地区 · 全程离线</span></div>}
+      {!searchOpen && !selected && !active && <div className="map-intro"><span className="eyebrow">YOUR WORLD, AT A GLANCE</span><h1>每一个地名，<br/>都有了位置。</h1><p>悬停认识各地，点击探索邻近地区与城市。<br/>从一段文字，抵达世界的任何角落。</p><div className="intro-rule"/><span className="intro-caption">{countries.length} 个国家与地区 · 全程离线</span></div>}
     </section>
 
-    {(selected || active) && <aside className="detail-panel" aria-label={selected ? '国家详情' : '临时标注详情'}>
-      <div className="panel-topline"><span className="eyebrow">{selected ? 'EXPLORE A COUNTRY' : 'DYNAMIC MAP LAYER'}</span><button className="icon-button small" aria-label="关闭详情" onClick={() => { setSelectedCode(null); setActiveOverlay(null); }}><Icon name="close"/></button></div>
+    {(selected || active) && <aside className="detail-panel" aria-label={selected ? '地区详情' : '临时标注详情'}>
+      <div className="panel-topline"><span className="eyebrow">{selected ? 'EXPLORE A REGION' : 'DYNAMIC MAP LAYER'}</span><button className="icon-button small" aria-label="关闭详情" onClick={() => { setSelectedCode(null); setActiveOverlay(null); }}><Icon name="close"/></button></div>
       {selected ? <>
         <div className="country-code">{selected.code}</div><h2>{selected.nameZh}</h2><p className="english-name">{selected.nameEn}</p>
-        <div className="capital-card"><span className="capital-star">★</span><div><span className="field-label">首都 / CAPITAL</span><strong>{selected.capitalZh || selected.capitalEn || '暂无资料'}</strong>{selected.capitalZh && selected.capitalEn && <small>{selected.capitalEn}</small>}</div></div>
-        <div className="section-heading"><h3>相邻国家</h3><span>{neighbors.size.toString().padStart(2, '0')}</span></div>
-        <div className="neighbor-list">{selected.neighbors.length ? selected.neighbors.map((code) => { const neighbor = countryByCode.get(code); return neighbor ? <button key={code} onClick={() => selectCountry(neighbor)}><span className="neighbor-dot"/>{neighbor.nameZh}<Icon name="arrow"/></button> : null; }) : <p className="muted-note">没有陆地接壤的国家</p>}</div>
+        {(selected.capitalZh || selected.capitalEn) && <div className="capital-card"><span className="capital-star">★</span><div><span className="field-label">首都 / CAPITAL</span><strong>{selected.capitalZh || selected.capitalEn}</strong>{selected.capitalZh && selected.capitalEn && <small>{selected.capitalEn}</small>}</div></div>}
+        <div className="section-heading"><h3>相邻地区</h3><span>{neighbors.size.toString().padStart(2, '0')}</span></div>
+        <div className="neighbor-list">{selected.neighbors.length ? selected.neighbors.map((code) => { const neighbor = countryByCode.get(code); return neighbor ? <button key={code} onClick={() => selectCountry(neighbor)}><span className="neighbor-dot"/>{neighbor.nameZh}<Icon name="arrow"/></button> : null; }) : <p className="muted-note">没有陆地接壤的地区</p>}</div>
         <div className="section-heading"><h3>主要城市</h3><span>{selectedCities.length.toString().padStart(2, '0')}</span></div>
         <div className="city-list">{selectedCities.length ? selectedCities.map((city) => <button key={city.id} className={highlightCity === city.id ? 'active' : ''} onClick={() => { setHighlightCity(city.id); focusPoint(city.lon, city.lat, 8); }}><span className={`city-list-dot ${city.isCapital ? 'is-capital' : ''}`}/><span>{city.nameZh || city.nameEn}<small>{city.nameEn}</small></span>{city.isCapital ? <span className="capital-tag">首都</span> : <Icon name="arrow"/>}</button>) : <p className="muted-note">当前离线数据暂无城市记录</p>}</div>
         <div className="panel-coordinate"><Icon name="pin"/>{coordinate(selected.lon, selected.lat)}</div>
@@ -394,8 +416,8 @@ export default function App() {
     </div>
 
     <nav className="map-controls" aria-label="地图视图控制"><button aria-label="放大" title="放大" onClick={() => zoom(1.5)}><Icon name="plus"/></button><button aria-label="缩小" title="缩小" onClick={() => zoom(1 / 1.5)}><Icon name="minus"/></button><span/><button aria-label="返回世界视图" title="世界视图 (Home)" onClick={resetView}><Icon name="globe"/></button></nav>
-    <footer className="map-footer"><span><i/>LOCAL EXPLORER <b>01</b></span><div className="map-legend"><span><i className="selected-key"/>当前国家</span><span><i className="neighbor-key"/>相邻国家</span><span><i className="city-key"/>主要城市</span></div><span className="footer-hint">拖动平移<span>·</span>滚轮缩放<span>·</span>{view.k.toFixed(1)}×<span className="data-attribution">地图数据 © Natural Earth</span></span></footer>
-    {hover && !dragging && <div className="country-tooltip" style={{ left: Math.min(size.width - 255, Math.max(12, hover.x + 17)), top: Math.max(90, Math.min(size.height - 130, hover.y + 17)) }}><span className="tooltip-code">{hover.country.code}</span><strong>{hover.country.nameZh}</strong><span className="tooltip-english">{hover.country.nameEn}</span><div><span>首都</span>{hover.country.capitalZh || hover.country.capitalEn || '暂无资料'}</div><small>点击探索邻国与主要城市 <Icon name="arrow"/></small></div>}
+    <footer className="map-footer"><span><i/>LOCAL EXPLORER <b>01</b></span><div className="map-legend"><span><i className="selected-key"/>当前地区</span><span><i className="neighbor-key"/>相邻地区</span><span><i className="city-key"/>主要城市</span></div><span className="footer-hint">拖动平移<span>·</span>滚轮缩放<span>·</span>{view.k.toFixed(1)}×<span className="data-attribution">地图数据 © Natural Earth</span></span></footer>
+    {hover && !dragging && <div className="country-tooltip" style={{ left: Math.min(size.width - 255, Math.max(12, hover.x + 17)), top: Math.max(90, Math.min(size.height - 130, hover.y + 17)) }}><span className="tooltip-code">{hover.country.code}</span><strong>{hover.country.nameZh}</strong><span className="tooltip-english">{hover.country.nameEn}</span>{(hover.country.capitalZh || hover.country.capitalEn) && <div><span>首都</span>{hover.country.capitalZh || hover.country.capitalEn}</div>}<small>点击探索相邻地区与主要城市 <Icon name="arrow"/></small></div>}
     <div className={`toast ${notice ? 'visible' : ''}`} role="status" aria-live="polite">{notice}</div>
   </main>;
 }

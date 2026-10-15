@@ -93,3 +93,29 @@ test('API reports queue backpressure and supports explicit quit', async () => {
     assert.equal(quit, true);
   } finally { await server.close(); }
 });
+
+
+test('CLI region resolves arguments into validated local region commands', async () => {
+  const received = [];
+  const server = await startControlServer({ onCommand(command) { received.push(command); return true; }, onQuit() {} });
+  try {
+    const file = join(directory, 'region-control.json');
+    await writeFile(file, JSON.stringify({ protocol: 1, port: server.port, token: server.token }));
+    for (const query of ['UK', '英国', 'Hong Kong', '香港']) {
+      const command = await parseCommand(['region', ...query.split(' ')]);
+      assert.deepEqual(command, { type: 'focus_region', query });
+      assert.equal((await sendRequest(file, '/command', command)).accepted, true);
+    }
+    assert.deepEqual(received.map(({ query }) => query), ['UK', '英国', 'Hong Kong', '香港']);
+    assert.deepEqual(await parseCommand(['region', '  UK  ']), { type: 'focus_region', query: 'UK' });
+    for (const args of [['region'], ['region', '   '], ['region', 'x'.repeat(201)]]) {
+      await assert.rejects(parseCommand(args));
+    }
+    const response = await fetch(`http://127.0.0.1:${server.port}/command`, {
+      method: 'POST', headers: { Authorization: `Bearer ${server.token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type: 'focus_region', query: ' ' }),
+    });
+    assert.equal(response.status, 400);
+    assert.equal(received.length, 4);
+  } finally { await server.close(); }
+});

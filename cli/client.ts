@@ -38,6 +38,7 @@ export async function parseCommand(args: string[]): Promise<MapCommand> {
   const [action, ...values] = args;
   let command: unknown;
   switch (action) {
+    case 'region': command = { type: 'focus_region', query: values.join(' ') }; break;
     case 'search': command = { type: 'search', query: values.join(' ') }; break;
     case 'show':
       if (values.length < 3 || values.length > 4) throw new Error('Usage: show "Place name" longitude latitude [description]');

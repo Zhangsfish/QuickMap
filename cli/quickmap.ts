@@ -3,6 +3,7 @@ import { defaultControlFile, parseCommand, sendRequest } from './client';
 const help = `QuickMap local control
 
   node dist-electron/quickmap.cjs search Tokyo
+  node dist-electron/quickmap.cjs region "Hong Kong"
   node dist-electron/quickmap.cjs show "Tokyo" 139.6917 35.6895
   node dist-electron/quickmap.cjs overlay overlay.json
   node dist-electron/quickmap.cjs circle islands "Northern islands" 146.5 44.5 250
