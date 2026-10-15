@@ -6,7 +6,7 @@ QuickMap is a Windows desktop world map that opens with a global shortcut. It wo
 
 1. 在 [Windows package 构建记录](https://github.com/Zhangsfish/QuickMap/actions/workflows/windows-package.yml)中打开最近一次成功运行，下载 `QuickMap-win32-x64`，解压后运行 `QuickMap.exe`。它是便携版，无需安装 Node.js。
 2. 按 **Ctrl+Alt+M** 唤出地图，按 **Esc** 收起。搜索框可查国家和主要城市；遇到海峡、岛屿等未收录地点，可让本地 AI 临时标注。
-   地图左下角的「问地图」输入框可直接向本机 Codex 提问、继续追问或取消回复；下方的「离线浏览：霍尔木兹五步故事」无需 Codex 或网络即可使用。地图内会话由 QuickMap 单独管理，不共享当前 Codex 桌面对话记录。
+   地图左下角的「问地图」输入框目前是**霍尔木兹故事问答预览版**，可向本机 Codex 提问、继续追问或取消回复；下方的「离线浏览：霍尔木兹五步故事」无需 Codex 或网络即可使用。地图内会话由 QuickMap 单独管理，不共享当前 Codex 桌面对话记录。开放式问题与地图联动的下一版需求见 [Issue #3](https://github.com/Zhangsfish/QuickMap/issues/3)。
 3. 在运行 Codex 的 Windows 终端注册地图工具，路径换成你实际解压的位置：
 
    ```powershell
