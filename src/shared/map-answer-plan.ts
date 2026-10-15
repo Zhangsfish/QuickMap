@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { geometrySchema } from './protocol';
+import { geometrySchema } from './geometry';
 
 const id = z.string().regex(/^[a-zA-Z][a-zA-Z0-9_-]{0,79}$/);
 const sourceIds = z.array(id).max(20);
@@ -15,6 +15,7 @@ const paragraphSchema = z.object({
 const layerBase = {
   id,
   label: z.string().trim().min(1).max(200),
+  color: z.string().regex(/^#[0-9a-fA-F]{6}$/).optional(),
   sourceIds,
 };
 
@@ -59,6 +60,35 @@ export const mapAnswerPlanSchema = z.object({
 });
 
 export type MapAnswerPlan = z.infer<typeof mapAnswerPlanSchema>;
+
+const sourceSchema = z.object({
+  id,
+  title: z.string().trim().min(1).max(250),
+  publisher: z.string().trim().min(1).max(120),
+  url: z.url().refine((value) => {
+    const parsed = new URL(value);
+    return parsed.protocol === 'https:' && !parsed.username && !parsed.password;
+  }, 'Sources require an HTTPS URL without embedded credentials'),
+  publishedAt: z.iso.date().optional(),
+  accessedAt: z.iso.date(),
+}).strict();
+
+/** Trusted local control assembles source records after research. The model sees IDs only. */
+export const mapAnswerDocumentSchema = z.object({
+  plan: mapAnswerPlanSchema,
+  sources: z.array(sourceSchema).min(1).max(40),
+}).strict().superRefine((document, context) => {
+  const ids = document.sources.map((source) => source.id);
+  if (new Set(ids).size !== ids.length) context.addIssue({ code: 'custom', message: 'Duplicate source IDs' });
+  const known = new Set(ids);
+  for (const item of [...document.plan.paragraphs, ...document.plan.layers]) {
+    for (const sourceId of item.sourceIds) {
+      if (!known.has(sourceId)) context.addIssue({ code: 'custom', message: `Unknown source ID: ${sourceId}` });
+    }
+  }
+});
+
+export type MapAnswerDocument = z.infer<typeof mapAnswerDocumentSchema>;
 
 /** Resolve references against sources fetched and checked outside the model. */
 export function validateMapAnswerPlan(value: unknown, allowedSourceIds: ReadonlySet<string>): MapAnswerPlan {

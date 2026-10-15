@@ -1,6 +1,6 @@
 import test, { after } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, rm } from 'node:fs/promises';
+import { mkdtemp, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { createRequire } from 'node:module';
@@ -10,7 +10,7 @@ const directory = await mkdtemp(join(tmpdir(), 'quickmap-answer-plan-test-'));
 const output = join(directory, 'map-answer-plan.cjs');
 await build({ entryPoints: ['src/shared/map-answer-plan.ts'], outfile: output, platform: 'node', format: 'cjs', bundle: true });
 const require = createRequire(import.meta.url);
-const { validateMapAnswerPlan } = require(output);
+const { validateMapAnswerPlan, mapAnswerDocumentSchema } = require(output);
 after(() => rm(directory, { recursive: true, force: true }));
 
 const plan = {
@@ -39,4 +39,19 @@ test('rejects invalid coordinates', () => {
 test('requires a source for geometry presented as sourced data', () => {
   const invalid = { ...plan, layers: [{ ...plan.layers[0], representation: 'sourced', sourceIds: [] }] };
   assert.throws(() => validateMapAnswerPlan(invalid, new Set(['source1'])), /Sourced geometry requires a source ID/);
+});
+
+test('Arctic Dalian example is a complete linked map answer', async () => {
+  const example = JSON.parse(await readFile('docs/examples/arctic-dalian-answer.json', 'utf8'));
+  const document = mapAnswerDocumentSchema.parse(example);
+  assert.equal(document.plan.paragraphs.length, 6);
+  assert.equal(document.plan.layers.length, 7);
+  assert.equal(document.plan.layers.find((layer) => layer.id === 'southern-route').color, '#f0a370');
+});
+
+test('answer documents reject unknown sources and unsafe source URLs', () => {
+  const source = { id: 'source1', title: 'Example', publisher: 'Agency', url: 'https://example.org/article', accessedAt: '2026-10-15' };
+  assert.ok(mapAnswerDocumentSchema.safeParse({ plan, sources: [source] }).success);
+  assert.equal(mapAnswerDocumentSchema.safeParse({ plan, sources: [{ ...source, url: 'http://example.org/article' }] }).success, false);
+  assert.equal(mapAnswerDocumentSchema.safeParse({ plan, sources: [{ ...source, id: 'other' }] }).success, false);
 });

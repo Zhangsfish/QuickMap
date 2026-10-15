@@ -14,6 +14,7 @@ export type MapAskBridge = {
   resetMapConversation: () => Promise<void>;
   onMapEvent: (listener: (event: MapAskEvent) => void) => () => void;
   openStorySource: (sourceId: string) => Promise<void>;
+  openAnswerSource: (sourceId: string) => Promise<void>;
 };
 
 declare global {

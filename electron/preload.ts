@@ -40,6 +40,7 @@ const bridge: QuickMapBridge & MapAskBridge = {
     return () => ipcRenderer.removeListener('quickmap:map-event', handler);
   },
   openStorySource: (sourceId) => ipcRenderer.invoke('quickmap:open-story-source', sourceId),
+  openAnswerSource: (sourceId) => ipcRenderer.invoke('quickmap:open-answer-source', sourceId),
 };
 
 contextBridge.exposeInMainWorld('quickMap', bridge);

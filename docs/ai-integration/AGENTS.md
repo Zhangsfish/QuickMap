@@ -13,11 +13,12 @@ Define the provider-neutral AI and map-answer contract for QuickMap's open-ended
 ## File Map
 
 - `README.md`: canonical connection, account-boundary, provider, and acceptance design.
-- `../../src/shared/map-answer-plan.ts`: executable Zod schema for proposed text and map layers; not yet connected to the UI or model providers.
+- `../../src/shared/map-answer-plan.ts`: executable Zod schema for text, map layers, and vetted source records. Local CLI and UI now use it; model providers do not yet emit it.
+- `../examples/arctic-dalian-answer.json`: canonical Arctic route demonstration document sent from the current Codex conversation through local CLI.
 
 ## Current Decisions
 
-- Two entry points, map chat and desktop Codex, should save one map-answer artifact format.
+- The desktop Codex to map control path now saves a `MapAnswerDocument` and renders linked paragraphs and layers; map chat should reuse that format when broadened.
 - The demo may use the independent DeepSeek API. The API key stays in the Electron main process and is never committed.
 - The model is not limited to one topic; all map actions and source references are validated before display.
 
@@ -29,4 +30,4 @@ Define the provider-neutral AI and map-answer contract for QuickMap's open-ended
 
 ## Handoff Notes
 
-The schema is a scaffold only. Implement provider adapters, trusted source resolution, persistence, rendering, and end-to-end tests before describing this as a working open-ended map assistant. No API credential was added or read for this handoff.
+Local control can render and persist a researched answer. Implement provider adapters and trusted source resolution before describing the in-map chat as a working open-ended map assistant. No API credential was added or read for this handoff.

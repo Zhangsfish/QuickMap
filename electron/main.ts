@@ -6,6 +6,7 @@ import { CommandQueue, startControlServer } from './control';
 import { MapCodexSession } from './map-codex';
 import { readSelectedText } from './selection';
 import { HORMUZ_STORY } from '../src/story/hormuz';
+import { mapAnswerDocumentSchema, type MapAnswerDocument } from '../src/shared/map-answer-plan';
 
 app.setName('QuickMap');
 const customUserData = process.env.QUICKMAP_USER_DATA_DIR;
@@ -15,7 +16,9 @@ mkdirSync(userDataPath, { recursive: true, mode: 0o700 });
 app.setPath('userData', userDataPath);
 const shortcut = process.env.QUICKMAP_SHORTCUT || 'CommandOrControl+Alt+M';
 const controlFile = resolve(process.env.QUICKMAP_CONTROL_FILE || join(app.getPath('userData'), 'quickmap-control.json'));
+const latestAnswerFile = join(app.getPath('userData'), 'latest-map-answer.json');
 const commands = new CommandQueue();
+let latestAnswer: MapAnswerDocument | undefined;
 let window: BrowserWindow | undefined;
 let tray: Tray | undefined;
 let control: Awaited<ReturnType<typeof startControlServer>> | undefined;
@@ -143,11 +146,36 @@ if (!app.requestSingleInstanceLock()) {
       if (!url || new URL(url).protocol !== 'https:') throw new Error('Invalid story source');
       await shell.openExternal(url);
     });
+    ipcMain.handle('quickmap:open-answer-source', async (event, sourceId: unknown) => {
+      if (!trustedSender(event)) throw new Error('Untrusted sender');
+      if (typeof sourceId !== 'string') throw new Error('Unknown answer source');
+      const url = latestAnswer?.sources.find((source) => source.id === sourceId)?.url;
+      if (!url || new URL(url).protocol !== 'https:') throw new Error('Unknown answer source');
+      await shell.openExternal(url);
+    });
+
+    try {
+      const stored: unknown = JSON.parse(await readFile(latestAnswerFile, 'utf8'));
+      const parsed = mapAnswerDocumentSchema.safeParse(stored);
+      if (parsed.success) {
+        latestAnswer = parsed.data;
+        commands.enqueue({ type: 'show_answer', document: parsed.data });
+      }
+    } catch { /* No saved answer yet. */ }
 
     control = await startControlServer({
       onCommand(command) {
         const accepted = commands.enqueue(command);
-        if (accepted) showMap();
+        if (accepted) {
+          if (command.type === 'show_answer') {
+            latestAnswer = command.document;
+            const temporary = `${latestAnswerFile}.${process.pid}.tmp`;
+            void writeFile(temporary, JSON.stringify(command.document), { mode: 0o600 })
+              .then(() => rename(temporary, latestAnswerFile))
+              .catch(() => { /* The current session can still display the answer. */ });
+          }
+          showMap();
+        }
         return accepted;
       },
       onQuit: () => app.quit(),

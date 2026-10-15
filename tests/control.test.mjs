@@ -1,6 +1,6 @@
 import test, { after } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, rm, writeFile } from 'node:fs/promises';
+import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { createRequire } from 'node:module';
@@ -79,6 +79,18 @@ test('CLI discovers local server and sends validated overlay and place commands'
     await writeFile(overlayFile, JSON.stringify(circle.overlay));
     assert.deepEqual(await parseCommand(['upsert-overlay', overlayFile]), circle);
   } finally { await server.close(); }
+});
+
+test('CLI accepts a linked map answer document and rejects an altered source reference', async () => {
+  const document = JSON.parse(await readFile('docs/examples/arctic-dalian-answer.json', 'utf8'));
+  const file = join(directory, 'map-answer.json');
+  await writeFile(file, JSON.stringify(document));
+  const command = await parseCommand(['answer', file]);
+  assert.equal(command.type, 'show_answer');
+  assert.equal(command.document.plan.title, document.plan.title);
+  document.plan.paragraphs[0].sourceIds = ['unknown-source'];
+  await writeFile(file, JSON.stringify(document));
+  await assert.rejects(parseCommand(['answer', file]));
 });
 
 test('API reports queue backpressure and supports explicit quit', async () => {

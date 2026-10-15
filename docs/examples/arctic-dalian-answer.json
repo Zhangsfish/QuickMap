@@ -1,0 +1,170 @@
+{
+  "plan": {
+    "version": 1,
+    "question": "北极变暖后开辟北极航线，为什么有人说会利好大连港？这靠谱吗，运什么、连接哪里？",
+    "title": "北极航线与大连港：有实航，也有条件",
+    "asOf": "2026-10-15",
+    "paragraphs": [
+      {
+        "id": "conclusion",
+        "heading": "先说结论",
+        "text": "说大连港可能受益，并不是瞎说：它可把东北腹地货物接入从白令海峡沿俄罗斯北岸通往欧洲的北方海航道。大连早有实航。但海冰减少不等于全年安全通航，也不意味着每艘中欧北极船都从大连出发。是否真正受益，要看适航季、稳定货源、船舶与保险成本、港口挂靠和集疏运。",
+        "layerIds": ["eastern-approach", "northern-route", "western-connection", "dalian-port", "rotterdam-port"],
+        "sourceIds": ["liaoning-2018", "liaoning-2025", "nsidc-2026", "imo-polar"]
+      },
+      {
+        "id": "connection",
+        "heading": "这条路连接哪里？",
+        "text": "从大连出海，经日本海与白令海峡，沿俄罗斯北岸穿过楚科奇海、东西伯利亚海、拉普捷夫海、喀拉海，再进入巴伦支海，接北欧和西欧港口；地图以鹿特丹作欧洲端点举例。蓝色折线只表达地理方向，不是船舶真实轨迹，也不代表今日冰情。",
+        "layerIds": ["eastern-approach", "northern-route", "western-connection", "rotterdam-port"],
+        "sourceIds": ["liaoning-2018"]
+      },
+      {
+        "id": "dalian-history",
+        "heading": "大连为什么有机会？",
+        "text": "辽宁交通部门记录：2013 年“永盛”轮从大连港启程，经北极东北航道于 9 月 11 日抵达荷兰鹿特丹；2024 年又开通大连至俄罗斯阿尔汉格尔斯克的集装箱北极航线。大连还可承接东北腹地货物并组织海铁联运。这里的“利好”首先是多一条季节性出海选择，不是已证明港口收入必然增长。",
+        "layerIds": ["dalian-port"],
+        "sourceIds": ["liaoning-2018", "liaoning-2025"]
+      },
+      {
+        "id": "cargo",
+        "heading": "会运什么？",
+        "text": "已发生的辽宁北极航次并非只有集装箱：2018 年营口始发货船载 8600 吨铁板桩赴欧洲；2024 年大连至阿尔汉格尔斯克开了集装箱航线。交通运输部发布的 2026 年航次计划列出集装箱船、干散货船和多用途船，提到光伏、储能、精密机电等适合争取时效的出口货物。这些是不同年份、不同航次的实例和计划，不能合并为“大连当前实际货种及运量”。",
+        "layerIds": ["dalian-port", "rotterdam-port"],
+        "sourceIds": ["liaoning-2018", "liaoning-2025", "mot-2026"]
+      },
+      {
+        "id": "south-comparison",
+        "heading": "与传统南线怎么比？",
+        "text": "对中国东北到北欧的部分港口，北线可能减少航程和时间；2018 年“天佑”轮的辽宁报道给出该次航行 32 天、比其传统航道方案少 14 天。这只是该船该航次的比较，不能套到所有起讫港、季节和货种。橙色南线经马六甲、印度洋、苏伊士运河与地中海，作为方向对照；实际航线会因港口、天气、费用和安全形势变化。",
+        "layerIds": ["southern-route"],
+        "sourceIds": ["liaoning-2018"]
+      },
+      {
+        "id": "limits",
+        "heading": "为什么不能说它会取代南线？",
+        "text": "NSIDC 在 2026 年 10 月 7 日观察到北方海航道当时似乎大体无冰，同时指出季节性再冻结很快。交通运输部报道的 2026 年首期航次计划把窗口放在 7 月下旬至 9 月下旬。极地航行还需要符合 IMO《极地规则》，面对海图、通信、搜救、低温和船舶设备等约束。因此“变暖→全年通航→大连必然大赚”跳过了关键条件。",
+        "layerIds": ["bering-strait", "northern-route"],
+        "sourceIds": ["nsidc-2026", "mot-2026", "imo-polar"]
+      }
+    ],
+    "layers": [
+      {
+        "id": "northern-route",
+        "label": "北方海航道 · 示意",
+        "color": "#7bc9e8",
+        "type": "geometry",
+        "representation": "schematic",
+        "sourceIds": ["liaoning-2018"],
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [[60, 70], [73, 73], [92, 75], [112, 76], [132, 74], [152, 72], [168, 68], [-169, 66]]
+        }
+      },
+      {
+        "id": "eastern-approach",
+        "label": "大连至白令海峡 · 示意",
+        "color": "#7bc9e8",
+        "type": "geometry",
+        "representation": "schematic",
+        "sourceIds": ["liaoning-2018"],
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [[121.615, 38.914], [129, 40], [140, 44], [151, 51], [162, 58], [174, 63], [-169, 66]]
+        }
+      },
+      {
+        "id": "western-connection",
+        "label": "喀拉海至欧洲 · 示意",
+        "color": "#7bc9e8",
+        "type": "geometry",
+        "representation": "schematic",
+        "sourceIds": ["liaoning-2018"],
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [[60, 70], [39, 71], [23, 70], [13, 66], [4, 61], [2, 55], [4.48, 51.92]]
+        }
+      },
+      {
+        "id": "dalian-port",
+        "label": "大连港 · 位置示意",
+        "color": "#f0c676",
+        "type": "geometry",
+        "representation": "schematic",
+        "sourceIds": ["liaoning-2018", "liaoning-2025"],
+        "geometry": { "type": "Point", "coordinates": [121.615, 38.914] }
+      },
+      {
+        "id": "rotterdam-port",
+        "label": "鹿特丹 · 欧洲端点示例",
+        "color": "#f0c676",
+        "type": "geometry",
+        "representation": "schematic",
+        "sourceIds": ["liaoning-2018"],
+        "geometry": { "type": "Point", "coordinates": [4.48, 51.92] }
+      },
+      {
+        "id": "bering-strait",
+        "label": "白令海峡 · 位置示意",
+        "color": "#a8dba8",
+        "type": "geometry",
+        "representation": "schematic",
+        "sourceIds": ["liaoning-2018"],
+        "geometry": { "type": "Point", "coordinates": [-169, 66] }
+      },
+      {
+        "id": "southern-route",
+        "label": "经苏伊士传统南线 · 示意",
+        "color": "#f0a370",
+        "type": "geometry",
+        "representation": "schematic",
+        "sourceIds": ["liaoning-2018"],
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [[121.615, 38.914], [125, 30], [120, 22], [114, 12], [104, 2], [90, 4], [75, 8], [55, 13], [43, 12], [32.3, 30], [24, 35], [15, 36], [-5.5, 36], [0, 44], [4.48, 51.92]]
+        }
+      }
+    ]
+  },
+  "sources": [
+    {
+      "id": "liaoning-2018",
+      "title": "“辽海欧”开通第二条北极航线",
+      "publisher": "辽宁省交通运输厅",
+      "url": "https://jtt.ln.gov.cn/jtt/fw/jtxw/414B399A24DF44BF89A4B15A17FC9AC8/index.shtml",
+      "publishedAt": "2018-07-03",
+      "accessedAt": "2026-10-15"
+    },
+    {
+      "id": "liaoning-2025",
+      "title": "关于高标准建设东北陆海大通道的建议答复",
+      "publisher": "辽宁省交通运输厅",
+      "url": "https://jtt.ln.gov.cn/jtt/zfxxgk/fdzdgknr/jyta/srddbjy35/szxssjschy2025n/2025090914053263501/index.shtml",
+      "publishedAt": "2025-09-09",
+      "accessedAt": "2026-10-15"
+    },
+    {
+      "id": "mot-2026",
+      "title": "2026 首期中欧北极航次计划出炉",
+      "publisher": "中华人民共和国交通运输部",
+      "url": "https://www.mot.gov.cn/xinwen/jiaotongyaowen/202607/t20260729_4210685.html",
+      "publishedAt": "2026-07-29",
+      "accessedAt": "2026-10-15"
+    },
+    {
+      "id": "nsidc-2026",
+      "title": "Stranger Things in the 2026 Arctic",
+      "publisher": "National Snow and Ice Data Center",
+      "url": "https://nsidc.org/sea-ice-today/analyses/stranger-things-2026-arctic",
+      "publishedAt": "2026-10-07",
+      "accessedAt": "2026-10-15"
+    },
+    {
+      "id": "imo-polar",
+      "title": "International Code for Ships Operating in Polar Waters",
+      "publisher": "International Maritime Organization",
+      "url": "https://www.imo.org/en/ourwork/safety/pages/polar-code.aspx",
+      "accessedAt": "2026-10-15"
+    }
+  ]
+}

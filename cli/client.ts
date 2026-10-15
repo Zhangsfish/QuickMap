@@ -3,6 +3,7 @@ import { homedir } from 'node:os';
 import { join } from 'node:path';
 import { z } from 'zod';
 import { mapCommandSchema, overlaySchema, type MapCommand } from '../src/shared/protocol';
+import { mapAnswerDocumentSchema } from '../src/shared/map-answer-plan';
 
 const discoverySchema = z.object({
   protocol: z.literal(1),
@@ -52,6 +53,10 @@ export async function parseCommand(args: string[]): Promise<MapCommand> {
     case 'upsert-overlay':
       if (values.length !== 1) throw new Error('Usage: overlay file.json (or - for stdin)');
       command = { type: 'upsert_overlay', overlay: overlaySchema.parse(await readJsonFile(values[0])) };
+      break;
+    case 'answer':
+      if (values.length !== 1) throw new Error('Usage: answer file.json (or - for stdin)');
+      command = { type: 'show_answer', document: mapAnswerDocumentSchema.parse(await readJsonFile(values[0])) };
       break;
     case 'circle': {
       if (values.length !== 5) throw new Error('Usage: circle overlay-id "Label" longitude latitude radius-km');

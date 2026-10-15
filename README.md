@@ -6,7 +6,7 @@ QuickMap is a Windows desktop world map that opens with a global shortcut. It wo
 
 1. 在 [Windows package 构建记录](https://github.com/Zhangsfish/QuickMap/actions/workflows/windows-package.yml)中打开最近一次成功运行，下载 `QuickMap-win32-x64`，解压后运行 `QuickMap.exe`。它是便携版，无需安装 Node.js。
 2. 按 **Ctrl+Alt+M** 唤出地图，按 **Esc** 收起。搜索框可查国家和主要城市；遇到海峡、岛屿等未收录地点，可让本地 AI 临时标注。
-   地图左下角的「问地图」输入框目前是**霍尔木兹故事问答预览版**，可向本机 Codex 提问、继续追问或取消回复；下方的「离线浏览：霍尔木兹五步故事」无需 Codex 或网络即可使用。地图内会话由 QuickMap 单独管理，不共享当前 Codex 桌面对话记录。开放式问题与地图联动的下一版需求见 [Issue #3](https://github.com/Zhangsfish/QuickMap/issues/3)。
+   地图左下角的「问地图」输入框目前是**霍尔木兹故事问答预览版**，可向本机 Codex 提问、继续追问或取消回复；下方的「离线浏览：霍尔木兹五步故事」无需 Codex 或网络即可使用。地图内会话由 QuickMap 单独管理，不共享当前 Codex 桌面对话记录。当前 Codex 对话可以通过下文的 `answer` 命令把查证后的图文解答送进地图；地图内开放式提问与地图联动仍见 [Issue #3](https://github.com/Zhangsfish/QuickMap/issues/3)。
 3. 在运行 Codex 的 Windows 终端注册地图工具，路径换成你实际解压的位置：
 
    ```powershell
@@ -20,6 +20,7 @@ QuickMap is a Windows desktop world map that opens with a global shortcut. It wo
    ```powershell
    & "C:\Apps\QuickMap-win32-x64\control\quickmap.cmd" region 英国
    & "C:\Apps\QuickMap-win32-x64\control\quickmap.cmd" story-step hormuz-1
+   & "C:\Apps\QuickMap-win32-x64\control\quickmap.cmd" answer "C:\Apps\QuickMap-win32-x64\control\examples\arctic-dalian-answer.json"
    & "C:\Apps\QuickMap-win32-x64\control\quickmap.cmd" circle northern-islands "北方四岛" 146.5 44.5 250
    ```
 
@@ -32,6 +33,10 @@ QuickMap is a Windows desktop world map that opens with a global shortcut. It wo
 | 五步故事：亚洲方向 | 五步故事：陆上绕行 | 地图内 Codex 回复与追问 |
 | --- | --- | --- |
 | ![霍尔木兹故事亚洲海路](docs/screenshots/hormuz-story-1280.png) | ![霍尔木兹故事陆上绕行](docs/screenshots/hormuz-bypass-1280.png) | ![地图内 Codex 图文回复](docs/screenshots/hormuz-codex-1920.png) |
+
+| 当前 Codex 对话发送的北极航线图文解答：1280×800 | 1920×1080 |
+| --- | --- |
+| ![北极航线与大连港图文解答，1280×800](docs/screenshots/arctic-dalian-1280.png) | ![北极航线与大连港图文解答，1920×1080](docs/screenshots/arctic-dalian-1920.png) |
 
 ## Run it
 
@@ -72,6 +77,8 @@ Start `QuickMap.exe` first. A command line interface ships beside it and communi
 The circle is an **illustrative search region**, not a political or legal boundary. For a more exact outline, send a GeoJSON `Polygon` or `MultiPolygon` with `& .\control\quickmap.cmd overlay file.json` in PowerShell. The API also accepts points, lines, multiple points or lines, and temporary overlays with an `expiresAt` timestamp. See [the command schema](src/shared/protocol.ts) for the accepted fields. Added overlays support hover, click, focus, update, and removal without changing the app's code.
 
 `story-step` selects a bundled Strait of Hormuz story step. Its only accepted IDs are `hormuz-1` through `hormuz-5`; the command cannot load a custom scene. The equivalent MCP tool is `set_story_step` with an argument such as `{ "stepId": "hormuz-1" }`.
+
+`answer file.json` opens a source-backed map answer with linked paragraphs and layers. Click a paragraph to focus its map layers, or click a layer to return to its paragraph. Closing the answer restores the prior view and keeps personal overlays. QuickMap validates the document, geometry, IDs, sizes and HTTPS source links before accepting it; the latest answer is saved locally and reopens with the app. The Windows archive includes `control/examples/arctic-dalian-answer.json` as a worked example. Its Arctic and southern route lines are **schematic**, not AIS tracks or navigational guidance. The Codex chat you are reading may research and send such a document through the local CLI. The separate **in-map** Codex chat is still limited to the Hormuz preview.
 
 For Codex or another MCP client, register the bundled stdio server using absolute paths to the unpacked archive. On Windows, run Electron as its bundled Node runtime:
 
