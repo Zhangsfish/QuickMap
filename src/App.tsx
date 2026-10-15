@@ -5,8 +5,33 @@ import type { Geometry } from 'geojson';
 import { countries, findPlaces, findRegion, getCountryCities } from './data/mapData';
 import type { CountryRecord, PlaceMatch } from './shared/types';
 import type { MapCommand, MapOverlay } from './shared/protocol';
+import { HORMUZ_STORY, storyLayerById, storyStepById } from './story/hormuz';
+import type { StoryCamera, StoryLayer, StoryStep } from './story/hormuz';
+import type { MapAskEvent } from './bridge';
 
 type View = { x: number; y: number; k: number };
+type FocusTarget = { geometry: Geometry } | { lon: number; lat: number; scale: number } | { storyCamera: StoryCamera };
+type StoryEntry = { view: View; rotation: number; selectedCode: string | null; highlightCity: string | null; activeOverlay: string | null; query: string; focusTarget: FocusTarget | null };
+type ChatMessage = { id: string; role: 'user' | 'assistant'; text: string; stepIds?: string[]; sourceIds?: string[]; status?: 'streaming' | 'done' | 'cancelled' | 'error' };
+const CHAT_STORAGE_KEY = `quickmap:map-chat:story-v${HORMUZ_STORY.version}`;
+function readStoredChatMessages(): ChatMessage[] {
+  try {
+    const stored: unknown = JSON.parse(window.localStorage.getItem(CHAT_STORAGE_KEY) ?? '[]');
+    if (!Array.isArray(stored)) return [];
+    const restored: ChatMessage[] = [];
+    for (const pair of stored.slice(-12)) {
+      if (!Array.isArray(pair) || pair.length !== 2) continue;
+      const [user, assistant] = pair as Array<Record<string, unknown>>;
+      if (!user || user.role !== 'user' || typeof user.text !== 'string' || !user.text.trim() || user.text.length > 2000) continue;
+      if (!assistant || assistant.role !== 'assistant' || typeof assistant.text !== 'string' || !assistant.text.trim() || assistant.text.length > 12000) continue;
+      const stepIds = Array.isArray(assistant.stepIds) ? assistant.stepIds.filter((id): id is StoryStep['id'] => typeof id === 'string' && storyStepById.has(id as StoryStep['id'])).slice(0, 5) : [];
+      const sourceIds = Array.isArray(assistant.sourceIds) ? assistant.sourceIds.filter((id): id is string => typeof id === 'string' && Boolean(HORMUZ_STORY.sources[id])).slice(0, 5) : [];
+      const index = restored.length / 2;
+      restored.push({ id: `restored-user-${index}`, role: 'user', text: user.text }, { id: `restored-assistant-${index}`, role: 'assistant', text: assistant.text, stepIds, sourceIds, status: 'done' });
+    }
+    return restored;
+  } catch { return []; }
+}
 type IconName = 'search' | 'close' | 'clipboard' | 'plus' | 'minus' | 'globe' | 'pin' | 'arrow' | 'layers' | 'expand';
 function Icon({ name, ...props }: SVGProps<SVGSVGElement> & { name: IconName }) {
   const paths: Record<IconName, ReactNode> = {
@@ -40,13 +65,6 @@ function displayGeometry(geometry: MapOverlay['geometry']): MapOverlay['geometry
 }
 const coordinate = (lon: number, lat: number) => `${Math.abs(lat).toFixed(2)}° ${lat >= 0 ? 'N' : 'S'}  ·  ${Math.abs(lon).toFixed(2)}° ${lon >= 0 ? 'E' : 'W'}`;
 const countryByCode = new Map(countries.map((country) => [country.code, country]));
-const DEMO_OVERLAY: MapOverlay = {
-  id: 'hormuz-demo', label: '霍尔木兹海峡 · Strait of Hormuz',
-  description: '连接波斯湾与阿曼湾的海上通道，位于伊朗与阿曼之间。此区域是临时 GeoJSON 标注，可由本地 AI 创建、更新或移除。',
-  source: 'Quick Map · 示例区域（示意范围）', color: '#f4b968',
-  geometry: { type: 'Polygon', coordinates: [[[55.8, 26.1], [56.35, 25.85], [56.85, 26.25], [56.65, 26.8], [56.05, 26.75], [55.8, 26.1]]] },
-};
-
 export default function App() {
   const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight });
   const [rotation, setRotation] = useState(0);
@@ -60,15 +78,31 @@ export default function App() {
   const [overlays, setOverlays] = useState<MapOverlay[]>([]);
   const [activeOverlay, setActiveOverlay] = useState<string | null>(null);
   const [highlightCity, setHighlightCity] = useState<string | null>(null);
+  const [storyOpen, setStoryOpen] = useState(false);
+  const [storyStepId, setStoryStepId] = useState<StoryStep['id']>('hormuz-1');
+  const [activeStoryParagraphId, setActiveStoryParagraphId] = useState<string | null>(null);
+  const [activeStoryLayerIds, setActiveStoryLayerIds] = useState<string[]>([]);
+  const [sideMode, setSideMode] = useState<'story' | 'chat' | null>(null);
+  const [askDraft, setAskDraft] = useState('');
+  const [chatMessages, setChatMessages] = useState<ChatMessage[]>(readStoredChatMessages);
+  const [askBusy, setAskBusy] = useState(false);
+  const [chatError, setChatError] = useState('');
   const [notice, setNotice] = useState('');
   const [hidden, setHidden] = useState(false);
   const [dragging, setDragging] = useState(false);
-  const focusTarget = useRef<{ geometry: Geometry } | { lon: number; lat: number; scale: number } | null>(null);
+  const focusTarget = useRef<FocusTarget | null>(null);
+  const storyEntry = useRef<StoryEntry | null>(null);
+  const askRequestId = useRef<string | null>(null);
+  const assistantMessageId = useRef<string | null>(null);
+  const askGeneration = useRef(0);
+  const manualMapMovementSinceAsk = useRef(false);
+  const bufferedMapEvents = useRef<Map<string, MapAskEvent[]>>(new Map());
   const svgRef = useRef<SVGSVGElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
   const drag = useRef<{ x: number; y: number; origin: View; moved: boolean } | null>(null);
   const suppressClick = useRef(false);
   const commandHandler = useRef<(command: MapCommand) => void>(() => {});
+  const mapEventHandler = useRef<(event: MapAskEvent) => void>(() => {});
   const selected = selectedCode ? countryByCode.get(selectedCode) : undefined;
   const active = overlays.find((overlay) => overlay.id === activeOverlay);
   const neighbors = useMemo(() => new Set(selected?.neighbors ?? []), [selected]);
@@ -79,6 +113,9 @@ export default function App() {
     const highlighted = all.find((city) => city.id === highlightCity);
     return highlighted && !visible.some((city) => city.id === highlighted.id) ? [...visible.slice(0, 13), highlighted] : visible;
   }, [selected, highlightCity]);
+  const highlightedCity = selectedCities.find((city) => city.id === highlightCity);
+  const storyStep = storyStepById.get(storyStepId) ?? HORMUZ_STORY.steps[0];
+  const visibleStoryLayers = storyOpen ? storyStep.layerIds.map((id) => storyLayerById.get(id)).filter((layer): layer is StoryLayer => Boolean(layer)) : [];
   const matches = useMemo(() => query.trim() ? findPlaces(query.trim()).slice(0, 8) : [], [query]);
 
   const projection = useMemo(() => geoNaturalEarth1().fitExtent(
@@ -133,13 +170,26 @@ export default function App() {
     setHidden(false);
   }, [projection, size]);
 
+  const focusStoryCamera = useCallback((camera: StoryCamera) => {
+    const nextRotation = Math.abs(camera.lon) > 150 ? -camera.lon : 0;
+    const point = geoNaturalEarth1().scale(projection.scale()).translate(projection.translate()).rotate([nextRotation, 0])([camera.lon, camera.lat]);
+    if (!point) return;
+    focusTarget.current = { storyCamera: camera };
+    setRotation(nextRotation);
+    const panelSpace = size.width > 1550 ? 475 : size.width > 760 ? 435 : 0;
+    const centerX = (size.width - panelSpace) / 2;
+    setView({ x: centerX - point[0] * camera.scale, y: size.height * 0.5 - point[1] * camera.scale, k: camera.scale });
+    setHidden(false);
+  }, [projection, size]);
+
   // Electron can resize after delivering a command while showing its window.
   // Refit the current target using the new projection instead of losing focus.
   const refocus = useRef(() => {});
   refocus.current = () => {
     const target = focusTarget.current;
     if (!target) return;
-    if ('geometry' in target) focusGeometry(target.geometry);
+    if ('storyCamera' in target) focusStoryCamera(target.storyCamera);
+    else if ('geometry' in target) focusGeometry(target.geometry);
     else focusPoint(target.lon, target.lat, target.scale);
   };
   useLayoutEffect(() => { refocus.current(); }, [size]);
@@ -147,6 +197,9 @@ export default function App() {
   const resetView = useCallback(() => { focusTarget.current = null; setRotation(0); setView(INITIAL_VIEW); }, []);
 
   const selectCountry = useCallback((country: CountryRecord, focus = true) => {
+    storyEntry.current = null;
+    setStoryOpen(false);
+    setSideMode(null);
     setSelectedCode(country.code);
     setSelectionPulse((previous) => previous + 1);
     setActiveOverlay(null);
@@ -183,6 +236,9 @@ export default function App() {
     if (overlay.expiresAt && Date.parse(overlay.expiresAt) <= Date.now()) return;
     overlay = { ...overlay, geometry: displayGeometry(overlay.geometry) };
     setOverlays((previous) => [...previous.filter((item) => item.id !== overlay.id), overlay]);
+    // Personal annotations remain independent of the story and its saved entry view.
+    if (storyEntry.current) return;
+    setSideMode(null);
     setActiveOverlay(overlay.id);
     setSelectedCode(null);
     setHighlightCity(null);
@@ -192,6 +248,59 @@ export default function App() {
     if (overlay.geometry.type === 'Point') focusPoint(...overlay.geometry.coordinates, 7);
     else focusGeometry(overlay.geometry);
   }, [focusGeometry, focusPoint]);
+
+  const activateStoryStep = useCallback((stepId: StoryStep['id'], showStoryPanel = true) => {
+    const step = storyStepById.get(stepId);
+    if (!step) return;
+    if (!storyEntry.current) storyEntry.current = { view, rotation, selectedCode, highlightCity, activeOverlay, query, focusTarget: focusTarget.current };
+    setStoryOpen(true);
+    setStoryStepId(stepId);
+    setActiveStoryParagraphId(step.paragraphs[0]?.id ?? null);
+    setActiveStoryLayerIds(step.paragraphs[0]?.layerIds ?? []);
+    if (showStoryPanel) setSideMode('story');
+    setSelectedCode(null);
+    setHighlightCity(null);
+    setActiveOverlay(null);
+    setSearchOpen(false);
+    setHover(null);
+    focusStoryCamera(step.camera);
+  }, [view, rotation, selectedCode, highlightCity, activeOverlay, query, focusStoryCamera]);
+
+  const exitStory = useCallback(() => {
+    const entry = storyEntry.current;
+    storyEntry.current = null;
+    setStoryOpen(false);
+    setActiveStoryParagraphId(null);
+    setActiveStoryLayerIds([]);
+    setSideMode(null);
+    if (!entry) return;
+    focusTarget.current = entry.focusTarget;
+    setView(entry.view);
+    setRotation(entry.rotation);
+    setSelectedCode(entry.selectedCode);
+    setHighlightCity(entry.highlightCity);
+    setActiveOverlay(entry.activeOverlay);
+    setQuery(entry.query);
+  }, []);
+
+  const focusStoryLayerIds = useCallback((layerIds: string[]) => {
+    const valid = layerIds.filter((id) => storyStep.layerIds.includes(id));
+    setActiveStoryLayerIds(valid);
+    if (valid.length !== 1) { focusStoryCamera(storyStep.camera); return; }
+    const layer = storyLayerById.get(valid[0]);
+    if (!layer) return;
+    if (layer.geometry.type === 'Point') focusStoryCamera({ lon: layer.geometry.coordinates[0], lat: layer.geometry.coordinates[1], scale: Math.max(storyStep.camera.scale, 9) });
+    else if (layer.geometry.type === 'MultiPoint') focusStoryCamera(storyStep.camera);
+    else focusGeometry(layer.geometry);
+  }, [storyStep, focusStoryCamera, focusGeometry]);
+
+  const chooseStoryLayer = useCallback((layerId: string) => {
+    const paragraph = storyStep.paragraphs.find((item) => item.layerIds.includes(layerId));
+    setActiveStoryLayerIds([layerId]);
+    setActiveStoryParagraphId(paragraph?.id ?? null);
+    setSideMode('story');
+    if (paragraph) window.requestAnimationFrame(() => document.getElementById(`story-paragraph-${paragraph.id}`)?.scrollIntoView({ block: 'nearest', behavior: 'smooth' }));
+  }, [storyStep]);
 
   commandHandler.current = (command) => {
     setHidden(false);
@@ -218,16 +327,137 @@ export default function App() {
       case 'upsert_overlay': addOverlay(command.overlay); announce(`已更新标注：${command.overlay.label}`); break;
       case 'remove_overlay': setOverlays((previous) => previous.filter((item) => item.id !== command.id)); setActiveOverlay((previous) => previous === command.id ? null : previous); break;
       case 'clear_overlays': setOverlays([]); setActiveOverlay(null); announce('已清除全部临时标注'); break;
+      case 'set_story_step': activateStoryStep(command.stepId); announce(`已切换故事：${storyStepById.get(command.stepId)?.title ?? command.stepId}`); break;
     }
+  };
+
+  const openSource = async (sourceId: string) => {
+    if (!HORMUZ_STORY.sources[sourceId]) return;
+    try {
+      if (!window.quickMap?.openStorySource) throw new Error('该功能需要 Windows 桌面版');
+      await window.quickMap.openStorySource(sourceId);
+    } catch (error) { announce(`无法打开来源：${error instanceof Error ? error.message : '请稍后重试'}`); }
+  };
+
+  const applyMapAskEvent = (event: MapAskEvent) => {
+    const messageId = assistantMessageId.current;
+    if (!messageId) return;
+    if (event.type === 'started') {
+      setChatMessages((previous) => previous.map((message) => message.id === messageId ? { ...message, status: 'streaming' } : message));
+    } else if (event.type === 'conversation_reset') {
+      const userMessageId = messageId.replace(/^assistant-/, 'user-');
+      setChatMessages((previous) => previous.filter((message) => message.id === userMessageId || message.id === messageId));
+      try { window.localStorage.removeItem(CHAT_STORAGE_KEY); } catch { /* Storage may be unavailable. */ }
+      announce(event.message);
+    } else if (event.type === 'delta') {
+      setChatMessages((previous) => previous.map((message) => message.id === messageId ? { ...message, text: message.text + event.text, status: 'streaming' } : message));
+    } else if (event.type === 'completed') {
+      const stepIds = event.stepIds.filter((id) => storyStepById.has(id as StoryStep['id']));
+      const sourceIds = event.sourceIds.filter((id) => Boolean(HORMUZ_STORY.sources[id]));
+      setChatMessages((previous) => previous.map((message) => message.id === messageId ? { ...message, text: event.answer, stepIds, sourceIds, status: 'done' } : message));
+      setAskBusy(false);
+      askRequestId.current = null;
+      assistantMessageId.current = null;
+      if (stepIds[0] && !manualMapMovementSinceAsk.current) activateStoryStep(stepIds[0] as StoryStep['id'], false);
+    } else if (event.type === 'cancelled') {
+      setChatMessages((previous) => previous.map((message) => message.id === messageId ? { ...message, status: 'cancelled', text: '本次回复已取消。' } : message));
+      setAskBusy(false);
+      askRequestId.current = null;
+      assistantMessageId.current = null;
+    } else if (event.type === 'error') {
+      setChatError(event.message);
+      setChatMessages((previous) => previous.map((message) => message.id === messageId ? { ...message, status: 'error', text: '本次回复未完成。' } : message));
+      setAskBusy(false);
+      askRequestId.current = null;
+      assistantMessageId.current = null;
+    }
+  };
+
+  mapEventHandler.current = (event) => {
+    if (askRequestId.current === 'pending') {
+      const previous = bufferedMapEvents.current.get(event.requestId) ?? [];
+      previous.push(event);
+      bufferedMapEvents.current.set(event.requestId, previous);
+    } else if (event.requestId === askRequestId.current) {
+      applyMapAskEvent(event);
+    }
+  };
+
+  const submitAsk = async () => {
+    const prompt = askDraft.trim().slice(0, 2000);
+    if (!prompt || askRequestId.current) return;
+    setSideMode('chat');
+    setChatError('');
+    if (!window.quickMap?.askMap) { setChatError('地图内提问需要 QuickMap Windows 桌面版和本机 Codex；离线图文故事仍可浏览。'); return; }
+    const generation = ++askGeneration.current;
+    const messageId = `assistant-${generation}`;
+    assistantMessageId.current = messageId;
+    askRequestId.current = 'pending';
+    manualMapMovementSinceAsk.current = false;
+    bufferedMapEvents.current.clear();
+    setAskBusy(true);
+    setAskDraft('');
+    setChatMessages((previous) => [...previous, { id: `user-${generation}`, role: 'user', text: prompt }, { id: messageId, role: 'assistant', text: '', status: 'streaming' }]);
+    try {
+      const { requestId } = await window.quickMap.askMap(prompt);
+      if (generation !== askGeneration.current) { void window.quickMap.cancelMapAsk(requestId); return; }
+      askRequestId.current = requestId;
+      const buffered = bufferedMapEvents.current.get(requestId) ?? [];
+      bufferedMapEvents.current.clear();
+      for (const event of buffered) applyMapAskEvent(event);
+    } catch (error) {
+      if (generation !== askGeneration.current) return;
+      askRequestId.current = null;
+      assistantMessageId.current = null;
+      bufferedMapEvents.current.clear();
+      setAskBusy(false);
+      setChatError(error instanceof Error ? error.message : '无法连接本机 Codex');
+      setChatMessages((previous) => previous.map((message) => message.id === messageId ? { ...message, text: '本次回复未完成。', status: 'error' } : message));
+    }
+  };
+
+  const cancelAsk = async () => {
+    const requestId = askRequestId.current;
+    if (!requestId) return;
+    ++askGeneration.current;
+    askRequestId.current = null;
+    bufferedMapEvents.current.clear();
+    const messageId = assistantMessageId.current;
+    assistantMessageId.current = null;
+    setAskBusy(false);
+    setChatMessages((previous) => previous.map((message) => message.id === messageId ? { ...message, text: '本次回复已取消。', status: 'cancelled' } : message));
+    try { await window.quickMap?.cancelMapAsk(requestId === 'pending' ? undefined : requestId); }
+    catch (error) { setChatError(error instanceof Error ? error.message : '取消失败'); }
+  };
+
+  const resetChat = async () => {
+    if (askRequestId.current) await cancelAsk();
+    try { await window.quickMap?.resetMapConversation(); setChatMessages([]); setChatError(''); }
+    catch (error) { setChatError(error instanceof Error ? error.message : '无法开始新会话'); }
   };
 
   useEffect(() => {
     const resize = () => { setSize({ width: window.innerWidth, height: window.innerHeight }); };
     window.addEventListener('resize', resize);
     const unsubscribe = window.quickMap?.onCommand((command) => commandHandler.current(command));
+    const unsubscribeMapEvents = window.quickMap?.onMapEvent?.((event) => mapEventHandler.current(event));
     window.quickMap?.ready();
-    return () => { window.removeEventListener('resize', resize); unsubscribe?.(); };
+    return () => { window.removeEventListener('resize', resize); unsubscribe?.(); unsubscribeMapEvents?.(); };
   }, []);
+
+  useEffect(() => {
+    const completePairs: Array<[Pick<ChatMessage, 'role' | 'text'>, Pick<ChatMessage, 'role' | 'text' | 'stepIds' | 'sourceIds'>]> = [];
+    for (let index = 0; index + 1 < chatMessages.length; index += 2) {
+      const user = chatMessages[index], assistant = chatMessages[index + 1];
+      if (user.role !== 'user' || assistant.role !== 'assistant' || assistant.status !== 'done') continue;
+      completePairs.push([
+        { role: 'user', text: user.text.slice(0, 2000) },
+        { role: 'assistant', text: assistant.text.slice(0, 12000), stepIds: assistant.stepIds?.filter((id) => storyStepById.has(id as StoryStep['id'])), sourceIds: assistant.sourceIds?.filter((id) => Boolean(HORMUZ_STORY.sources[id])) },
+      ]);
+    }
+    try { window.localStorage.setItem(CHAT_STORAGE_KEY, JSON.stringify(completePairs.slice(-12))); }
+    catch { /* An unavailable storage quota must not break offline story browsing. */ }
+  }, [chatMessages]);
 
   useEffect(() => {
     const timer = window.setInterval(() => setOverlays((previous) => {
@@ -275,6 +505,8 @@ export default function App() {
     const wheel = (event: WheelEvent) => {
       event.preventDefault();
       setHover(null);
+      focusTarget.current = null;
+      if (askRequestId.current) manualMapMovementSinceAsk.current = true;
       const rect = svg.getBoundingClientRect();
       const x = event.clientX - rect.left, y = event.clientY - rect.top;
       setView((previous) => {
@@ -287,6 +519,8 @@ export default function App() {
   }, [hidden]);
 
   const zoom = (factor: number) => setView((previous) => {
+    focusTarget.current = null;
+    if (askRequestId.current) manualMapMovementSinceAsk.current = true;
     const k = Math.max(0.8, Math.min(MAX_ZOOM, previous.k * factor));
     return { k, x: size.width / 2 - (size.width / 2 - previous.x) * k / previous.k, y: size.height / 2 - (size.height / 2 - previous.y) * k / previous.k };
   });
@@ -303,6 +537,8 @@ export default function App() {
       suppressClick.current = true;
       setDragging(true);
       setHover(null);
+      focusTarget.current = null;
+      if (askRequestId.current) manualMapMovementSinceAsk.current = true;
       if (!event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.setPointerCapture(event.pointerId);
       setView({ ...drag.current.origin, x: drag.current.origin.x + dx, y: drag.current.origin.y + dy });
     }
@@ -326,7 +562,7 @@ export default function App() {
         <path d={path({ type: 'Sphere' }) ?? ''} className="ocean-border" vectorEffect="non-scaling-stroke"/>
         <path d={graticule} className="graticule" vectorEffect="non-scaling-stroke"/>
         {countryPaths.map(({ country, d }) => <path key={country.id} d={d}
-          className={`country ${selectedCode === country.code ? 'selected' : ''} ${neighbors.has(country.code) ? 'neighbor' : ''}`}
+          className={`country ${selectedCode === country.code && !highlightCity ? 'selected' : ''} ${neighbors.has(country.code) && !highlightCity ? 'neighbor' : ''}`}
           vectorEffect="non-scaling-stroke"
           onPointerEnter={(event) => { if (!drag.current?.moved) setHover({ country, x: event.clientX, y: event.clientY }); }}
           onPointerMove={(event) => { if (!drag.current?.moved) setHover({ country, x: event.clientX, y: event.clientY }); }}
@@ -334,7 +570,7 @@ export default function App() {
           onClick={(event) => { event.stopPropagation(); if (!suppressClick.current) selectCountry(country); }}>
           <title>{country.nameZh} · {country.nameEn}{(country.capitalZh || country.capitalEn) ? ` · 首都 ${country.capitalZh || country.capitalEn}` : ''}</title>
         </path>)}
-        {selected && <g key={`${selected.code}-${selectionPulse}`} className="selected-region-emphasis" aria-hidden="true" pointerEvents="none">
+        {selected && !highlightCity && <g key={`${selected.code}-${selectionPulse}`} className="selected-region-emphasis" aria-hidden="true" pointerEvents="none">
           <path d={path(selected.geometry) ?? ''} className="selected-region-glow" vectorEffect="non-scaling-stroke"/>
           <path d={path(selected.geometry) ?? ''} className="selected-region-boundary" vectorEffect="non-scaling-stroke"/>
           <path d={path(selected.geometry) ?? ''} className="selected-region-pulse" vectorEffect="non-scaling-stroke"/>
@@ -352,7 +588,30 @@ export default function App() {
             onClick={(event) => { event.stopPropagation(); if (!suppressClick.current) { setHighlightCity(city.id); focusPoint(city.lon, city.lat, Math.max(7, view.k)); } }}>
             <circle className="city-halo" r={city.isCapital ? 9 : 7}/><circle r={city.isCapital ? 4 : 3}/>
             {visibleCityLabels.has(city.id) && <text x="11" y="4">{city.nameZh || city.nameEn}{city.isCapital ? ' ★' : ''}</text>}
-            <title>{city.nameZh || city.nameEn} · {city.nameEn}</title>
+            <title>{city.nameZh || city.nameEn} · 城市位置点 · 暂无边界数据</title>
+          </g>;
+        })}
+        {visibleStoryLayers.map((layer) => {
+          const positions = layer.geometry.type === 'Point' ? [layer.geometry.coordinates] : layer.geometry.type === 'MultiPoint' ? layer.geometry.coordinates : null;
+          const routePoints = layer.geometry.type === 'LineString' ? layer.geometry.coordinates.slice(-2).map((point) => projection(point)) : [];
+          const routeEnd = routePoints.length === 2 && routePoints[0] && routePoints[1] ? routePoints[1] : null;
+          const routeAngle = routeEnd && routePoints[0] ? Math.atan2(routeEnd[1] - routePoints[0][1], routeEnd[0] - routePoints[0][0]) * 180 / Math.PI : 0;
+          const routeLabelPoint = positions ? null : path.centroid(layer.geometry);
+          return <g key={layer.id} data-layer-id={layer.id} className={`story-map-layer ${layer.kind} ${activeStoryLayerIds.includes(layer.id) ? 'active' : ''}`}
+            style={{ '--story-color': layer.color || '#8bd5c8' } as CSSProperties}
+            role="button" tabIndex={0} aria-label={`${layer.label}，点击查看对应讲解`}
+            onKeyDown={(event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); chooseStoryLayer(layer.id); } }}
+            onClick={(event) => { event.stopPropagation(); if (!suppressClick.current) chooseStoryLayer(layer.id); }}>
+            <title>{layer.label}。{layer.description}</title>
+            {positions ? positions.map((position, index) => {
+              const point = projection(position);
+              if (!point) return null;
+              return <g key={`${layer.id}-${index}`} transform={`translate(${point[0]},${point[1]}) scale(${1 / view.k})`}>
+                <circle className="story-point-halo" r={layer.kind === 'strait' ? 23 : 13}/><circle className="story-point" r={layer.kind === 'strait' ? 7 : 5}/>
+                {layer.pointLabels?.[index] && <text className="story-point-label" x={layer.pointLabelOffsets?.[index]?.[0] ?? 12} y={layer.pointLabelOffsets?.[index]?.[1] ?? 4} textAnchor={(layer.pointLabelOffsets?.[index]?.[0] ?? 12) < 0 ? 'end' : 'start'}>{layer.pointLabels[index]} · 示意</text>}
+                {layer.kind === 'strait' && <text className="story-point-label" x="13" y="-11">霍尔木兹海峡 · 示意</text>}
+              </g>;
+            }) : <><path d={path(layer.geometry) ?? ''} className="story-route-hit" vectorEffect="non-scaling-stroke"/><path d={path(layer.geometry) ?? ''} className="story-route" vectorEffect="non-scaling-stroke"/>{routeEnd && <g transform={`translate(${routeEnd[0]},${routeEnd[1]}) rotate(${routeAngle}) scale(${1 / view.k})`} pointerEvents="none"><path className="story-arrowhead" d="M-12 -7 0 0 -12 7"/></g>}{routeLabelPoint?.every(Number.isFinite) && <g transform={`translate(${routeLabelPoint[0]},${routeLabelPoint[1]}) scale(${1 / view.k})`} pointerEvents="none"><text className="story-route-label" textAnchor="middle" y="-13">{layer.label}</text></g>}</>}
           </g>;
         })}
         {overlays.map((overlay) => {
@@ -372,7 +631,7 @@ export default function App() {
     </svg>
 
     <header className="topbar">
-      <a className="brand" href="#" onClick={(event) => { event.preventDefault(); resetView(); setSelectedCode(null); setActiveOverlay(null); }} aria-label="Quick Map 返回世界视图"><span className="brand-mark"><Icon name="globe"/></span><span>Quick<span className="brand-light">Map</span><small>世界，随时在手边</small></span></a>
+       <a className="brand" href="#" onClick={(event) => { event.preventDefault(); storyEntry.current = null; setStoryOpen(false); setSideMode(null); resetView(); setSelectedCode(null); setActiveOverlay(null); }} aria-label="Quick Map 返回世界视图"><span className="brand-mark"><Icon name="globe"/></span><span>Quick<span className="brand-light">Map</span><small>世界，随时在手边</small></span></a>
       <div className="topbar-right"><span className="offline-pill"><i/>离线地图 <span>OFFLINE</span></span><button className="hide-button" onClick={hide} title="收起地图 (Esc)">收起 <kbd>esc</kbd></button></div>
     </header>
 
@@ -389,19 +648,20 @@ export default function App() {
       {searchOpen && <div className="search-results" id="search-results" role="listbox" aria-label="搜索结果">
         {query.trim() ? matches.length ? matches.map((match, index) => <button key={match.id} id={`result-${match.id}`} role="option" aria-selected={index === resultIndex} className={`search-result ${index === resultIndex ? 'active' : ''}`} onMouseEnter={() => setResultIndex(index)} onClick={() => choosePlace(match)}><span className="result-icon"><Icon name={match.kind === 'country' ? 'globe' : 'pin'}/></span><span>{match.label}<small>{match.kind === 'country' ? '国家 / 地区' : '城市'}{match.countryCode ? ` · ${countryByCode.get(match.countryCode)?.nameZh || match.countryCode}` : ''}</small></span><Icon name="arrow"/></button>) : <div className="search-empty"><Icon name="search"/><p>没有找到这个地名</p><span>试试中文、英文或国家代码；海峡等地点可由本地 AI 标注。</span></div> : <div className="search-suggestions"><span className="eyebrow">从一个地方开始</span><div>{['中国', '日本', '法国', 'Egypt'].map((text) => <button key={text} onClick={() => runSearch(text)}>{text}<Icon name="arrow"/></button>)}</div><p><Icon name="clipboard"/>复制地名后按 Ctrl + V，直接跳转</p></div>}
       </div>}
-      {!searchOpen && !selected && !active && <div className="map-intro"><span className="eyebrow">YOUR WORLD, AT A GLANCE</span><h1>每一个地名，<br/>都有了位置。</h1><p>悬停认识各地，点击探索邻近地区与城市。<br/>从一段文字，抵达世界的任何角落。</p><div className="intro-rule"/><span className="intro-caption">{countries.length} 个国家与地区 · 全程离线</span></div>}
+      {!searchOpen && !selected && !active && !sideMode && <div className="map-intro"><span className="eyebrow">YOUR WORLD, AT A GLANCE</span><h1>每一个地名，<br/>都有了位置。</h1><p>悬停认识各地，点击探索邻近地区与城市。<br/>从一段文字，抵达世界的任何角落。</p><div className="intro-rule"/><span className="intro-caption">{countries.length} 个国家与地区 · 全程离线</span></div>}
     </section>
 
-    {(selected || active) && <aside className="detail-panel" aria-label={selected ? '地区详情' : '临时标注详情'}>
+    {(selected || active) && !sideMode && <aside className="detail-panel" aria-label={selected ? '地区详情' : '临时标注详情'}>
       <div className="panel-topline"><span className="eyebrow">{selected ? 'EXPLORE A REGION' : 'DYNAMIC MAP LAYER'}</span><button className="icon-button small" aria-label="关闭详情" onClick={() => { setSelectedCode(null); setActiveOverlay(null); }}><Icon name="close"/></button></div>
       {selected ? <>
-        <div className="country-code">{selected.code}</div><h2>{selected.nameZh}</h2><p className="english-name">{selected.nameEn}</p>
-        {(selected.capitalZh || selected.capitalEn) && <div className="capital-card"><span className="capital-star">★</span><div><span className="field-label">首都 / CAPITAL</span><strong>{selected.capitalZh || selected.capitalEn}</strong>{selected.capitalZh && selected.capitalEn && <small>{selected.capitalEn}</small>}</div></div>}
+        <div className="country-code">{highlightedCity ? 'CITY POINT' : selected.code}</div><h2>{highlightedCity ? highlightedCity.nameZh || highlightedCity.nameEn : selected.nameZh}</h2><p className="english-name">{highlightedCity ? highlightedCity.nameEn : selected.nameEn}</p>
+        {highlightedCity && <div className="city-boundary-note"><Icon name="pin"/><div><strong>城市位置点 · 暂无边界数据</strong><span>所属国家/地区：{selected.nameZh}。{selected.code === 'HK' ? '香港另有“地区轮廓”，与这个城市点是两条不同记录。' : '此圆点不代表行政边界。'}</span><button onClick={() => selectCountry(selected)}>查看{selected.nameZh}地区轮廓 <Icon name="arrow"/></button></div></div>}
+        {!highlightedCity && (selected.capitalZh || selected.capitalEn) && <div className="capital-card"><span className="capital-star">★</span><div><span className="field-label">首都 / CAPITAL</span><strong>{selected.capitalZh || selected.capitalEn}</strong>{selected.capitalZh && selected.capitalEn && <small>{selected.capitalEn}</small>}</div></div>}
         <div className="section-heading"><h3>相邻地区</h3><span>{neighbors.size.toString().padStart(2, '0')}</span></div>
         <div className="neighbor-list">{selected.neighbors.length ? selected.neighbors.map((code) => { const neighbor = countryByCode.get(code); return neighbor ? <button key={code} onClick={() => selectCountry(neighbor)}><span className="neighbor-dot"/>{neighbor.nameZh}<Icon name="arrow"/></button> : null; }) : <p className="muted-note">没有陆地接壤的地区</p>}</div>
         <div className="section-heading"><h3>主要城市</h3><span>{selectedCities.length.toString().padStart(2, '0')}</span></div>
-        <div className="city-list">{selectedCities.length ? selectedCities.map((city) => <button key={city.id} className={highlightCity === city.id ? 'active' : ''} onClick={() => { setHighlightCity(city.id); focusPoint(city.lon, city.lat, 8); }}><span className={`city-list-dot ${city.isCapital ? 'is-capital' : ''}`}/><span>{city.nameZh || city.nameEn}<small>{city.nameEn}</small></span>{city.isCapital ? <span className="capital-tag">首都</span> : <Icon name="arrow"/>}</button>) : <p className="muted-note">当前离线数据暂无城市记录</p>}</div>
-        <div className="panel-coordinate"><Icon name="pin"/>{coordinate(selected.lon, selected.lat)}</div>
+        <div className="city-list">{selectedCities.length ? selectedCities.map((city) => <button key={city.id} className={highlightCity === city.id ? 'active' : ''} onClick={() => { setHighlightCity(city.id); focusPoint(city.lon, city.lat, 8); }}><span className={`city-list-dot ${city.isCapital ? 'is-capital' : ''}`}/><span>{city.nameZh || city.nameEn}<small>{city.nameEn} · 位置点</small></span>{city.isCapital ? <span className="capital-tag">首都</span> : <Icon name="arrow"/>}</button>) : <p className="muted-note">当前离线数据暂无城市记录</p>}</div>
+        <div className="panel-coordinate"><Icon name="pin"/>{coordinate(highlightedCity?.lon ?? selected.lon, highlightedCity?.lat ?? selected.lat)}</div>
       </> : active ? <>
         <div className="overlay-badge"><Icon name="layers"/>临时标注</div><h2 className="overlay-title">{active.label}</h2><p className="overlay-description">{active.description || '由本地 AI 或工具添加的地图标注。'}</p>
         <div className="overlay-metadata"><span>几何类型</span><strong>{geometryLabels[active.geometry.type]}</strong>{active.source && <><span>来源</span><strong>{active.source}</strong></>}{active.expiresAt && <><span>有效期至</span><strong>{new Date(active.expiresAt).toLocaleString('zh-CN')}</strong></>}</div>
@@ -410,8 +670,29 @@ export default function App() {
       </> : null}
     </aside>}
 
+    {sideMode && <aside className="story-panel" aria-label={sideMode === 'story' ? '霍尔木兹图文故事' : '问地图回复'}>
+      <div className="story-panel-head"><div><span className="eyebrow">QUICKMAP / EXPLORE</span><strong>{sideMode === 'story' ? '图文故事' : '问地图'}</strong></div><button className="icon-button small" aria-label="关闭侧栏" onClick={() => { if (storyOpen) exitStory(); else setSideMode(null); }}><Icon name="close"/></button></div>
+      <div className="story-tabs"><button className={sideMode === 'story' ? 'active' : ''} onClick={() => storyOpen ? setSideMode('story') : activateStoryStep('hormuz-1')}>霍尔木兹故事</button><button className={sideMode === 'chat' ? 'active' : ''} onClick={() => setSideMode('chat')}>Codex 回复{chatMessages.length > 0 ? ` · ${Math.ceil(chatMessages.length / 2)}` : ''}</button></div>
+      {sideMode === 'story' ? <div className="story-panel-scroll" key={storyStep.id}>
+        <div className="story-kicker">{storyStep.eyebrow} <span>共 {HORMUZ_STORY.steps.length} 步</span></div>
+        <h2>{storyStep.title}</h2><p className="story-subtitle">{HORMUZ_STORY.subtitle}</p>
+        <div className="story-progress" aria-label="故事步骤">{HORMUZ_STORY.steps.map((step, index) => <button key={step.id} className={step.id === storyStep.id ? 'active' : ''} aria-label={`第 ${index + 1} 步：${step.title}`} aria-current={step.id === storyStep.id ? 'step' : undefined} onClick={() => activateStoryStep(step.id)}>{index + 1}</button>)}</div>
+        <div className="story-paragraphs">{storyStep.paragraphs.map((paragraph) => <button id={`story-paragraph-${paragraph.id}`} key={paragraph.id} className={`story-paragraph ${activeStoryParagraphId === paragraph.id ? 'active' : ''}`} onClick={() => { setActiveStoryParagraphId(paragraph.id); focusStoryLayerIds(paragraph.layerIds); }}><span className="story-paragraph-dot"/><span>{paragraph.text}<small>定位地图：{paragraph.layerIds.map((id) => storyLayerById.get(id)?.label).filter(Boolean).join('、')}</small></span></button>)}</div>
+        {storyStep.claims.length > 0 && <div className="story-claims">{storyStep.claims.map((claim) => <div key={claim.id} className="story-claim"><span>{claim.label}</span><strong>{claim.value}<small>{claim.unit}</small></strong><p>{claim.period}{claim.qualifier ? ` · ${claim.qualifier}` : ''}</p><button onClick={() => void openSource(claim.sourceId)}>查看来源 <Icon name="arrow"/></button></div>)}</div>}
+        <div className="story-legend"><span>示意图层</span><p>{HORMUZ_STORY.legend}</p><div><i className="legend-sea"/>海运方向<i className="legend-pipe"/>陆上管道<i className="legend-place"/>位置点</div></div>
+        <div className="story-sources"><span>资料来源 · 截至 {HORMUZ_STORY.asOf}</span>{storyStep.sourceIds.map((id) => <button key={id} onClick={() => void openSource(id)}>{HORMUZ_STORY.sources[id]?.title}<small>{HORMUZ_STORY.sources[id]?.period}</small><Icon name="arrow"/></button>)}</div>
+        <div className="story-nav"><button onClick={() => activateStoryStep(HORMUZ_STORY.steps[Math.max(0, HORMUZ_STORY.steps.findIndex((step) => step.id === storyStep.id) - 1)].id)} disabled={storyStep.id === 'hormuz-1'}>← 上一步</button><button onClick={() => focusStoryCamera(storyStep.camera)}>回到本步视角</button><button onClick={() => activateStoryStep(HORMUZ_STORY.steps[Math.min(HORMUZ_STORY.steps.length - 1, HORMUZ_STORY.steps.findIndex((step) => step.id === storyStep.id) + 1)].id)} disabled={storyStep.id === 'hormuz-5'}>下一步 →</button></div>
+        <button className="story-exit" onClick={exitStory}>退出故事，恢复进入前的地图视角</button>
+      </div> : <div className="story-panel-scroll chat-scroll">
+        <p className="chat-context">这是 QuickMap 管理的本机 Codex 会话，与当前 Codex 桌面对话不共享聊天记录。</p>
+        {chatMessages.length === 0 ? <div className="chat-empty"><span>✦</span><strong>直接问这张地图</strong><p>例如“为什么霍尔木兹海峡重要？”；离线图文故事随时可浏览。</p></div> : chatMessages.map((message) => <div key={message.id} className={`chat-message ${message.role}`}><span>{message.role === 'user' ? '你' : 'Codex'}{message.status === 'streaming' ? ' · 正在回复' : message.status === 'cancelled' ? ' · 已取消' : ''}</span><p>{message.text || (message.status === 'streaming' ? '正在连接本机 Codex…' : '')}</p>{message.stepIds?.length ? <div className="chat-step-links">{message.stepIds.map((id) => { const step = storyStepById.get(id as StoryStep['id']); return step ? <button key={id} onClick={() => activateStoryStep(step.id)}>查看地图：{step.title} <Icon name="arrow"/></button> : null; })}</div> : null}{message.sourceIds?.length ? <div className="chat-source-links">{message.sourceIds.map((id) => HORMUZ_STORY.sources[id] ? <button key={id} onClick={() => void openSource(id)}>来源：{HORMUZ_STORY.sources[id].title}</button> : null)}</div> : null}</div>)}
+        {chatError && <div className="chat-error" role="alert">{chatError}</div>}
+        <div className="chat-actions">{askBusy && <button onClick={() => void cancelAsk()}>取消本次回复</button>}{chatMessages.length > 0 && !askBusy && <button onClick={() => void resetChat()}>开始新会话</button>}</div>
+      </div>}
+    </aside>}
+
     <div className="bottom-left">
-      <div className="ai-card"><span className="ai-symbol">✦</span><div><strong>让 AI 带你找到它</strong><p>坐标、海峡、路线，直接标在地图上。</p><button onClick={() => addOverlay(DEMO_OVERLAY)}>试试：霍尔木兹海峡 <Icon name="arrow"/></button></div>{overlays.length > 0 && <span className="layer-count" title={`${overlays.length} 个临时标注`}>{overlays.length}</span>}</div>
+      <div className="ask-card"><div className="ask-heading"><span className="ai-symbol">✦</span><div><strong>问地图</strong><small>本机 Codex · 可继续追问</small></div>{overlays.length > 0 && <span className="layer-count" title={`${overlays.length} 个临时标注`}>{overlays.length}</span>}</div><div className="ask-input-row"><textarea value={askDraft} aria-label="向地图提问" placeholder="例如：为什么霍尔木兹海峡这么重要？" rows={2} onChange={(event) => setAskDraft(event.target.value)} onKeyDown={(event) => { if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing) { event.preventDefault(); void submitAsk(); } }}/><button aria-label="发送给本机 Codex" disabled={askBusy || !askDraft.trim()} onClick={() => void submitAsk()}><Icon name="arrow"/></button></div><div className="ask-links"><button onClick={() => activateStoryStep('hormuz-1')}>离线浏览：霍尔木兹五步故事 <Icon name="arrow"/></button>{chatMessages.length > 0 && sideMode !== 'chat' && <button onClick={() => setSideMode('chat')}>查看回复</button>}</div></div>
       {overlays.length > 0 && <div className="layer-strip" aria-label="临时图层">{overlays.map((overlay) => <button className={activeOverlay === overlay.id ? 'active' : ''} key={overlay.id} onClick={() => { setActiveOverlay(overlay.id); setSelectedCode(null); if (overlay.geometry.type === 'Point') focusPoint(...overlay.geometry.coordinates, 7); else focusGeometry(overlay.geometry); }}><i style={{ background: overlay.color || '#f4b968' }}/>{overlay.label.split(' · ')[0]}</button>)}<button className="clear-layers" onClick={() => { setOverlays([]); setActiveOverlay(null); }} title="清除全部临时标注"><Icon name="close"/></button></div>}
     </div>
 

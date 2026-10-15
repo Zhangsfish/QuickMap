@@ -119,3 +119,27 @@ test('CLI region resolves arguments into validated local region commands', async
     assert.equal(received.length, 4);
   } finally { await server.close(); }
 });
+
+test('story-step CLI and authenticated API accept only bundled step IDs', async () => {
+  const received = [];
+  const server = await startControlServer({ onCommand(command) { received.push(command); return true; }, onQuit() {} });
+  try {
+    const file = join(directory, 'story-control.json');
+    await writeFile(file, JSON.stringify({ protocol: 1, port: server.port, token: server.token }));
+    for (let index = 1; index <= 5; index += 1) {
+      const stepId = `hormuz-${index}`;
+      const command = await parseCommand(['story-step', stepId]);
+      assert.deepEqual(command, { type: 'set_story_step', stepId });
+      assert.equal((await sendRequest(file, '/command', command)).accepted, true);
+    }
+    await assert.rejects(parseCommand(['story-step', 'hormuz-6']));
+    await assert.rejects(parseCommand(['story-step']));
+    await assert.rejects(parseCommand(['story-step', 'hormuz-1', 'extra']));
+    const response = await fetch(`http://127.0.0.1:${server.port}/command`, {
+      method: 'POST', headers: { Authorization: `Bearer ${server.token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type: 'set_story_step', stepId: 'arbitrary-scene' }),
+    });
+    assert.equal(response.status, 400);
+    assert.equal(received.length, 5);
+  } finally { await server.close(); }
+});

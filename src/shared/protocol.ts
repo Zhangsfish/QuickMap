@@ -33,6 +33,11 @@ export const overlaySchema = z.object({
   geometry: geometrySchema,
 });
 
+// Only steps bundled with QuickMap may be selected by an external control client.
+export const STORY_STEP_IDS = ['hormuz-1', 'hormuz-2', 'hormuz-3', 'hormuz-4', 'hormuz-5'] as const;
+export const storyStepIdSchema = z.enum(STORY_STEP_IDS);
+export type StoryStepId = z.infer<typeof storyStepIdSchema>;
+
 export const mapCommandSchema = z.discriminatedUnion('type', [
   z.object({
     type: z.literal('show_place'),
@@ -44,6 +49,7 @@ export const mapCommandSchema = z.discriminatedUnion('type', [
   }),
   z.object({ type: z.literal('search'), query: z.string().min(1).max(200) }),
   z.object({ type: z.literal('focus_region'), query: z.string().trim().min(1).max(200) }),
+  z.object({ type: z.literal('set_story_step'), stepId: storyStepIdSchema }),
   z.object({ type: z.literal('upsert_overlay'), overlay: overlaySchema }),
   z.object({ type: z.literal('remove_overlay'), id: z.string().min(1).max(100) }),
   z.object({ type: z.literal('clear_overlays') }),

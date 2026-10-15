@@ -39,6 +39,10 @@ export async function parseCommand(args: string[]): Promise<MapCommand> {
   let command: unknown;
   switch (action) {
     case 'region': command = { type: 'focus_region', query: values.join(' ') }; break;
+    case 'story-step':
+      if (values.length !== 1) throw new Error('Usage: story-step hormuz-1 (through hormuz-5)');
+      command = { type: 'set_story_step', stepId: values[0] };
+      break;
     case 'search': command = { type: 'search', query: values.join(' ') }; break;
     case 'show':
       if (values.length < 3 || values.length > 4) throw new Error('Usage: show "Place name" longitude latitude [description]');

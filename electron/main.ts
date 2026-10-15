@@ -1,17 +1,25 @@
-import { app, BrowserWindow, clipboard, dialog, globalShortcut, ipcMain, Menu, nativeImage, screen, Tray } from 'electron';
+import { app, BrowserWindow, clipboard, dialog, globalShortcut, ipcMain, Menu, nativeImage, screen, shell, Tray } from 'electron';
 import { mkdir, readFile, rename, unlink, writeFile } from 'node:fs/promises';
-import { dirname, join, resolve } from 'node:path';
+import { mkdirSync } from 'node:fs';
+import { dirname, isAbsolute, join, resolve } from 'node:path';
 import { CommandQueue, startControlServer } from './control';
+import { MapCodexSession } from './map-codex';
 import { readSelectedText } from './selection';
+import { HORMUZ_STORY } from '../src/story/hormuz';
 
 app.setName('QuickMap');
-app.setPath('userData', join(app.getPath('appData'), 'QuickMap'));
+const customUserData = process.env.QUICKMAP_USER_DATA_DIR;
+if (customUserData && !isAbsolute(customUserData)) throw new Error('QUICKMAP_USER_DATA_DIR must be an absolute path.');
+const userDataPath = customUserData ? resolve(customUserData) : join(app.getPath('appData'), 'QuickMap');
+mkdirSync(userDataPath, { recursive: true, mode: 0o700 });
+app.setPath('userData', userDataPath);
 const shortcut = process.env.QUICKMAP_SHORTCUT || 'CommandOrControl+Alt+M';
 const controlFile = resolve(process.env.QUICKMAP_CONTROL_FILE || join(app.getPath('userData'), 'quickmap-control.json'));
 const commands = new CommandQueue();
 let window: BrowserWindow | undefined;
 let tray: Tray | undefined;
 let control: Awaited<ReturnType<typeof startControlServer>> | undefined;
+let mapCodex: MapCodexSession | undefined;
 let quitting = false;
 let capturingSelection = false;
 
@@ -65,7 +73,7 @@ if (!app.requestSingleInstanceLock()) {
     quitting = true;
     globalShortcut.unregisterAll();
     tray?.destroy();
-    void cleanupControl().finally(() => app.quit());
+    void Promise.all([cleanupControl(), mapCodex?.close()]).finally(() => app.quit());
   });
 
   void app.whenReady().then(async () => {
@@ -86,13 +94,22 @@ if (!app.requestSingleInstanceLock()) {
         webSecurity: true,
       },
     });
+    mapCodex = new MapCodexSession({
+      dataDir: join(app.getPath('userData'), 'map-chat'),
+      onEvent: (mapEvent) => {
+        if (window && !window.isDestroyed()) window.webContents.send('quickmap:map-event', mapEvent);
+      },
+    });
     window.on('close', (event) => { if (!quitting) { event.preventDefault(); window?.hide(); } });
     window.once('ready-to-show', showMap);
     window.webContents.setWindowOpenHandler(() => ({ action: 'deny' }));
     window.webContents.on('will-navigate', (event) => event.preventDefault());
     window.webContents.on('will-attach-webview', (event) => event.preventDefault());
     window.webContents.on('did-start-navigation', (_event, _url, _inPlace, isMainFrame) => {
-      if (isMainFrame) commands.pause();
+      if (isMainFrame) {
+        commands.pause();
+        void mapCodex?.cancel();
+      }
     });
     window.webContents.session.setPermissionRequestHandler((_webContents, _permission, callback) => callback(false));
     window.webContents.session.setPermissionCheckHandler(() => false);
@@ -104,6 +121,28 @@ if (!app.requestSingleInstanceLock()) {
     });
     ipcMain.handle('quickmap:hide', (event) => { if (trustedSender(event)) window?.hide(); });
     ipcMain.handle('quickmap:clipboard', async (event) => trustedSender(event) ? (await clipboard.readText()).slice(0, 200) : '');
+    ipcMain.handle('quickmap:ask-map', (event, prompt: unknown) => {
+      if (!trustedSender(event)) throw new Error('Untrusted sender');
+      if (!mapCodex) throw new Error('Codex bridge unavailable');
+      return mapCodex.ask(prompt);
+    });
+    ipcMain.handle('quickmap:cancel-map-ask', async (event, requestId: unknown) => {
+      if (!trustedSender(event)) throw new Error('Untrusted sender');
+      await mapCodex?.cancel(requestId);
+    });
+    ipcMain.handle('quickmap:reset-map-conversation', async (event) => {
+      if (!trustedSender(event)) throw new Error('Untrusted sender');
+      await mapCodex?.reset();
+    });
+    ipcMain.handle('quickmap:open-story-source', async (event, sourceId: unknown) => {
+      if (!trustedSender(event)) throw new Error('Untrusted sender');
+      if (typeof sourceId !== 'string' || !Object.prototype.hasOwnProperty.call(HORMUZ_STORY.sources, sourceId)) {
+        throw new Error('Unknown story source');
+      }
+      const url = HORMUZ_STORY.sources[sourceId]?.url;
+      if (!url || new URL(url).protocol !== 'https:') throw new Error('Invalid story source');
+      await shell.openExternal(url);
+    });
 
     control = await startControlServer({
       onCommand(command) {

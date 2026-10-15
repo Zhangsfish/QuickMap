@@ -7,6 +7,7 @@ import { z } from 'zod';
 import {
   geometrySchema,
   mapCommandSchema,
+  storyStepIdSchema,
   type MapCommand,
   type MapOverlay,
 } from '../src/shared/protocol';
@@ -40,7 +41,7 @@ export const highlightAreaInputSchema = z.object({
 export const addOverlayInputSchema = z.object({
   id: z.string().trim().min(1).max(100).optional().describe('Stable ID used to update or remove this overlay'),
   label: labelSchema.describe('Human-readable overlay label'),
-  geometry: geometrySchema.describe('GeoJSON geometry with longitude, latitude coordinate order'),
+  geometryJson: z.string().min(1).max(400_000).describe('JSON string containing one GeoJSON geometry; coordinates use longitude, latitude order'),
   description: descriptionSchema.describe('Optional short context shown with the overlay'),
   source: sourceSchema.describe('Optional source or attribution'),
   color: z.string().regex(/^#[0-9a-fA-F]{6}$/).optional().describe('Optional six-digit hex color'),
@@ -56,6 +57,10 @@ export const focusRegionInputSchema = z.object({
 
 export const removeOverlayInputSchema = z.object({
   id: z.string().trim().min(1).max(100).describe('Overlay ID returned by highlight_area or add_overlay'),
+});
+
+export const setStoryStepInputSchema = z.object({
+  stepId: storyStepIdSchema.describe('Preloaded Hormuz story step: hormuz-1 through hormuz-5'),
 });
 
 function radians(value: number) {
@@ -125,9 +130,17 @@ export function buildHighlightAreaCommand(input: unknown): MapCommand {
 
 export function buildAddOverlayCommand(input: unknown): MapCommand {
   const parsed = addOverlayInputSchema.parse(input);
+  let geometryJson: unknown;
+  try { geometryJson = JSON.parse(parsed.geometryJson); }
+  catch { throw new Error('geometryJson must contain valid JSON.'); }
+  const geometry = geometrySchema.parse(geometryJson);
   const overlay = {
-    ...parsed,
-    id: parsed.id ?? generatedOverlayId(parsed.label, parsed.geometry),
+    id: parsed.id ?? generatedOverlayId(parsed.label, geometry),
+    label: parsed.label,
+    geometry,
+    ...(parsed.description === undefined ? {} : { description: parsed.description }),
+    ...(parsed.source === undefined ? {} : { source: parsed.source }),
+    ...(parsed.color === undefined ? {} : { color: parsed.color }),
   };
   return mapCommandSchema.parse({ type: 'upsert_overlay', overlay });
 }
@@ -201,13 +214,21 @@ export function createQuickMapMcpServer(sendCommand: (command: unknown) => Promi
   });
 
   server.registerTool('add_overlay', {
-    description: 'Add or update a labeled GeoJSON geometry on QuickMap. Coordinates must use longitude, latitude order.',
+    description: 'Add or update a labeled GeoJSON geometry on QuickMap. Pass geometryJson as a JSON string (not an object). Coordinates must use longitude, latitude order.',
     inputSchema: addOverlayInputSchema,
   }, async (input) => {
     const command = buildAddOverlayCommand(input);
     await sendCommand(command);
     if (command.type !== 'upsert_overlay') throw new Error('Unexpected command type.');
     return success(`Added ${input.label}.`, { overlayId: command.overlay.id });
+  });
+
+  server.registerTool('set_story_step', {
+    description: 'Open QuickMap’s bundled Strait of Hormuz story and select one of its five approved steps. Pass stepId from hormuz-1 through hormuz-5; arbitrary scenes or geometry are not accepted.',
+    inputSchema: setStoryStepInputSchema,
+  }, async ({ stepId }) => {
+    await sendCommand(mapCommandSchema.parse({ type: 'set_story_step', stepId }));
+    return success(`Selected story step ${stepId}.`);
   });
 
   server.registerTool('search_place', {
