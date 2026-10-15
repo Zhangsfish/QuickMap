@@ -3,6 +3,7 @@ import { mkdtemp, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { createRequire } from 'node:module';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import test, { after } from 'node:test';
 import { build } from 'esbuild';
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
@@ -13,11 +14,11 @@ const outputDirectory = await mkdtemp(join(tmpdir(), 'quickmap-mcp-test-'));
 const outputFile = join(outputDirectory, 'mcp.cjs');
 const buildOptions = { platform: 'node', format: 'cjs', target: 'node22', bundle: true };
 await Promise.all([
-  build({ ...buildOptions, entryPoints: [new URL('../mcp/server.ts', import.meta.url).pathname], outfile: outputFile }),
-  build({ ...buildOptions, entryPoints: [new URL('../cli/quickmap.ts', import.meta.url).pathname], outfile: join(outputDirectory, 'quickmap.cjs') }),
-  build({ ...buildOptions, entryPoints: [new URL('../electron/control.ts', import.meta.url).pathname], outfile: join(outputDirectory, 'control.cjs') }),
+  build({ ...buildOptions, entryPoints: [fileURLToPath(new URL('../mcp/server.ts', import.meta.url))], outfile: outputFile }),
+  build({ ...buildOptions, entryPoints: [fileURLToPath(new URL('../cli/quickmap.ts', import.meta.url))], outfile: join(outputDirectory, 'quickmap.cjs') }),
+  build({ ...buildOptions, entryPoints: [fileURLToPath(new URL('../electron/control.ts', import.meta.url))], outfile: join(outputDirectory, 'control.cjs') }),
 ]);
-const mcp = await import(outputFile);
+const mcp = await import(pathToFileURL(outputFile).href);
 const require = createRequire(import.meta.url);
 const { startControlServer } = require(join(outputDirectory, 'control.cjs'));
 
