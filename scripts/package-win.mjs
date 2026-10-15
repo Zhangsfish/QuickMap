@@ -38,6 +38,8 @@ const [bundle] = await packager({
 
 const controlDir = path.join(bundle, 'control');
 await mkdir(controlDir, { recursive: true });
+await mkdir(path.join(controlDir, 'examples'), { recursive: true });
+await copyFile(path.join(root, 'docs/examples/arctic-dalian-answer.json'), path.join(controlDir, 'examples/arctic-dalian-answer.json'));
 await copyFile(path.join(root, 'dist-electron/quickmap.cjs'), path.join(controlDir, 'quickmap.cjs'));
 await copyFile(path.join(root, 'dist-electron/mcp.cjs'), path.join(controlDir, 'mcp.cjs'));
 for (const script of ['quickmap', 'mcp']) {

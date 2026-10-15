@@ -1,27 +1,7 @@
 import { z } from 'zod';
-
-const longitude = z.number().finite().min(-180).max(180);
-const latitude = z.number().finite().min(-90).max(90);
-const position = z.tuple([longitude, latitude]);
-
-const ring = z.array(position).min(4).superRefine((points, context) => {
-  const first = points[0], last = points[points.length - 1];
-  if (!first || !last || first[0] !== last[0] || first[1] !== last[1]) {
-    context.addIssue({ code: 'custom', message: 'Polygon rings must end at their starting coordinate' });
-  }
-  if (new Set(points.map(([lon, lat]) => `${lon},${lat}`)).size < 3) {
-    context.addIssue({ code: 'custom', message: 'Polygon rings require at least three distinct vertices' });
-  }
-});
-
-export const geometrySchema = z.discriminatedUnion('type', [
-  z.object({ type: z.literal('Point'), coordinates: position }),
-  z.object({ type: z.literal('MultiPoint'), coordinates: z.array(position).min(1) }),
-  z.object({ type: z.literal('LineString'), coordinates: z.array(position).min(2) }),
-  z.object({ type: z.literal('MultiLineString'), coordinates: z.array(z.array(position).min(2)).min(1) }),
-  z.object({ type: z.literal('Polygon'), coordinates: z.array(ring).min(1) }),
-  z.object({ type: z.literal('MultiPolygon'), coordinates: z.array(z.array(ring).min(1)).min(1) }),
-]);
+import { mapAnswerDocumentSchema } from './map-answer-plan';
+import { geometrySchema, latitude, longitude } from './geometry';
+export { geometrySchema } from './geometry';
 
 export const overlaySchema = z.object({
   id: z.string().min(1).max(100),
@@ -32,6 +12,11 @@ export const overlaySchema = z.object({
   color: z.string().regex(/^#[0-9a-fA-F]{6}$/).optional(),
   geometry: geometrySchema,
 });
+
+// Only steps bundled with QuickMap may be selected by an external control client.
+export const STORY_STEP_IDS = ['hormuz-1', 'hormuz-2', 'hormuz-3', 'hormuz-4', 'hormuz-5'] as const;
+export const storyStepIdSchema = z.enum(STORY_STEP_IDS);
+export type StoryStepId = z.infer<typeof storyStepIdSchema>;
 
 export const mapCommandSchema = z.discriminatedUnion('type', [
   z.object({
@@ -44,6 +29,8 @@ export const mapCommandSchema = z.discriminatedUnion('type', [
   }),
   z.object({ type: z.literal('search'), query: z.string().min(1).max(200) }),
   z.object({ type: z.literal('focus_region'), query: z.string().trim().min(1).max(200) }),
+  z.object({ type: z.literal('set_story_step'), stepId: storyStepIdSchema }),
+  z.object({ type: z.literal('show_answer'), document: mapAnswerDocumentSchema }),
   z.object({ type: z.literal('upsert_overlay'), overlay: overlaySchema }),
   z.object({ type: z.literal('remove_overlay'), id: z.string().min(1).max(100) }),
   z.object({ type: z.literal('clear_overlays') }),

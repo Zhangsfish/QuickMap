@@ -1,6 +1,6 @@
 import test, { after } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, rm, writeFile } from 'node:fs/promises';
+import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { createRequire } from 'node:module';
@@ -81,6 +81,18 @@ test('CLI discovers local server and sends validated overlay and place commands'
   } finally { await server.close(); }
 });
 
+test('CLI accepts a linked map answer document and rejects an altered source reference', async () => {
+  const document = JSON.parse(await readFile('docs/examples/arctic-dalian-answer.json', 'utf8'));
+  const file = join(directory, 'map-answer.json');
+  await writeFile(file, JSON.stringify(document));
+  const command = await parseCommand(['answer', file]);
+  assert.equal(command.type, 'show_answer');
+  assert.equal(command.document.plan.title, document.plan.title);
+  document.plan.paragraphs[0].sourceIds = ['unknown-source'];
+  await writeFile(file, JSON.stringify(document));
+  await assert.rejects(parseCommand(['answer', file]));
+});
+
 test('API reports queue backpressure and supports explicit quit', async () => {
   let quit = false;
   const server = await startControlServer({ onCommand: () => false, onQuit: () => { quit = true; } });
@@ -117,5 +129,29 @@ test('CLI region resolves arguments into validated local region commands', async
     });
     assert.equal(response.status, 400);
     assert.equal(received.length, 4);
+  } finally { await server.close(); }
+});
+
+test('story-step CLI and authenticated API accept only bundled step IDs', async () => {
+  const received = [];
+  const server = await startControlServer({ onCommand(command) { received.push(command); return true; }, onQuit() {} });
+  try {
+    const file = join(directory, 'story-control.json');
+    await writeFile(file, JSON.stringify({ protocol: 1, port: server.port, token: server.token }));
+    for (let index = 1; index <= 5; index += 1) {
+      const stepId = `hormuz-${index}`;
+      const command = await parseCommand(['story-step', stepId]);
+      assert.deepEqual(command, { type: 'set_story_step', stepId });
+      assert.equal((await sendRequest(file, '/command', command)).accepted, true);
+    }
+    await assert.rejects(parseCommand(['story-step', 'hormuz-6']));
+    await assert.rejects(parseCommand(['story-step']));
+    await assert.rejects(parseCommand(['story-step', 'hormuz-1', 'extra']));
+    const response = await fetch(`http://127.0.0.1:${server.port}/command`, {
+      method: 'POST', headers: { Authorization: `Bearer ${server.token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type: 'set_story_step', stepId: 'arbitrary-scene' }),
+    });
+    assert.equal(response.status, 400);
+    assert.equal(received.length, 5);
   } finally { await server.close(); }
 });

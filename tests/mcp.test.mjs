@@ -68,8 +68,11 @@ test('highlight_area rejects invalid coordinates and radius before contacting Qu
 test('add_overlay rejects malformed GeoJSON rings', () => {
   assert.throws(() => mcp.buildAddOverlayCommand({
     label: 'Broken polygon',
-    geometry: { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [0, 0]]] },
+    geometryJson: JSON.stringify({ type: 'Polygon', coordinates: [[[0, 0], [1, 0], [0, 0]]] }),
   }));
+  assert.throws(() => mcp.buildAddOverlayCommand({ label: 'Bad JSON', geometryJson: '{' }), /valid JSON/);
+  assert.throws(() => mcp.buildAddOverlayCommand({ label: 'Feature not geometry', geometryJson: '{"type":"Feature","geometry":{"type":"Point","coordinates":[0,0]}}' }));
+  assert.throws(() => mcp.buildAddOverlayCommand({ label: 'Object input', geometryJson: { type: 'Point', coordinates: [0, 0] } }));
 });
 
 test('MCP exposes tools, sends an area command, and rejects bad parameters', async () => {
@@ -82,24 +85,46 @@ test('MCP exposes tools, sends an area command, and rejects bad parameters', asy
     const tools = await client.listTools();
     assert.deepEqual(
       tools.tools.map(({ name }) => name).sort(),
-      ['add_overlay', 'clear_overlays', 'focus_region', 'highlight_area', 'remove_overlay', 'search_place', 'show_place'],
+      ['add_overlay', 'clear_overlays', 'focus_region', 'highlight_area', 'remove_overlay', 'search_place', 'set_story_step', 'show_place'],
     );
+    const overlayTool = tools.tools.find(({ name }) => name === 'add_overlay');
+    assert.equal(overlayTool.inputSchema.properties.geometryJson.type, 'string');
+    assert.equal('geometry' in overlayTool.inputSchema.properties, false);
+
+    const added = await client.callTool({
+      name: 'add_overlay',
+      arguments: { label: 'Test route', geometryJson: JSON.stringify({ type: 'LineString', coordinates: [[56, 26], [70, 20]] }) },
+    });
+    assert.notEqual(added.isError, true);
+    assert.equal(sent[0].type, 'upsert_overlay');
+    assert.deepEqual(sent[0].overlay.geometry, { type: 'LineString', coordinates: [[56, 26], [70, 20]] });
+
+    const invalidOverlay = await client.callTool({ name: 'add_overlay', arguments: { label: 'Invalid', geometryJson: '{' } });
+    assert.equal(invalidOverlay.isError, true);
+    assert.equal(sent.length, 1);
+
+    const step = await client.callTool({ name: 'set_story_step', arguments: { stepId: 'hormuz-3' } });
+    assert.notEqual(step.isError, true);
+    assert.deepEqual(sent[1], { type: 'set_story_step', stepId: 'hormuz-3' });
+    const invalidStep = await client.callTool({ name: 'set_story_step', arguments: { stepId: 'custom' } });
+    assert.equal(invalidStep.isError, true);
+    assert.equal(sent.length, 2);
 
     const accepted = await client.callTool({
       name: 'highlight_area',
       arguments: { label: '北方四岛', lon: 146.5, lat: 44.5, radiusKm: 250 },
     });
     assert.notEqual(accepted.isError, true);
-    assert.equal(sent.length, 1);
-    assert.equal(sent[0].type, 'upsert_overlay');
-    assert.equal(sent[0].overlay.geometry.type, 'Polygon');
+    assert.equal(sent.length, 3);
+    assert.equal(sent[2].type, 'upsert_overlay');
+    assert.equal(sent[2].overlay.geometry.type, 'Polygon');
 
     const result = await client.callTool({
       name: 'highlight_area',
       arguments: { label: 'Bad latitude', lon: 10, lat: 91, radiusKm: 50 },
     });
     assert.equal(result.isError, true);
-    assert.equal(sent.length, 1);
+    assert.equal(sent.length, 3);
   } finally {
     await client.close();
     await server.close();
@@ -125,6 +150,8 @@ test('built stdio MCP invokes the adjacent CLI and reaches the authenticated con
     await client.connect(transport);
     const tools = await client.listTools();
     assert.ok(tools.tools.some(({ name }) => name === 'highlight_area'));
+    const overlayTool = tools.tools.find(({ name }) => name === 'add_overlay');
+    assert.equal(overlayTool.inputSchema.properties.geometryJson.type, 'string');
     const result = await client.callTool({
       name: 'highlight_area',
       arguments: { label: '北方四岛', lon: 146.5, lat: 44.5, radiusKm: 250 },
@@ -139,10 +166,19 @@ test('built stdio MCP invokes the adjacent CLI and reaches the authenticated con
       assert.notEqual(focused.isError, true);
       assert.deepEqual(received.at(-1), { type: 'focus_region', query });
     }
-    assert.equal(received.length, 5);
+    const overlayResult = await client.callTool({
+      name: 'add_overlay',
+      arguments: { label: 'Route', geometryJson: JSON.stringify({ type: 'LineString', coordinates: [[56, 26], [70, 20]] }) },
+    });
+    assert.notEqual(overlayResult.isError, true);
+    assert.equal(received.at(-1).overlay.geometry.type, 'LineString');
+    const storyResult = await client.callTool({ name: 'set_story_step', arguments: { stepId: 'hormuz-5' } });
+    assert.notEqual(storyResult.isError, true);
+    assert.deepEqual(received.at(-1), { type: 'set_story_step', stepId: 'hormuz-5' });
+    assert.equal(received.length, 7);
     const invalid = await client.callTool({ name: 'focus_region', arguments: { query: '   ' } });
     assert.equal(invalid.isError, true);
-    assert.equal(received.length, 5);
+    assert.equal(received.length, 7);
   } finally {
     await client.close();
     await control.close();
